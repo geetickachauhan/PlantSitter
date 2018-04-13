@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<!--
+---- PlantSitter
+---- By: Geeticka Chauhan
+-->
+<html>
+
+<head>
+<meta charset="utf-8">
+<title>PlantSitter</title>
+
+<!-- Use mobile-aware viewport -->
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+<!-- Load style sheets -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<link rel="stylesheet" href="shared.css">
+
+<!-- Load any supplemental Javascript libraries here -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/seedrandom/2.4.2/seedrandom.js"></script>
+
+<!-- Constructible EventTarget polyfill — Only Chrome 64+ supports constructible EventTarget objects natively -->
+<script src="https://unpkg.com/event-target@latest/min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script defer src="https://use.fontawesome.com/releases/v5.0.10/js/all.js" integrity="sha384-slN8GvtUJGnv6ca26v8EzVaR9DC58QEwsIk9q1QXdCU8Yu8ck/tL/5szYlBbqmS+" crossorigin="anonymous"></script>
+<!--above is needed to use font awesome-->
+<!--<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>-->
+
+<script src="addPlantComponent.js"></script>
+    
+</head>
+
+<body>
+<!--
+<div id="overlay" onclick="removeAddPlantOverlay()">
+        <div id="box">Overlay Form</div>
+</div>
+-->
+
+<div class="wrapper"> 
+    
+
+    <div style="padding:20px">
+        <h2>Overlay with Text</h2>
+        <button onclick="createAddPlantOverlay()">Add Plant</button>
+    </div>
+</div>
+
+</body>
+
+</html>
