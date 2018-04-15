@@ -1,0 +1,15 @@
+#heading{
+    display: flex;
+    flex-flow: row;
+    justify-content: center;
+    align-content: center;
+}
+#photo{
+    flex: 4;
+}
+#name{
+    flex: 4;
+}
+#edit{
+    flex: 4;
+}

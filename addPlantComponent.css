@@ -1,105 +1,7 @@
-/*this css file might be shared by a lot of pages; contains the css for the overlay*/
-/* Global variables */
-
-/* add any root colors over here */
-:root {
-	--color-light-gray: hsl(220, 10%, 85%);
-    --color-gray: hsl(0, 0%, 50%);
-	--color-red: hsl(0, 80%, 48%);
-    --color-light-red: hsla(0, 77%, 83%, 0.71);
-	--color-yellow: hsl(44, 91%, 49%);
-	--color-green: hsl(85, 90%, 37%);
-	--color-orange: hsl(30, 100%, 50%);
-    --color-dark-orange: hsl(20, 100%, 50%);
-    --color-blue: hsl(208, 56%, 46%);
-    --color-dark-blue: hsl(208, 56%, 41%);
-    --color-white: hsl(0, 0%, 100%);
-    --color-dirty-white: hsla(0, 0%, 100%, 0.69);
-    --color-black: hsl(0, 0%, 0%);
-	--color-dark-purple: hsl(300, 100%, 25%);
-    --color-purple: hsl(300, 67%, 37%);
-    --color-silver: hsl(218, 11%, 85%);
-    --color-aqua: hsl(191, 100%, 40%);
-    --color-brown: hsl(34, 56%, 40%);
-    --color-light-aqua: hsla(169, 65%, 43%, 0.48);
+:root{
     --font-size: 1.3em;
 }
-
-
-html {
-	display: flex;
-	min-height: 100vh;
-}
-
-body {
-	margin: auto;
-/*    user-select: none;*/
-/*
-    font-size: 1.8em;
-    background: rgba(0,0,0,0.6);
-    text-align: justify;
-    text-justify: inter-word;
-    font-weight: 300;
-*/
-/*    background: rgba(7, 48, 62, 0.29)*/
-}
-div{
-    display: flex;
-    align-items: center;
-    align-content: center;
-    justify-content: center;
-    word-wrap: break-word;
-}
-.text-aqua{
-    color: var(--color-aqua);
-}
-.text-green{
-    color: var(--color-green);
-}
-.text-red{
-    color: var(--color-red);
-}
-.text-gray{
-    color: var(--color-gray);
-}
-.text-brown{
-    color:var(--color-brown);
-}
-.text-yellow{
-    color: var(--color-yellow);
-}
-.text-orange{
-    color: var(--color-orange)
-}
-a{
-   text-decoration: none !important;
-    cursor: default;
-}
-.centerize {
-    display: block;
-    margin: auto;
-    text-align: center;
-}
-.spacify{
-    display: flex;
-    flex-flow: row;
-    justify-content: space-between;   
-}
-
-.text-center {
-    text-align: center;
-}
-.font-big{
-    font-size: 2.5em;
-}
-
-.wrapper{
-    display: flex;
-    justify-content: center;
-    align-content: center;
-/*    flex-flow: column;*/
-}
-
+/* Global variables */
 #overlay {
     position: fixed;
 /*    display: none;*/
@@ -271,6 +173,7 @@ img:hover{
     font-size: calc(var(--font-size)*0.7);
     text-align: center;
     cursor: pointer;
+    transition: 0.3s;
 }
 
 .weekDays-selector input[type=checkbox]:checked + label {
@@ -282,6 +185,9 @@ img:hover{
     flex-flow: column;
     align-items: flex-start;
     font-size: calc(var(--font-size)*0.6);
+}
+input[type=radio]{
+    transition: 0.3s;
 }
 .btn{
     height: 100%;

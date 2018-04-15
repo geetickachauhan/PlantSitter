@@ -17,7 +17,7 @@ function createAddPlantOverlay(){
 //    form.setAttribute("onclick", "none");
 //    box.setAttribute("cursor", "default");
     
-    box.innerHTML = '<div id="photo"><button class="btn btn-info"><span class="fas fa-camera fa-5x"></span></button></div><div id="plant-name" class="formgroup"><div class="formtext">Nickname</div><div class="forminput"><input type="text" class="form-control" id="name" placeholder="Plant Nickname"></div></div><div id="plant-type" class="formgroup"><div class="formtext"><span class="fas fa-leaf fa-2x margin-right text-green"></span><div>Type</div></div><div class="forminput"><input type="text" class="form-control" id="type" placeholder="Plant Type"></div></div><div id="watering" class="formgroup"><div class="formtext"><span class="fas fa-tint fa-2x margin-right text-aqua"></span>Watering Frequency</div><div class="forminput"></div><div class="forminput-small"></div></div><div id="fertilizer"><div class="formtext"><span class="fas fa-poo fa-2x margin-right text-brown"></span>Fertilizer Frequency</div><div class="forminput"></div><div class="forminput-small"></div></div><div id="pesticide"><div class="formtext"><span class="fas fa-bug fa-2x margin-right text-gray"></span>Pesticide Frequency</div><div class="forminput"></div><div class="forminput-small"></div></div><div id="health" class="formgroup"><div class="formtext"><span class="fas fa-heartbeat fa-2x margin-right text-red"></span>Health Status</div><div class="forminput"></div></div><div id="sunlight"><div class="formtext"><span class="fas fa-lightbulb fa-2x margin-right text-yellow"></span>Light Intensity</div><div class="forminput"></div></div><div id="trimming"><div class="formtext"><span class="fas fa-cut fa-2x margin-right"></span>Trimming</div><div class="forminput"></div></div><div id="special-instructions" class="formgroup"><div class="formtext-small"><span class="fas fa-info-circle fa-2x margin-right text-orange"></span></div><div class="forminput"><input type="text" class="form-control" id="special-instructions" placeholder="Special Instructions"></div></div><div id="save"><button class="btn btn-primary"><span class="fas fa-plus-circle fa-3x"></span></button></div>'
+    box.innerHTML = '<div id="photo"><button class="btn btn-info"><span class="fas fa-camera fa-5x"></span></button></div><div id="plant-name" class="formgroup"><div class="formtext">Nickname</div><div class="forminput"><input type="text" class="form-control" id="name" placeholder="Plant Nickname"></div></div><div id="plant-type" class="formgroup"><div class="formtext"><span class="fas fa-leaf fa-2x margin-right text-green"></span><div>Type</div></div><div class="forminput"><input type="text" class="form-control" id="type" placeholder="Plant Type (eg. orchid, rose)"></div></div><div id="watering" class="formgroup"><div class="formtext"><span class="fas fa-tint fa-2x margin-right text-aqua"></span>Watering Frequency</div><div class="forminput"></div><div class="forminput-small"></div></div><div id="fertilizer"><div class="formtext"><span class="fas fa-poo fa-2x margin-right text-brown"></span>Fertilizer Frequency</div><div class="forminput"></div><div class="forminput-small"></div></div><div id="pesticide"><div class="formtext"><span class="fas fa-bug fa-2x margin-right text-gray"></span>Pesticide Frequency</div><div class="forminput"></div><div class="forminput-small"></div></div><div id="health" class="formgroup"><div class="formtext"><span class="fas fa-heartbeat fa-2x margin-right text-red"></span>Health Status</div><div class="forminput"></div></div><div id="sunlight"><div class="formtext"><span class="fas fa-lightbulb fa-2x margin-right text-yellow"></span>Light Intensity</div><div class="forminput"></div></div><div id="trimming"><div class="formtext"><span class="fas fa-cut fa-2x margin-right"></span>Requires Trimming</div><div class="forminput"></div></div><div id="special-instructions" class="formgroup"><div class="formtext-small"><span class="fas fa-info-circle fa-2x margin-right text-orange"></span></div><div class="forminput"><input type="text" class="form-control" id="special-instructions" placeholder="Special Instructions"></div></div><div id="save"><button class="btn btn-primary"><span class="fas fa-plus-circle fa-3x"></span></button></div>'
     
     overlay.appendChild(box);
     document.body.appendChild(overlay);
@@ -164,7 +164,7 @@ function create(x){
 //                <div>Type</div>
 //            </div>
 //            <div class="forminput">
-//                <input type="text" class="form-control" id="type" placeholder="Plant Type">
+//                <input type="text" class="form-control" id="type" placeholder="Plant Type (eg. orchid, rose)">
 //            </div>
 //        </div>
 //        <div id="watering" class="formgroup">
@@ -207,7 +207,7 @@ function create(x){
 //            </div>
 //        </div>
 //        <div id="trimming">
-//            <div class="formtext"><span class="fas fa-cut fa-2x margin-right"></span>Trimming</div>
+//            <div class="formtext"><span class="fas fa-cut fa-2x margin-right"></span>Requires Trimming</div>
 //            <div class="forminput">
 //<!--            call insert radios-->
 //            </div>
