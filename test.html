@@ -7,14 +7,14 @@
 
 <head>
 <meta charset="utf-8">
-<title>Profile</title>
+<title>PlantSitter</title>
 
 <!-- Use mobile-aware viewport -->
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
 <!-- Load style sheets -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-<link rel="stylesheet" href="profile.css">
+<link rel="stylesheet" href="addPlantComponent.css">
 <link rel="stylesheet" href="shared.css">
 
 <!-- Load any supplemental Javascript libraries here -->
@@ -28,20 +28,24 @@
 <!--above is needed to use font awesome-->
 <!--<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>-->
 
-<script src="profile.js"></script>
+<script src="addPlantComponent.js"></script>
     
 </head>
 
 <body>
+<!--
+<div id="overlay" onclick="removeAddPlantOverlay()">
+        <div id="box">Overlay Form</div>
+</div>
+-->
 
 <div class="wrapper"> 
-    <div id="heading">
-        <div id="photo">Photo</div>
-        <div id="name">Name</div>
-        <div id="edit">Edit</div>
+    
+
+    <div style="padding:20px">
+        <h2>Overlay with Text</h2>
+        <button onclick="createAddPlantOverlay()">Add Plant</button>
     </div>
-    <div id="content">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</div>
-    <div id="calendar">Calendar</div>
 </div>
 
 </body>
