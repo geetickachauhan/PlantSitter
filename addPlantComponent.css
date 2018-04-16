@@ -17,6 +17,13 @@
     font-size: var(--font-size);
 /*    cursor: pointer;*/
 }
+div{
+    display: flex;
+    align-items: center;
+    align-content: center;
+    justify-content: center;
+    word-wrap: break-word;
+}
 input[type="text"] {
     font-size: inherit;
 }
