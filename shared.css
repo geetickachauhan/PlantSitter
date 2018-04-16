@@ -63,10 +63,6 @@ body {
 .text-orange{
     color: var(--color-orange)
 }
-a{
-   text-decoration: none !important;
-    cursor: default;
-}
 .centerize {
     display: block;
     margin: auto;
