@@ -41,13 +41,7 @@ body {
 */
 /*    background: rgba(7, 48, 62, 0.29)*/
 }
-div{
-    display: flex;
-    align-items: center;
-    align-content: center;
-    justify-content: center;
-    word-wrap: break-word;
-}
+
 .text-aqua{
     color: var(--color-aqua);
 }
