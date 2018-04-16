@@ -1,7 +1,9 @@
 //view of the plant logic
 DEFAULT_PHOTO_URL = "./images/plant_photoholder.png"
 
-function createStatus(plant_instance, footer){
+var checked_plants = [];
+
+function createUserDisplayStatus(plant_instance, footer){
   let text = document.createElement("p");
   let status_code = plant_instance.status.status_code;
 
@@ -14,6 +16,19 @@ function createStatus(plant_instance, footer){
     extra.classList.add("input-group-text", "aggregation-checkbox");
 
     let checkbox = Util.create("input", {"type": "checkbox", "aria-label": "Checkbox for selecting this plant card"});
+
+    checkbox.addEventListener('change', function(){
+      if (this.checked){
+        checked_plants.push(plant_instance);
+        Util.all(".plant-function").slice(1).map(el => el.removeAttribute("disabled"));
+      }
+      else{ //if the checkbox just got unchecked
+        checked_plants.splice(checked_plants.indexOf(plant_instance));
+        if (!checked_plants.length)
+          Util.all(".plant-function").slice(1).map(el => el.setAttribute("disabled", "true"));
+      }
+    });
+
     extra.appendChild(checkbox);
   }
   else if (status_code == 1){
@@ -93,7 +108,7 @@ function createIcons(plant_instance){
 
 
 
-function createPlantTile(plant_instance, container_id){
+function createPlantTile(plant_instance){
 
   let card = Util.create("div", {"id": "plant_tile_" + plant_instance.id});
   card.classList.add("card");
@@ -103,8 +118,12 @@ function createPlantTile(plant_instance, container_id){
   header.innerText = "Owned by ";
 
   let profile_link = Util.create("a", {"href": "#"});
-  profile_link.innerText = logged_in_user.firstName + " " +
-  logged_in_user.lastName;
+
+  if (plant_instance.owner == logged_in_user.id)
+      profile_link.innerText = "me";
+  else
+      profile_link.innerText = logged_in_user.firstName + " " +
+      logged_in_user.lastName;
 
   header.appendChild(profile_link);
 
@@ -153,6 +172,7 @@ function createPlantTile(plant_instance, container_id){
   -- used both for creating initial status and when the status changes
 */
 function updateStatus(plant_card, plant) {
+
   let old_footer = Array.from(plant_card.childNodes).filter(child => child.classList.contains("card-footer"))[0];
   if (old_footer)
     plant_card.removeChild(old_footer);
@@ -160,6 +180,12 @@ function updateStatus(plant_card, plant) {
   let footer = Util.create("div");
   footer.classList.add("card-footer", "text-muted");
 
-  plant_card.appendChild(createStatus(plant, footer))
+  let status_info;
+  if (plant.owner == logged_in_user.id)
+      status_info = createUserDisplayStatus(plant, footer);
+  else
+      status_info = console.log("heeey"); //TODO: implement how status is displayed to a non owner user
+
+  plant_card.appendChild(status_info);
 
 }

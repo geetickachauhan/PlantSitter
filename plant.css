@@ -65,3 +65,15 @@
   color: rgb(255,165,0);
 
 }
+
+#plant_functions_container{
+    margin-top: 10vh;
+}
+
+.plant-function {
+  margin-bottom: 5%;
+}
+
+#collapseExample {
+  max-width: 100%;
+}
