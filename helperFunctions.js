@@ -1,10 +1,16 @@
 
 class Helpers {
 
-  static createCancelButton(){
+  static createCancelButton(plant, action){
     let button = Util.create("button", {"type": "button"});
     button.classList.add("btn", "btn-secondary", "cancel");
     button.innerText = "Cancel";
+
+    button.addEventListener("click", function(){
+      action.call(plant);
+      updateStatus(Util.one("#plant_tile_" + plant.id), plant);
+
+    });
 
     return button;
   };

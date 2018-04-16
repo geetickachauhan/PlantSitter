@@ -20,7 +20,7 @@ function createStatus(plant_instance, footer){
     text.innerText = "Requested plantsitting from " + plant_instance.status.start_date +
     " to " + plant_instance.status.end_date;
 
-    extra = Helpers.createCancelButton();
+    extra = Helpers.createCancelButton(plant_instance, plant_instance.cancelRequestForcare);
   }
   else if (status_code == 2){
     text.innerText = "Claimed for plantsitting by " + plant_instance.status.app_caretaker +
@@ -28,7 +28,7 @@ function createStatus(plant_instance, footer){
 
     extra = Util.create("div");
     extra.appendChild(Helpers.createCheckButton("Picked up?"))
-    extra.appendChild(Helpers.createCancelButton());
+    extra.appendChild(Helpers.createCancelButton(plant_instance, plant_instance.cancelCareReqApproval));
 
   }
 
@@ -47,7 +47,9 @@ function createStatus(plant_instance, footer){
   return footer;
 }
 
-
+/*
+creates icons based on plant properties
+*/
 function createIcons(plant_instance){
   let container = Util.create("div");
   let health, light, trimming;
@@ -90,12 +92,13 @@ function createIcons(plant_instance){
 }
 
 
+
 function createPlantTile(plant_instance, container_id){
 
-  let card = document.createElement("div");
+  let card = Util.create("div", {"id": "plant_tile_" + plant_instance.id});
   card.classList.add("card");
 
-  let header = document.createElement("div");
+  let header = Util.create("div");
   header.classList.add("card-header");
   header.innerText = "Owned by ";
 
@@ -107,7 +110,7 @@ function createPlantTile(plant_instance, container_id){
 
   card.appendChild(header);
 
-  let top_img = document.createElement("img");
+  let top_img = Util.create("img");
   top_img.classList.add("card-img-top");
 
   if (plant_instance.photo_url)
@@ -119,14 +122,14 @@ function createPlantTile(plant_instance, container_id){
 
   card.appendChild(top_img);
 
-  let card_body = document.createElement("div");
+  let card_body = Util.create("div");
   card_body.classList.add("card-body");
 
-  let title = document.createElement("h5");
+  let title = Util.create("h5");
   title.classList.add("card-title");
   title.innerText = plant_instance.name? plant_instance.name : "";
 
-  let text = document.createElement("p");
+  let text = Util.create("p");
   text.classList.add("card-text");
   text.innerText = plant_instance.type;
 
@@ -138,24 +141,25 @@ function createPlantTile(plant_instance, container_id){
 
   card.appendChild(card_body);
 
-  let footer = document.createElement("div");
-  footer.classList.add("card-footer", "text-muted");
-
-  let status_footer = createStatus(plant_instance, footer);
-
-  card.appendChild(status_footer);
+  updateStatus(card, plant_instance);
 
   Util.one("#board_container").appendChild(card);
 
-	//create the tile based on plant properties
 }
 
-Util.events(document, {
-	// Final initalization entry point: the Javascript code inside this block
-	// runs at the end of start-up when the DOM is ready
 
-	"DOMContentLoaded": function() {
+/*
+  given a plant card and the corresponding plant instance, updates the status section of the plant card
+  -- used both for creating initial status and when the status changes
+*/
+function updateStatus(plant_card, plant) {
+  let old_footer = Array.from(plant_card.childNodes).filter(child => child.classList.contains("card-footer"))[0];
+  if (old_footer)
+    plant_card.removeChild(old_footer);
 
-      createPlantTile(Sauron);
-      createPlantTile(Balrog)
-    }})
+  let footer = Util.create("div");
+  footer.classList.add("card-footer", "text-muted");
+
+  plant_card.appendChild(createStatus(plant, footer))
+
+}

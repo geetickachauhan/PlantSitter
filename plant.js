@@ -1,7 +1,7 @@
 var logged_in_user = {"id": 0, 'firstName': "Gandalf", "lastName": "The Grey"};
 
 var uniqueID = (function() {
-   var id = 0;
+   var id = 100;
    return function() { return id++; };
 })();
 
@@ -14,16 +14,18 @@ class Plant {
 		for (let index = 0 ; index < keys.length ; index++)
 				this[keys[index]] = arguments[index + 1];
 
-    this.status = new Status();
     this.photo_url = photo_url;
 
     if (!args.length){
       this.id = uniqueID();
       this.owner = logged_in_user.id;
+      this.status = new Status();
+
     }
     else { //for registering plants into the system, since we don't have a backend
       this.id = args[0];
       this.owner = args[1];
+      this.status = args[2];
     }
 
 
@@ -68,8 +70,16 @@ class Plant {
 //status_codes: 0-> at_home, 1 -> care_requested 2-> in_transition 3-> in_care
 
 class Status{
-	constructor(){
-		this.update(0);
+	constructor(...args){ //args is passed for initializing with properties, to mimick a backend
+    if (!args.length)
+		  this.update(0);
+    else {
+      this.status_code = args[0];
+      this.start_date = args[1];
+      this.end_date = args[2];
+      this.req_caretakers = args[3];
+      this.app_caretaker = args[4];
+    }
 	}
 
 
@@ -105,8 +115,3 @@ class Status{
 	}
 
  }
-
-Sauron = new Plant(null,"Sauron", "Rose", [[1,0,0,1,0,0,0], 2], [[1,0,0,1,0,1,0], 1], [[1,0,1,1,0,0,0], 2], 1, 0, 1);
-Sauron.requestForCare(2, 3);
-
-Balrog = new Plant(null,"Balrog", "Orchid", [[1,0,0,1,0,0,0], 1], [[1,0,0,1,0,1,0], 0], [[1,0,1,1,0,0,0], 2], 0, 1, 1);
