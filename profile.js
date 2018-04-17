@@ -3,8 +3,8 @@
 
 $(document).ready(function(){
     //    showProfile(own, photo, star, name, phone, email, description);
-    description = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.';
-    showProfile(1, 'img/user.png', 4.5, 'Jane Doe', '4056778978', 'abc@gmail.com', description);
+    var user = registered_users[0];
+    showProfile(1, user['photo_url'], user['star'], user['name'], user['phone'], user['email'], user['description']);
 });
 
 function showProfile(own, photo, star, name, phone, email, description){
@@ -25,6 +25,7 @@ function showProfile(own, photo, star, name, phone, email, description){
         select('#edit').innerHTML = '<button class="btn btn-light"><span class="fas fa-pencil-alt fa-2x"></span></button>';
 //        select('#calendar-main').innerHTML = 'Calendar Main';
         select('#add-event').innerHTML = '<button class="btn btn-info"><span class="fas fa-plus-circle fa-2x"></span></button>';
+        // have to do something about the calendar over here
     }
     
 }
