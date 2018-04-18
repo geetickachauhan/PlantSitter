@@ -59,7 +59,7 @@
           return;
       }
     while (elt.hasChildNodes()) {
-      clear(elt.firstChild);
+      Util.clear(elt.firstChild);
     }
   }
   /*

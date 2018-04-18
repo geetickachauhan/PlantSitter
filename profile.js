@@ -12,22 +12,22 @@ $(document).ready(function(){
 
 function showProfile(own, photo, star, name, phone, email, description){
     // own is a flag that if set to 1, displays calendar, edit and add event to calendar
-    var photo_elt = select('#photo');
+    var photo_elt = Util.one('#photo');
     photo_elt.innerHTML = "<img src='"+photo+"'>";
     createStars(star);
-    var name_elt = select('#name');
+    var name_elt = Util.one('#name');
     name_elt.innerHTML = name;
-    var phone_elt = select('#phone');
+    var phone_elt = Util.one('#phone');
     phone_elt.innerHTML = phone;
-    var email_elt = select('#email');
+    var email_elt = Util.one('#email');
     email_elt.innerHTML = email;
-    var description_elt = select('#description');
+    var description_elt = Util.one('#description');
     description_elt.innerHTML = description;
     
     if(own == 1){
-        select('#edit').innerHTML = '<button class="btn btn-light"><span class="fas fa-pencil-alt fa-2x"></span></button>';
-//        select('#calendar-main').innerHTML = 'Calendar Main';
-//        select('#add-event').innerHTML = '<button class="btn btn-info"><span class="fas fa-plus-circle fa-2x"></span></button>';
+        Util.one('#edit').innerHTML = '<button class="btn btn-light"><span class="fas fa-pencil-alt fa-2x"></span></button>';
+//        Util.one('#calendar-main').innerHTML = 'Calendar Main';
+//        Util.one('#add-event').innerHTML = '<button class="btn btn-info"><span class="fas fa-plus-circle fa-2x"></span></button>';
         
         createCalendar();
     }
@@ -53,25 +53,27 @@ function createStars(num){
     if(full_stars < num){
         half = true;
     }
-    var star = select("#star");
-    removeAllChildren(star);
+    var star = Util.one("#star");
+    Util.removeAllChildren(star);
+//    removeAllChildren(star);
     for(i=0; i<full_stars; i++){
-        span = create('span');
+        span = Util.create('span');
         span.classList.add("fas", "fa-star", "text-green");
         star.appendChild(span);
     }
     if(half == true){
-        span = create('span');
+        span = Util.create('span');
         span.classList.add("fas", "fa-star-half", "text-green");
         star.appendChild(span);
     }
 }
 
-// in the future we will want to pass in events
+// in the future we will want to pass in events, and figure out how to change events json if 
+// user changes it
  // check the difference between below and this https://bootsnipp.com/snippets/featured/calendar-design
     // below is taken from selectable.html which is a demo
 function createCalendar(){
-    select('#calendar').style.setProperty('box-shadow', '0px 0px 21px 2px rgba(0,0,0,0.18)');
+    Util.one('#calendar').style.setProperty('box-shadow', '0px 0px 21px 2px rgba(0,0,0,0.18)');
         var calendar = $('#calendar').fullCalendar({
       header: {
         left: 'prev,next today',
@@ -154,30 +156,4 @@ function createCalendar(){
         }
       ]
     });
-}
-/*
-Remove all children of an element
-*/
-function removeAllChildren(elt) {
-    if(elt == null){
-        return;
-    }
-  while (elt.hasChildNodes()) {
-    clear(elt.firstChild);
-  }
-}
-/*
-helper method to clear first child recursively
-*/
-function clear(elt) {
-  while (elt.hasChildNodes()) {
-    clear(elt.firstChild);
-  }
-  elt.parentNode.removeChild(elt);
-}
-function select(x){
-    return document.querySelector(x);
-}
-function create(x){
-    return document.createElement(x);
 }
