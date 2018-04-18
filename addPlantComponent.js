@@ -150,15 +150,15 @@ function go(){
 }
 
 // When the user clicks anywhere outside of the modal, close it
-window.onclick = function(event) {
-    var modal = document.getElementById('overlay');
-    if (event.target == modal) {
-//        modal.style.display = "none";
-        console.log("target is overlay");
-        removeAddPlantOverlay();
-    }
-     console.log("target is not overlay");
-}
+//window.onclick = function(event) {
+//    var modal = document.getElementById('overlay');
+//    if (event.target == modal) {
+////        modal.style.display = "none";
+//        console.log("target is overlay");
+//        removeAddPlantOverlay();
+//    }
+//     console.log("target is not overlay");
+//}
 // keep below: in case you want to update the innerHTML of box
 //<div id="overlay">
 //    <div id="box">

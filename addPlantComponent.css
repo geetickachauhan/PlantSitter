@@ -207,4 +207,20 @@ input[type=radio]{
 .modal-body{
     width: 100%;
     height: 100%;
+    display: grid;
+    grid-template-rows: 1fr 1fr 2fr 2fr 2fr 1fr;
+    grid-template-columns: repeat(3, 1fr) 0.5fr 0.5fr 1fr;
+    grid-gap: 2px;
+}
+
+/*will have to override the query*/
+@media (min-width: 575px)
+.modal-dialog {
+     max-width: 700px; 
+    margin: 1.75rem auto;
+}
+@media (min-width: 577px)
+.modal-dialog {
+     max-width: 700px; 
+    margin: 1.75rem auto;
 }
