@@ -4,6 +4,7 @@
 $(document).ready(function(){
     //    showProfile(own, photo, star, name, phone, email, description);
     var user = registered_users[0];
+    // in the future, this won't be under document.ready. It will basically be called by whichever page leads to this profile page because they need to pass in registered user and the flag stating whether they are looking at their own profile
     showProfile(1, user['photo_url'], user['star'], user['name'], user['phone'], user['email'], user['description']);
    
     
