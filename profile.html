@@ -13,9 +13,15 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
 <!-- Load style sheets -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <link rel="stylesheet" href="shared.css">
+<!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">-->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
+
+<link rel="stylesheet" href="shared.css">
 <link rel="stylesheet" href="profile.css">
+<link href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i" rel="stylesheet">
+<link href='lib/fullcalendar.min.css' rel='stylesheet' />
+<link href='lib/fullcalendar.print.min.css' rel='stylesheet' media='print' />
+
 
 
 <!-- Load any supplemental Javascript libraries here -->
@@ -23,13 +29,20 @@
 
 <!-- Constructible EventTarget polyfill — Only Chrome 64+ supports constructible EventTarget objects natively -->
 <script src="https://unpkg.com/event-target@latest/min.js"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src='lib/jquery.min.js'></script>
+    <script src='lib/moment.min.js'></script>
+    <script src='lib/fullcalendar.min.js'></script>
+<!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>-->
+<!--<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>-->
 <script defer src="https://use.fontawesome.com/releases/v5.0.10/js/all.js" integrity="sha384-slN8GvtUJGnv6ca26v8EzVaR9DC58QEwsIk9q1QXdCU8Yu8ck/tL/5szYlBbqmS+" crossorigin="anonymous"></script>
 <!--above is needed to use font awesome-->
 <!--<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>-->
-
+<script src="registeredUsers.js"></script>
 <script src="profile.js"></script>
+
+
+
+
 <!-- add util.js   -->
 </head>
 
@@ -38,13 +51,39 @@
 <div class="wrapper"> 
     <div id="breadcrumb"><a href="">Breadcrumb</a></div>
     <div id="heading">
-        <div id="photo">Photo</div>
-        <div id="star">Stars</div>
-        <div id="name" class="font-big text-primary">Name</div>
-        <div id="edit">Edit</div>
+        <div id="photo">
+<!--            <img src="img/user.png">-->
+        </div>
+        <div id="star">
+<!--
+            <span class="fas fa-star text-green"></span>
+            <span class="fas fa-star text-green"></span>
+            <span class="fas fa-star text-green"></span>
+            <span class="fas fa-star text-green"></span>
+            <span class="fas fa-star text-green"></span>
+-->
+        </div>
+        <div id="name" class="font-big text-primary">Jane Doe</div>
+        <div id="edit">
+<!--            <button class="btn btn-light"><span class="fas fa-pencil-alt fa-2x"></span></button>-->
+        </div>
     </div>
-    <div id="content">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</div>
-    <div id="calendar">Calendar</div>
+    <div id="content">
+        <div id="phone-icon"><span class="fas fa-phone fa-2x margin-right text-primary"></span></div>
+        <div id="phone-text">Phone number</div>
+        <div id="phone"></div>
+        <div id="email-icon"><span class="fas fa-envelope fa-2x margin-right text-primary"></span></div>
+        <div id="email-text">Email Address</div>
+        <div id="email"></div>
+        <div id="description-icon"><span class="fas fa-comment-alt fa-2x margin-right text-primary"></span></div>
+        <div id="description-text">Description</div>
+        <div id="description"></div>
+    </div>
+    <div id="calendar-outer">
+        <div id="calendar"></div>
+        <div id="add-event"></div>
+    </div>
+<!--    <div style='clear:both'></div>-->
 </div>
 
 </body>
