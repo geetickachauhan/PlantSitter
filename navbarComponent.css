@@ -1,4 +1,8 @@
-nav{
+:root{
+    --font-size: 1em;
+}
+.navbar{
+    font-size: var(--font-size);
 /*
     position: fixed;
     top: 0;
