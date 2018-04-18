@@ -1,5 +1,7 @@
 var logged_in_user = {"id": 0, 'firstName': "Gandalf", "lastName": "The Grey"};
 
+//TODO: store plant changes in session storage
+
 var uniqueID = (function() {
    var id = 100;
    return function() { return id++; };
@@ -64,10 +66,18 @@ class Plant {
 		this.status.update(3);
 	}
 
+  requestForAdoption(){
+    this.status.update(4);
+  }
+
+  cancelRequestForAdoption(){
+    this.status.update(0);
+  }
+
 
 }
 
-//status_codes: 0-> at_home, 1 -> care_requested 2-> in_transition 3-> in_care
+//status_codes: 0-> at_home, 1 -> care_requested 2-> in_transition 3-> in_care 4-> "up for adoption"
 
 class Status{
 	constructor(...args){ //args is passed for initializing with properties, to mimick a backend
@@ -97,6 +107,10 @@ class Status{
 		else if (status_code == 2){
 			this.app_caretaker = args[0];
 		}
+    else if (status_code == 4){
+      this.update(0);
+      this.status_code = 4;
+    }
 
 		this.status_code = status_code;
  	}

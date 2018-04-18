@@ -7,6 +7,11 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
     <script defer src="https://use.fontawesome.com/releases/v5.0.10/js/all.js" integrity="sha384-slN8GvtUJGnv6ca26v8EzVaR9DC58QEwsIk9q1QXdCU8Yu8ck/tL/5szYlBbqmS+" crossorigin="anonymous"></script>
 
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.21.0/moment.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.0.0-alpha18/js/tempusdominus-bootstrap-4.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.0.0-alpha18/css/tempusdominus-bootstrap-4.min.css" />
+
+
     <link rel="stylesheet" href="plant.css">
     <script src="util.js"></script>
     <script src="helperFunctions.js"></script>
@@ -14,6 +19,7 @@
     <script src="plant.js"> </script>
     <script src="addPlantComponent.js"></script>
     <script src="plantComponent.js"> </script>
+    <script src="plantManipulationComponent.js"></script>
     <script src="homepage.js"></script>
 
   </head>
@@ -22,7 +28,9 @@
 
   <div class="container-fluid">
 
-    <nav></nav>
+    <nav>
+
+    </nav>
 
     <div class="row">
 
@@ -38,27 +46,52 @@
 
 
         <div class = "row justify-content-md-center">
-          <div id ="plant_functions_container" >
-            <button type="button" class="btn btn-secondary btn-block btn-lg plant-function">Add plant</button>
+          <div id ="plant_functions_container" class = "col col-md-9">
+            <button type="button" class="btn btn-secondary btn-block btn-lg plant-function">
+              <i class="fas fa-plus"></i> Add plant</button>
 
-            <button type="button" id="temp_care_button" class="btn btn-secondary btn-block btn-lg plant-function" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample" disabled>
+            <button type="button" id="temp_care_button" class="btn btn-secondary btn-block btn-lg plant-function" data-toggle="collapse" data-target="#collapseFunctionForm" aria-expanded="false" disabled>
               Put up for temp care
             </button>
-            <div class="collapse" id="collapseExample">
-                <div >
-                    sth
+            <div class="collapse" id="collapseFunctionForm">
+
+              <form>
+
+              <div class="form-group">
+                <label for="start_date_picker">From:</label>
+                <div class="input-group date" id="start_date_picker" data-target-input="nearest">
+                  <input type="text" class="form-control datetimepicker-input" data-target="#start_date_picker"/>
+                  <div class="input-group-append" data-target="#start_date_picker" data-toggle="datetimepicker">
+                      <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                  </div>
+
                 </div>
+              </div>
+
+
+              <div class="form-group">
+                <label for="end_date_picker">To:</label>
+                <div class="input-group date" id="end_date_picker" data-target-input="nearest">
+                  <input type="text" class="form-control datetimepicker-input" data-target="#end_date_picker"/>
+                  <div class="input-group-append" data-target="#end_date_picker" data-toggle="datetimepicker">
+                      <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                  </div>
+
+                </div>
+              </div>
+
+
+              <input id="temp_care_confirm" class="btn btn-primary" type="submit" value="Confirm" disabled>
+
+            </form>
+
+
             </div>
-            <label> Want to give away your plant?
+
+            <label id="adoption_label" for= "adoption_button"> Want to give away your plant? </label>
             <button type="button" id="adoption_button" class="btn btn-danger btn-block btn-lg plant-function" disabled>Put up for adoption</button>
-            </label>
+
           </div>
-
-
-
-
-
-
 
 
 

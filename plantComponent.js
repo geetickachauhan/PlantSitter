@@ -24,8 +24,10 @@ function createUserDisplayStatus(plant_instance, footer){
       }
       else{ //if the checkbox just got unchecked
         checked_plants.splice(checked_plants.indexOf(plant_instance));
-        if (!checked_plants.length)
+        if (!checked_plants.length) {
           Util.all(".plant-function").slice(1).map(el => el.setAttribute("disabled", "true"));
+          $('#collapseFunctionForm').collapse('hide');
+          }
       }
     });
 
@@ -33,7 +35,7 @@ function createUserDisplayStatus(plant_instance, footer){
   }
   else if (status_code == 1){
     text.innerText = "Requested plantsitting from " + plant_instance.status.start_date +
-    " to " + plant_instance.status.end_date;
+    "\xa0 to \xa0" + plant_instance.status.end_date;
 
     extra = Helpers.createCancelButton(plant_instance, plant_instance.cancelRequestForcare);
   }
@@ -46,14 +48,17 @@ function createUserDisplayStatus(plant_instance, footer){
     extra.appendChild(Helpers.createCancelButton(plant_instance, plant_instance.cancelCareReqApproval));
 
   }
-
-  else{ //if status_code == 3
+  else if (status_code == 3){
     text.innerText = "Sent for plantsitting from " + plant_instance.status.start_date +
-    " to " + plant_instance.status.end_date;
+    "\xa0 to \xa0" + plant_instance.status.end_date;
 
     extra = Util.create("button")
     extra.classList.add("btn", "btn-dark", "req-photo");
     extra.innerText = "Request photo";
+  }
+  else { //if status_code == 4
+    text.innerText = "Offered for adoption";
+    extra = Helpers.createCancelButton(plant_instance, plant_instance.cancelRequestForAdoption);
   }
 
   footer.appendChild(text);

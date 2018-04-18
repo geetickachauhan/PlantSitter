@@ -30,4 +30,11 @@ Util.events(document, {
 	"DOMContentLoaded": function() {
 
       representUserPlants();
+      $(function () {
+          $(".date").datetimepicker({
+              format: 'L'
+          });
+      });
+      setupPlantManipulation();
+
     }})
