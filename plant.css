@@ -1,0 +1,80 @@
+.card {
+  width: 18em;
+  margin-right: 2%;
+  margin-bottom: 2%;
+}
+
+.card-img-top {
+  height: 40%;
+  border-bottom: 1px solid rgba(0,0,0,.125);
+}
+
+.card-body {
+  text-align: center;
+  padding: 0.6em;
+}
+
+.card-footer{
+  padding: 0.6em;
+}
+
+.card-footer > p {
+  margin-bottom: 0.5rem;
+}
+
+.aggregation-checkbox {
+  display: inline-block;
+  float: left;
+}
+
+.cancel {
+  float: right;
+}
+
+.approve {
+  float: left;
+}
+
+.req-photo {
+  float: left;
+}
+
+.green {
+  color: green;
+}
+
+.grey {
+  color: grey;
+}
+
+.transparent{
+  opacity: 0.5;
+}
+
+.icon-group {
+  margin-right: 4%;
+}
+
+.brown {
+  color: rgb(139,69,19);
+}
+.blue {
+  color: rgb(0,191,255);
+}
+.gold {
+  color: rgb(255,165,0);
+
+}
+
+#plant_functions_container{
+    margin-top: 10vh;
+}
+
+.plant-function {
+  margin-bottom: 5%;
+}
+
+
+#adoption_label {
+  margin-top: 14%;
+}
