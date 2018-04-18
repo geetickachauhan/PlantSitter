@@ -187,7 +187,7 @@ input[type="text"] {
   background: var(--color-green);
   color: var(--color-white);
 }
-.radio{
+.g-radio-button{
     display: flex;
     flex-flow: column;
     align-items: flex-start;
@@ -196,7 +196,7 @@ input[type="text"] {
 input[type=radio]{
     transition: 0.3s;
 }
-.btn{
+.g-big-button{
     height: 100%;
     width: 60%;
 }

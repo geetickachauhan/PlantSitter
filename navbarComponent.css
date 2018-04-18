@@ -3,6 +3,7 @@
 }
 .navbar{
     font-size: var(--font-size);
+    background-color: #597694!important;
 /*
     position: fixed;
     top: 0;
