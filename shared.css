@@ -88,3 +88,6 @@ body {
     flex-flow: column;
     margin: auto;
 }
+.margin-right{
+    margin-right: 10px;
+}
