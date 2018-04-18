@@ -30,7 +30,7 @@ html {
 }
 
 body {
-	margin: auto;
+/*	margin: auto;*/
 /*    user-select: none;*/
 /*
     font-size: 1.8em;
@@ -86,4 +86,5 @@ body {
     justify-content: center;
     align-content: center;
     flex-flow: column;
+    margin: auto;
 }

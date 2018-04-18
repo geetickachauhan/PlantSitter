@@ -99,19 +99,41 @@ function addRadioButtons(elt, name, values, labels){
 //                    </label>
 //                </div>
     // for above, values = ["everyweek", "every2weeks", "everymonth"] and labels = ["Every Week" ...]
+    
+//    <div class="form-check">
+//  <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" checked>
+//  <label class="form-check-label" for="exampleRadios1">
+//    Default radio
+//  </label>
+//</div>
+//<div class="form-check">
+//  <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="option2">
+//  <label class="form-check-label" for="exampleRadios2">
+//    Second default radio
+//  </label>
+//</div>
+//<div class="form-check disabled">
+//  <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios3" value="option3" disabled>
+//  <label class="form-check-label" for="exampleRadios3">
+//    Disabled radio
+//  </label>
+//</div>
     var radio = document.createElement("div");
     radio.classList.add("radio");
     for(i=0; i< values.length; i++){
+        var div = document.createElement("div");
+        div.classList.add("form-check");
         var label = document.createElement("label");
         var input = document.createElement("input");
-        input.setAttribute("class", "formradio");
+        input.setAttribute("class", "form-check-input");
         input.setAttribute("type", "radio");
         input.setAttribute("name", name);
         input.setAttribute("value", values[i]);
         if(i == 0){input.checked = true;}
-        label.appendChild(input);
+        div.appendChild(input);
+        div.appendChild(label);
         label.innerHTML += labels[i];
-        radio.appendChild(label);
+        radio.appendChild(div);
     }
     elt.appendChild(radio);
     
@@ -150,15 +172,15 @@ function go(){
 }
 
 // When the user clicks anywhere outside of the modal, close it
-//window.onclick = function(event) {
-//    var modal = document.getElementById('overlay');
-//    if (event.target == modal) {
-////        modal.style.display = "none";
-//        console.log("target is overlay");
-//        removeAddPlantOverlay();
-//    }
-//     console.log("target is not overlay");
-//}
+window.onclick = function(event) {
+    var modal = document.getElementById('overlay');
+    if (event.target == modal) {
+//        modal.style.display = "none";
+        console.log("target is overlay");
+        removeAddPlantOverlay();
+    }
+     console.log("target is not overlay");
+}
 // keep below: in case you want to update the innerHTML of box
 //<div id="overlay">
 //    <div id="box">
