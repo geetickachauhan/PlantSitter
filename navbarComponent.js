@@ -3,7 +3,7 @@ function createNavbar(){
 	//attach it to the document
 
     navbar = Util.create("nav");
-    navbar.classList.add("navbar", "navbar-expand-lg", "navbar-dark");
+    navbar.classList.add("navbar", "navbar-expand-lg", "navbar-dark", "sticky-top");
     inner = `
     <a class="navbar-brand mt-1" href="homepage.html">PlantSitter</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#main-navbar" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -39,9 +39,9 @@ function createNavbar(){
                 </li>
               </ul>
               </div></div>`;
-    
-    
-    
+
+
+
     navbar.innerHTML = inner;
     body = Util.one('body');
     body.insertBefore(navbar, body.firstChild);
@@ -50,13 +50,13 @@ function createNavbar(){
     notifInner = `
       <a class="dropdown-item" href="profile.html">
         Bilbo has requested to <br>care for Grishnakh
-        <div class="row text-center"> 
-            <div class="col-sm-6"> 
-            <button type="button" class="btn btn-success"><span class="fas fa-check fa-lg"></span></button> 
-            </div> 
-        <div class="col-sm-6"> 
+        <div class="row text-center">
+            <div class="col-sm-6">
+            <button type="button" class="btn btn-success"><span class="fas fa-check fa-lg"></span></button>
+            </div>
+        <div class="col-sm-6">
             <button type="button" class="btn btn-danger"><span class="fas fa-ban fa-lg"></span></button>
-        </div> 
+        </div>
         </div>
       </a>
     <div class="dropdown-divider"></div>

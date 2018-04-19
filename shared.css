@@ -24,6 +24,9 @@
     --color-lightest-gray: #ebecec;
 }
 
+.btn {
+		white-space: normal;
+}
 
 html {
 /*
