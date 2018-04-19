@@ -17,13 +17,16 @@ function createUserDisplayStatus(plant_instance, footer){
 
     let checkbox = Util.create("input", {"type": "checkbox", "aria-label": "Checkbox for selecting this plant card"});
 
-    checkbox.addEventListener('change', function(){
+    checkbox.addEventListener('change', function(e){
+
       if (this.checked){
         checked_plants.push(plant_instance);
         Util.all(".plant-function").slice(1).map(el => el.removeAttribute("disabled"));
+
       }
       else{ //if the checkbox just got unchecked
-        checked_plants.splice(checked_plants.indexOf(plant_instance));
+        checked_plants.splice(checked_plants.indexOf(plant_instance), 1);
+
         if (!checked_plants.length) {
           Util.all(".plant-function").slice(1).map(el => el.setAttribute("disabled", "true"));
           $('#collapseFunctionForm').collapse('hide');

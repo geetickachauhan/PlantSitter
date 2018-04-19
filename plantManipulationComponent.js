@@ -6,10 +6,51 @@ function setupPlantManipulation(){
   plant_functions[0].addEventListener("click", function(){ //add plant
     $('#collapseFunctionForm').collapse('hide');
 
-    //TODO: show the overlay
-    //read input values
-    //create plant instance and possibly store it in storage memory
-    //createPlantTile(plant_instance);
+    createAddPlantOverlay();
+
+    Util.one("#save button").addEventListener('click', function(e){
+
+      let frequency_input_weekdays = [];
+      Util.all(".weekDays-selector").map(el => frequency_input_weekdays.push(Array.from(el.children)
+      .filter(x => x.tagName == "INPUT").map(y => {if (y.checked) return 1; else return 0;})));
+
+      let radios = Util.all("#overlay .form-check-input");
+
+      let frequency_radios = radios.slice(0,9);
+      let bool_radios = radios.slice(9);
+
+      let frequencies = [], booleans = [];
+
+      for (let i = 0 ; i < 3 ; i++)
+        for (let j = i * 3 ; j < i * 3 + 3 ; j++)
+          if (frequency_radios[j].checked)
+            frequencies.push(2- (j - i*3));
+
+      for (let i = 0 ; i < 3 ; i++)
+        for (let j = i * 2 ; j < i * 2 + 2 ; j++)
+          if (bool_radios[j].checked)
+            booleans.push(1 - (j - i*2));
+
+
+      let plant_name = Util.one("#name").value;
+      let plant_type = Util.one("#type").value;
+
+      let aggregate_frequencies = [];
+      for (let i = 0 ; i < 3 ; i++){
+        aggregate_frequencies.push([frequency_input_weekdays[i], frequencies[i]]);
+      }
+
+      let plant_args = [null, plant_name, plant_type];
+      plant_args = plant_args.concat(aggregate_frequencies);
+      plant_args = plant_args.concat(booleans);
+      plant_args.push(Util.one("#special-instructions").value);
+
+      let plant_instance = new Plant(...plant_args);
+
+      removeAddPlantOverlay();
+      createPlantTile(plant_instance);
+
+    });
   });
 
   var start_date, end_date;
@@ -48,7 +89,8 @@ function setupPlantManipulation(){
     }
 
     $('#collapseFunctionForm').collapse('hide');
-
+    checked_plants.length = 0;
+    Util.all(".plant-function").slice(1).map(el => el.setAttribute("disabled", "true"));
   });
 
 
@@ -59,6 +101,9 @@ function setupPlantManipulation(){
         plant.requestForAdoption();
         updateStatus(Util.one("#plant_tile_" + plant.id), plant);
     }
+
+    checked_plants.length = 0;
+    Util.all(".plant-function").slice(1).map(el => el.setAttribute("disabled", "true"));
 
   });
 

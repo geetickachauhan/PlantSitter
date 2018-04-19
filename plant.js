@@ -11,8 +11,8 @@ class Plant {
 
 	//{'name': null, 'type': null, 'watering_freq': [[0,0,0,0,0,0,0],null], }
 
-	constructor(photo_url, name, type, watering_freq, fertilizer_freq, pesticide_freq, health, light, trimming, ...args){
-		let keys = ['name', 'type', 'watering_freq', 'fertilizer_freq', 'pesticide_freq', 'health', 'light', 'trimming'];
+	constructor(photo_url, name, type, watering_freq, fertilizer_freq, pesticide_freq, health, light, trimming, instructions, ...args){
+		let keys = ['name', 'type', 'watering_freq', 'fertilizer_freq', 'pesticide_freq', 'health', 'light', 'trimming', 'instructions'];
 		for (let index = 0 ; index < keys.length ; index++)
 				this[keys[index]] = arguments[index + 1];
 
