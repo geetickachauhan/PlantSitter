@@ -31,6 +31,7 @@ Util.events(document, {
 
       createNavbar();
       representUserPlants();
+      createSearchFilter(0);
       $(function () {
           $(".date").datetimepicker({
               format: 'L'
