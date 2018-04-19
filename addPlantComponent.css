@@ -1,5 +1,5 @@
 :root{
-    --font-size: 1.2em;
+    --addPlant-font-size: 1.2em;
 }
 /* Global variables */
 #overlay {
@@ -14,7 +14,7 @@
     bottom: 0;
     background-color: rgba(0,0,0,0.5);
     z-index: 2;
-    font-size: var(--font-size);
+    font-size: var(--addPlant-font-size);
 /*    cursor: pointer;*/
 }
 .centerdiv{
@@ -176,8 +176,8 @@ input[type="text"] {
     height: 80%;
     width: 13%;
     margin-right: 1%;
-    line-height: calc(var(--font-size)*1.8);
-    font-size: calc(var(--font-size)*0.7);
+    line-height: calc(var(--addPlant-font-size)*1.8);
+    font-size: calc(var(--addPlant-font-size)*0.7);
     text-align: center;
     cursor: pointer;
     transition: 0.3s;
@@ -191,7 +191,7 @@ input[type="text"] {
     display: flex;
     flex-flow: column;
     align-items: flex-start;
-    font-size: calc(var(--font-size)*0.6);
+    font-size: calc(var(--addPlant-font-size)*0.6);
 }
 input[type=radio]{
     transition: 0.3s;

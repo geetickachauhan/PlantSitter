@@ -21,6 +21,7 @@
     --color-aqua: hsl(191, 100%, 40%);
     --color-brown: hsl(34, 56%, 40%);
     --color-light-aqua: hsla(169, 65%, 43%, 0.48);
+    --color-lightest-gray: #ebecec;
 }
 
 
@@ -65,6 +66,9 @@ body {
 .text-orange{
     color: var(--color-orange)
 }
+.text-black{
+    color: var(--color-black);
+}
 .centerize {
     display: block;
     margin: auto;
@@ -79,9 +83,11 @@ body {
 .text-center {
     text-align: center;
 }
+/*
 .font-big{
     font-size: 2.5em;
 }
+*/
 
 .wrapper{
     display: flex;

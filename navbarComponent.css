@@ -1,18 +1,18 @@
 :root{
-    --font-size: 1.5em;
+    --navbar-font-size: 1.5em;
     --navbar-font-color: var(--color-white);
     --navbar-background-color: var(--green);
 }
 .navbar{
-    font-size: var(--font-size);
+    font-size: var(--navbar-font-size);
     background-color: var(--navbar-background-color) !important;
-    width: 100vw;
+/*    width: 100vw;*/
 }
 .navbar-brand{
-    font-size: var(--font-size);
+    font-size: var(--navbar-font-size);
 }
 .dropdown-item{
-    font-size: calc(var(--font-size)*0.8);
+    font-size: calc(var(--navbar-font-size)*0.8);
 }
 /*
 .navbar-nav{
