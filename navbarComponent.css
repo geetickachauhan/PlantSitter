@@ -1,9 +1,12 @@
 :root{
-    --font-size: 1em;
+    --font-size: 1.5em;
+    --navbar-font-color: var(--color-white);
+    --navbar-background-color: var(--green);
 }
 .navbar{
     font-size: var(--font-size);
-    background-color: #597694!important;
+    background-color: var(--navbar-background-color) !important;
+    color: blue;
 /*
     position: fixed;
     top: 0;
@@ -11,15 +14,33 @@
 */
     width: 100vw;
 }
-
-/*
-.navbar .navbar-nav {
-    display: inline-block;
-    float: none;
+.navbar-brand{
+    font-size: var(--font-size);
 }
-
-.navbar .navbar-collapse {
+.dropdown-item{
+    font-size: calc(var(--font-size)*0.8);
+}
+.navbar-nav{
+    width: 100%;
+/*
+    display: inline-block;
     text-align: center;
+*/
+    padding: 0;
+    list-style: none;
+}
+/*
+.navbar-centerize {
+   display: inline-block;
+   text-align:center; 
 }
 */
-
+.navbar-green{
+    color: var(--navbar-font-color);
+}
+.navbar-toggler{
+    color: inherit;
+}
+.navbar-brand{
+    color: inherit;
+}

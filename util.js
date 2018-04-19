@@ -67,7 +67,7 @@
   */
   static clear(elt) {
     while (elt.hasChildNodes()) {
-      clear(elt.firstChild);
+      Util.clear(elt.firstChild);
     }
     elt.parentNode.removeChild(elt);
   }
