@@ -14,10 +14,14 @@ function createNavbar(){
                 <li class="nav-item mt-1"><a class="nav-link" href="homepage.html">My Plants</a></li>
                 <li class="nav-item mt-1"><a class="nav-link" href="#">PlantSit</a></li>
                 <li class="nav-item mt-1"><a class="nav-link" href="#">Adopt</a></li>
-                <li class="nav-item mt-1"><a class="nav-link" href="#"><span class="fas fa-bell fa-lg"></span></a></li>
+                <li class="nav-item dropdown mt-1">
+                    <a class="nav-link dropdown-toggle" href="#" id="notifDropDown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span class="fas fa-bell fa-lg"></span></a>
+                    <div class="dropdown-menu" aria-labelledby="notifDropdown" id="g-notification">
+                    </div>
+                </li>
                 <li class="nav-item dropdown text-right mt-1">
-                  <a class="nav-link dropdown-toggle" href="#" id="username" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></a>
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                  <a class="nav-link dropdown-toggle" href="#" id="usernameDropDown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></a>
+                    <div class="dropdown-menu" aria-labelledby="usernameDropdown">
                       <a class="dropdown-item" href="profile.html">
                         <span class="fas fa-id-card fa-lg text-gray margin-right"></span>
                         Profile and Calendar
@@ -35,10 +39,31 @@ function createNavbar(){
                 </li>
               </ul>
               </div></div>`;
+    
+    
+    
     navbar.innerHTML = inner;
     body = Util.one('body');
     body.insertBefore(navbar, body.firstChild);
-    Util.one('#username').innerHTML = logged_in_user.firstName;
+    Util.one('#usernameDropDown').innerHTML = logged_in_user.firstName;
+    notification = Util.one('#g-notification');
+    notifInner = `
+      <a class="dropdown-item" href="profile.html">
+        Bilbo has requested to <br>care for Grishnakh
+        <div class="row text-center"> 
+            <div class="col-sm-6"> 
+            <button type="button" class="btn btn-success"><span class="fas fa-check fa-lg"></span></button> 
+            </div> 
+        <div class="col-sm-6"> 
+            <button type="button" class="btn btn-danger"><span class="fas fa-ban fa-lg"></span></button>
+        </div> 
+        </div>
+      </a>
+    <div class="dropdown-divider"></div>
+    <a class="dropdown-item" href="#">
+      Water Balrog on 12/3
+    </a>`;
+   notification.innerHTML = notifInner;
 }
 
 function deleteNavbar(){
