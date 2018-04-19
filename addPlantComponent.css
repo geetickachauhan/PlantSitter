@@ -53,6 +53,9 @@ input[type="text"] {
     margin-right: 5%;
 */
     width: 70%;
+/*    max height and max width will need to be changed later*/
+    max-width: 900px;
+    max-height: 700px;
     height: 80%;
     padding: 2%;
     background-color: var(--color-white);
