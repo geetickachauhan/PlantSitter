@@ -22,6 +22,8 @@
 <link href='lib/fullcalendar.min.css' rel='stylesheet' />
 <link href='lib/fullcalendar.print.min.css' rel='stylesheet' media='print' />
 
+<link rel="stylesheet" href="navbarComponent.css">
+<script src="navbarComponent.js"></script>
 
 
 <!-- Load any supplemental Javascript libraries here -->
@@ -37,9 +39,10 @@
 <script defer src="https://use.fontawesome.com/releases/v5.0.10/js/all.js" integrity="sha384-slN8GvtUJGnv6ca26v8EzVaR9DC58QEwsIk9q1QXdCU8Yu8ck/tL/5szYlBbqmS+" crossorigin="anonymous"></script>
 <!--above is needed to use font awesome-->
 <!--<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>-->
+<script src="util.js"></script>
+
 <script src="registeredUsers.js"></script>
 <script src="profile.js"></script>
-<script src="util.js"></script>
 
 
 
@@ -48,9 +51,9 @@
 </head>
 
 <body>
+  <div id="breadcrumb"><a href="">Breadcrumb</a></div>
 
-<div class="wrapper"> 
-    <div id="breadcrumb"><a href="">Breadcrumb</a></div>
+<div class="wrapper">
     <div id="heading">
         <div id="photo">
 <!--            <img src="img/user.png">-->
@@ -64,7 +67,7 @@
             <span class="fas fa-star text-green"></span>
 -->
         </div>
-        <div id="name" class="font-big text-primary">Jane Doe</div>
+        <div id="name" class="font-big text-primary"></div>
         <div id="edit">
 <!--            <button class="btn btn-light"><span class="fas fa-pencil-alt fa-2x"></span></button>-->
         </div>

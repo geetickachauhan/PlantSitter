@@ -157,10 +157,15 @@ input[type="text"] {
 }
 .forminput-small{
     flex: 4;
+    margin-left: 3%;
 }
 .formtext-small{
     flex: 1;
 }
+.binary-form{
+  margin-left: 3%;
+}
+
 .weekDays-selector{
     height: 100%;
     width: 100%;
@@ -216,11 +221,10 @@ input[type=radio]{
 /*will have to override the query*/
 @media (min-width: 575px)
 .modal-dialog {
-     max-width: 700px; 
+     max-width: 700px;
     margin: 1.75rem auto;
 }
 @media (min-width: 577px)
 .modal-dialog {
-     max-width: 700px; 
+     max-width: 700px;
     margin: 1.75rem auto;
-}

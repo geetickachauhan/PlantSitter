@@ -1,4 +1,4 @@
-var logged_in_user = {"id": 0, 'firstName': "Gandalf", "lastName": "The Grey"};
+
 
 //TODO: store plant changes in session storage
 

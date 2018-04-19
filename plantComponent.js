@@ -126,9 +126,12 @@ function createPlantTile(plant_instance){
   header.innerText = "Owned by ";
 
   let profile_link = Util.create("a", {"href": "#"});
+  profile_link.classList.add("green-link");
 
-  if (plant_instance.owner == logged_in_user.id)
+  if (plant_instance.owner == logged_in_user.id){
       profile_link.innerText = "me";
+      profile_link.setAttribute("href", "profile.html")
+  }
   else
       profile_link.innerText = logged_in_user.firstName + " " +
       logged_in_user.lastName;

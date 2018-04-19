@@ -1,7 +1,8 @@
 .card {
   width: 18em;
   margin-right: 2%;
-  margin-bottom: 2%;
+  margin-bottom: 1%;
+  margin-top: 1%;
 }
 
 .card-img-top {
@@ -29,6 +30,10 @@
 
 .cancel {
   float: right;
+}
+
+.green-link{
+  color: var(--green);
 }
 
 .approve {
@@ -72,6 +77,10 @@
 
 .plant-function {
   margin-bottom: 5%;
+}
+
+#temp_care_confirm {
+  background-color: var(--green)
 }
 
 

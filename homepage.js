@@ -29,6 +29,7 @@ Util.events(document, {
 
 	"DOMContentLoaded": function() {
 
+      createNavbar();
       representUserPlants();
       $(function () {
           $(".date").datetimepicker({

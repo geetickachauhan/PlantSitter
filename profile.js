@@ -3,35 +3,36 @@
 
 $(document).ready(function(){
     //    showProfile(own, photo, star, name, phone, email, description);
-    var user = registered_users[0];
     // in the future, this won't be under document.ready. It will basically be called by whichever page leads to this profile page because they need to pass in registered user and the flag stating whether they are looking at their own profile
-    showProfile(1, user['photo_url'], user['star'], user['name'], user['phone'], user['email'], user['description']);
-   
-    
+    createNavbar();
+
+    showProfile(1, logged_in_user['photo_url'], logged_in_user['star'], logged_in_user['firstName'], logged_in_user['lastName'], logged_in_user['phone'], logged_in_user['email'], logged_in_user['description']);
+
+
 });
 
-function showProfile(own, photo, star, name, phone, email, description){
+function showProfile(own, photo, star, first_name, last_name, phone, email, description){
     // own is a flag that if set to 1, displays calendar, edit and add event to calendar
     var photo_elt = Util.one('#photo');
     photo_elt.innerHTML = "<img src='"+photo+"'>";
     createStars(star);
     var name_elt = Util.one('#name');
-    name_elt.innerHTML = name;
+    name_elt.innerHTML = first_name + " " + last_name;
     var phone_elt = Util.one('#phone');
     phone_elt.innerHTML = phone;
     var email_elt = Util.one('#email');
     email_elt.innerHTML = email;
     var description_elt = Util.one('#description');
     description_elt.innerHTML = description;
-    
+
     if(own == 1){
         Util.one('#edit').innerHTML = '<button class="btn btn-light"><span class="fas fa-pencil-alt fa-2x"></span></button>';
 //        Util.one('#calendar-main').innerHTML = 'Calendar Main';
 //        Util.one('#add-event').innerHTML = '<button class="btn btn-info"><span class="fas fa-plus-circle fa-2x"></span></button>';
-        
+
         createCalendar();
     }
-    
+
 }
 
 
@@ -68,7 +69,7 @@ function createStars(num){
     }
 }
 
-// in the future we will want to pass in events, and figure out how to change events json if 
+// in the future we will want to pass in events, and figure out how to change events json if
 // user changes it
  // check the difference between below and this https://bootsnipp.com/snippets/featured/calendar-design
     // below is taken from selectable.html which is a demo

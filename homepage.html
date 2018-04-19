@@ -10,7 +10,11 @@
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.21.0/moment.min.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.0.0-alpha18/js/tempusdominus-bootstrap-4.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.0.0-alpha18/css/tempusdominus-bootstrap-4.min.css" />
+    <link rel="stylesheet" href="navbarComponent.css">
 
+
+    <script src="registeredUsers.js"></script>
+    <script src="navbarComponent.js"></script>
 
     <link rel="stylesheet" href="plant.css">
     <script src="util.js"></script>
@@ -33,9 +37,6 @@
 
   <div class="container-fluid">
 
-    <nav>
-
-    </nav>
 
     <div class="row">
 
@@ -53,7 +54,7 @@
         <div class = "row justify-content-md-center">
           <div id ="plant_functions_container" class = "col col-md-9">
             <button type="button" class="btn btn-secondary btn-block btn-lg plant-function">
-              <i class="fas fa-plus"></i> Add plant</button>
+              <i class="fas fa-plus-circle"></i> Add plant</button>
 
             <button type="button" id="temp_care_button" class="btn btn-secondary btn-block btn-lg plant-function" data-toggle="collapse" data-target="#collapseFunctionForm" aria-expanded="false" disabled>
               Put up for temp care
