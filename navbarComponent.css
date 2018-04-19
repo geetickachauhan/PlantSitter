@@ -6,12 +6,6 @@
 .navbar{
     font-size: var(--font-size);
     background-color: var(--navbar-background-color) !important;
-    color: blue;
-/*
-    position: fixed;
-    top: 0;
-    bottom: 0;
-*/
     width: 100vw;
 }
 .navbar-brand{
@@ -20,15 +14,15 @@
 .dropdown-item{
     font-size: calc(var(--font-size)*0.8);
 }
+/*
 .navbar-nav{
     width: 100%;
-/*
     display: inline-block;
     text-align: center;
-*/
     padding: 0;
     list-style: none;
 }
+*/
 /*
 .navbar-centerize {
    display: inline-block;
