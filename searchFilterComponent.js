@@ -72,6 +72,8 @@ function createSearchFilter(mode){
             </form>
 
         </div>
+        <div class="dummy-row">
+        </div>
 
     </div>
     `
