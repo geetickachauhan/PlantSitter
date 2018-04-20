@@ -105,3 +105,6 @@ body {
 .margin-left{
     margin-left: 20px;
 }
+.set-width{
+    width: 100vw;
+}
