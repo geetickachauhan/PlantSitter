@@ -5,7 +5,7 @@ function createNavbar(){
     navbar = Util.create("nav");
     navbar.classList.add("navbar", "navbar-expand-lg", "navbar-dark", "sticky-top");
     inner = `
-    <a class="navbar-brand mt-1" href="homepage.html">PlantSitter</a>
+    <a class="navbar-brand mt-1" href="homepage.html"><span class="fab fa-pagelines fa-lg margin-right"></span>PlantSitter</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#main-navbar" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span></button>
     <div class="container">
