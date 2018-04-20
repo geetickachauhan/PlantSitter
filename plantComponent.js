@@ -78,15 +78,15 @@ function createIcons(plant_instance){
   let health, light, trimming;
 
   if (plant_instance.health)
-    health = Helpers.createIcon("heartbeat",'icon-group', 'green');
+    health = Helpers.createIcon("heartbeat",'icon-group', 'text-red');
   else
-    health = Helpers.createIcon("heartbeat",'icon-group', 'grey', 'transparent');
+    health = Helpers.createIcon("heartbeat",'icon-group', 'gray', 'transparent');
 
   container.appendChild(health);
 
   water_container = Util.create("span");
   for (let i = 0 ; i < plant_instance.watering_freq[1] + 1; i++){
-      water_container.appendChild(Helpers.createIcon("tint", "blue"));
+      water_container.appendChild(Helpers.createIcon("tint", "text-aqua"));
   }
   water_container.classList.add("icon-group");
   container.appendChild(water_container);
@@ -100,13 +100,13 @@ function createIcons(plant_instance){
 
   fertilizer_container = Util.create("span");
   for (let i = 0 ; i < plant_instance.fertilizer_freq[1]+ 1; i++){
-      fertilizer_container.appendChild(Helpers.createIcon("poo", 'brown'));
+      fertilizer_container.appendChild(Helpers.createIcon("poo", 'text-brown'));
   }
   fertilizer_container.classList.add("icon-group");
   container.appendChild(fertilizer_container);
 
   if (plant_instance.pesticide_freq[1])
-    container.appendChild(Helpers.createIcon("bug", 'icon-group'));
+    container.appendChild(Helpers.createIcon("bug", 'icon-group', 'text-gray'));
 
   if (plant_instance.trimming)
     container.appendChild(Helpers.createIcon("cut", "icon-group"))

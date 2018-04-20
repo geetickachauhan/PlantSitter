@@ -9,7 +9,7 @@ var registered_plants = [
 
   {"photo_url": null, "name": "Sauron", "type": "Rose",
   "watering_freq": [[0,1,0,1,0,1,0], 2], "fertilizer_freq": [[0,0,1,0,0,0,0], 1],
-  "pesticide_freq": [[0,0,0,0,1,0,0], 1],"health": 1, "light": 1, "trimming": 1, 'instructions': "",
+  "pesticide_freq": [[0,0,0,0,1,0,0], 1],"health": 0, "light": 1, "trimming": 1, 'instructions': "",
   "id": 1, "owner": 0, "status": {"status_code": 0, "start_date": null, "end_date":null,
   "req_caretakers": null, "app_caretaker": null}},
 

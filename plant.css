@@ -1,8 +1,6 @@
 .card {
   width: 18em;
-  margin-right: 2%;
-  margin-bottom: 1%;
-  margin-top: 1%;
+  margin: 2%;
 }
 
 .card-img-top {
@@ -30,10 +28,6 @@
 
 .cancel {
   float: right;
-}
-
-.green-link{
-  color: var(--green);
 }
 
 .approve {
