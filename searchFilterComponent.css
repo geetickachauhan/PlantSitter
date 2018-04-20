@@ -20,7 +20,9 @@
 
 #search_filter_container{
     height: 92vh;
-    width: 22%;
+    overflow-y: scroll;
+/*    above is important to enable vertical scrolling in search filter*/
+    width: 23%;
 /*    flex: auto;*/
     -flex: 3;
     -max-width: 300px;
