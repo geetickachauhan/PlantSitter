@@ -102,3 +102,9 @@ body {
 .margin-right{
     margin-right: 10px;
 }
+.margin-left{
+    margin-left: 20px;
+}
+.set-width{
+    max-width: 100vw;
+}
