@@ -117,3 +117,7 @@ body {
 .dummy-row {
 	height: 2vh;
 }
+
+.check-margin-left {
+	margin-left: 5px;
+}

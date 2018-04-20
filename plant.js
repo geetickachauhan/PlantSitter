@@ -47,11 +47,11 @@ class Plant {
 	}
 
 	requestToCare(){
-		this.status.addRequester(logged_in_user.id);
+		this.status.addRequester(logged_in_user);
 	}
 
 	cancelRequestToCare(){
-		this.status.removeRequester(logged_in_user.id);
+		this.status.removeRequester(logged_in_user);
 	}
 
 	approveCareRequest(requester_id){
@@ -116,11 +116,11 @@ class Status{
  	}
 
 	addRequester(){
-		this.req_caretakers.push(logged_in_user.id);
+		this.req_caretakers.push(logged_in_user);
 	}
 
 	removeRequester(){
-		this.req_caretakers.splice(this.req_caretakers.indexOf(logged_in_user.id), 1);
+		this.req_caretakers.splice(this.req_caretakers.indexOf(logged_in_user), 1);
 	}
 
 	revertApproval(){

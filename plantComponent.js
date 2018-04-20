@@ -43,11 +43,12 @@ function createUserDisplayStatus(plant_instance, footer){
     extra = Helpers.createCancelButton(plant_instance, plant_instance.cancelRequestForcare);
   }
   else if (status_code == 2){
-    text.innerText = "Claimed for plantsitting by " + plant_instance.status.app_caretaker +
+
+    text.innerText = "Claimed for plantsitting by " + plant_instance.status.app_caretaker.firstName +
     ". Not yet in their care.";
 
     extra = Util.create("div");
-    extra.appendChild(Helpers.createCheckButton("Picked up?"))
+    extra.appendChild(Helpers.createCheckButton("Picked up?", plant_instance, plant_instance.transitionDone))
     extra.appendChild(Helpers.createCancelButton(plant_instance, plant_instance.cancelCareReqApproval));
 
   }

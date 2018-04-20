@@ -25,15 +25,22 @@ class Helpers {
     return i;
   }
 
-  static createCheckButton(label){
+  static createCheckButton(label, plant, action){
     let button_gr = Util.create("label");
     button_gr.classList.add("approve")
     button_gr.innerText = label;
     let button = Util.create("button", {"type": "button"});
-    button.classList.add("btn", "btn-success");
+    button.classList.add("btn", "btn-success",  "check-margin-left");
 
-    button.appendChild(createIcon("check"));
+    button.appendChild(Helpers.createIcon("check"));
     button_gr.appendChild(button)
+
+    button.addEventListener("click", function(){
+      action.call(plant);
+      updateStatus(Util.one("#plant_tile_" + plant.id), plant);
+
+    });
+    
     return button_gr;
   }
   //static searchplants (according to a bunch of criteria){

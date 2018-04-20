@@ -5,13 +5,13 @@ function createNavbar(){
     navbar = Util.create("nav");
     navbar.classList.add("navbar", "navbar-expand-lg", "navbar-dark", "sticky-top");
     inner = `
-    <a class="navbar-brand mt-1" href="homepage.html"><span class="fab fa-pagelines fa-lg margin-right"></span>PlantSitter</a>
+    <a class="navbar-brand mt-1" href="index.html"><span class="fab fa-pagelines fa-lg margin-right"></span>PlantSitter</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#main-navbar" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span></button>
     <div class="container">
         <div class="navbar-collapse collapse" id="main-navbar">
             <ul class="navbar-nav nav-fill w-100">
-                <li class="nav-item mt-1"><a class="nav-link" href="homepage.html">My Plants</a></li>
+                <li class="nav-item mt-1"><a class="nav-link" href="index.html">My Plants</a></li>
                 <li class="nav-item mt-1"><a class="nav-link" href="#">PlantSit</a></li>
                 <li class="nav-item mt-1"><a class="nav-link" href="#">Adopt</a></li>
                 <li class="nav-item dropdown mt-1">
