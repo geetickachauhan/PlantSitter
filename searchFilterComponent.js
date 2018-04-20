@@ -10,11 +10,11 @@ function createSearchFilter(mode){
     let searchfilter = Util.one('#search_filter_container');
 
     let inner = `
-    <div class="container ">
+    <div class="container">
         <div class="row justify-content-md-center">
 
             <form>
-              <div class="form-group">
+              <div class="form-group margin-top">
                 <div class="text-center search-big-font" >Search plants</div>
                 <input type="text" class="form-control" id="search_term" placeholder="Search plant name or type">
               </div>

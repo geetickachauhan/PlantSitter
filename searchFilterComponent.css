@@ -20,6 +20,8 @@
 
 #search_filter_container{
     height: 92vh;
+    width: 22%;
+/*    flex: auto;*/
     -flex: 3;
     -max-width: 300px;
     -display: flex;
@@ -27,8 +29,8 @@
     -position: relative;
     -padding: .5rem 1rem;
     background: var(--color-lightest-gray);
-    -border: 2px solid #00000012;
-    -flex-wrap: wrap;
+    border: 2px solid #00000012;
+    flex-wrap: wrap;
     -align-items: flex-start;
     -justify-content: center;
     color: hsl(85, 3%, 39%);
@@ -71,7 +73,9 @@
 #search_term {
   -width: 80%;
 }
-
+.margin-top{
+    margin: 20px 0px;
+}
 #search_filter_container form{
   width: 80%;
 }
@@ -79,3 +83,4 @@
 #search_filter_container .label-text{
 
 }
+    
