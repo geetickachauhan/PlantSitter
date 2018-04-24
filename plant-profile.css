@@ -1,0 +1,56 @@
+:root{
+    --plantprofile-font-size: 1.2em;
+    --plantprofile-font-weight: 400;
+}
+#breadcrumb, #plantprofilecontent{
+    font-size: var(--plantprofile-font-size);
+    font-weight: var(--plantprofile-font-weight);
+}
+#breadcrumb {
+    margin-top: 1%;
+    margin-left: 1%;
+}
+.g-pad{
+    padding: 1%;
+}
+.g-high-pad{
+    padding: 5%;
+}
+img{
+    max-width: 70%;
+    border-radius: 0.3em;
+}
+div{
+    text-align: justify;
+    text-justify: inter-word;
+}
+.weekday div {
+    display: inline-block;
+    vertical-align: middle;
+    border-radius: 6px;
+    height: 35px;
+    width: 40px;
+    margin-right: 1%;
+    line-height: calc(var(--plantprofile-font-size)*1.8);
+    font-size: calc(var(--plantprofile-font-size)*0.7);
+    text-align: center;
+/*    transition: 0.3s;*/
+    margin: 1px;
+}
+.weekday-unselect{
+    background: var(--color-silver);
+    color: var(--color-black);
+    filter: opacity(0.4);
+}
+.weekday-select{
+    background: var(--color-green);
+    color: var(--color-white);
+}
+.row{
+    margin-top: 0.5%;
+    margin-bottom: 0.5%;
+}
+.text-center{
+    float: none; 
+    margin: 0 auto;
+}
