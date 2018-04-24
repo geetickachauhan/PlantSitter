@@ -14,12 +14,6 @@ $(document).ready(function(){
 });
 
 function showProfile(own, photo, name, type, watering, fertilizer, pesticide, health, light, trimming, instructions){
-    if(own == 1){
-        Util.one('#g-edit').innerHTML = '<span class="float-right"><button class="btn btn-light" id="g-edit-button"><span class="fas fa-pencil-alt fa-2x"></span></button></span>';
-//        Util.one('g-edit-button').addEventListener('click', function(){
-//            createAddPlantOverlay(); 
-//        });
-    }
     Util.one('#g-photo').innerHTML = "<img src='"+photo+"'>";
     Util.one('#g-plantname').innerHTML = name;
     Util.one('#g-planttype').innerHTML = type;
@@ -38,6 +32,33 @@ function showProfile(own, photo, name, type, watering, fertilizer, pesticide, he
     Util.one('#g-trimming').innerHTML = trimming_dict[trimming];
     
     Util.one('#g-specialinstructions').innerHTML = instructions;
+       if(own == 1){
+        edit_elt = Util.one('#g-edit');
+        edit_elt.innerHTML = '<span class="float-right"><button class="btn btn-light" id="g-edit-button"><span class="fas fa-pencil-alt fa-2x"></span></button></span>';
+        savebutton = Util.create('button', {'id': 'g-save-button'});
+        savebutton.classList.add('btn', 'btn-info', 'g-display-none', 'float-right');
+        savebutton.innerHTML = "Save";
+        edit_elt.appendChild(savebutton);
+       // next add an event listener for edit such that it replaces things
+       // also for save just read what the checkbox values are and then update accordingly
+        Util.one('#g-edit-button').addEventListener('click', function(){
+           Util.one('#g-photo').innerHTML = 
+               `<button class="btn btn-info g-big-button">
+                    <span class="fas fa-camera fa-5x"></span>
+                </button>`; 
+            Util.one('#g-plantname').innerHTML = '<input type="text" class="form-control" id="plantname-input">';
+            Util.one('#g-planttype').innerHTML = '<input type="text" class="form-control" id="planttype-input">';
+            // TODO
+            // now just use the add plant component's methods to create the radio buttons and the
+            // weekday selectors
+            // only issue is have to make sure the correct weekday selector is already selected
+            
+            Util.one('#plantname-input').value = current_plant['name'];
+            Util.one('#planttype-input').value = current_plant['type'];
+            Util.one('#g-edit-button').classList.add('g-display-none');
+            Util.one('#g-save-button').classList.remove('g-display-none');
+        });
+    }
     
 }
 
