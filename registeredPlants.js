@@ -15,7 +15,7 @@ var registered_plants = [
   "id": 1, "owner": 0, "status": {"status_code": 0, "start_date": null, "end_date":null,
   "req_caretakers": null, "app_caretaker": null}},
 
-  {"photo_url": 'img/plant3.png', "name": "Balrog", "type": "Orchid",
+  {"photo_url": 'img/plant2.svg', "name": "Balrog", "type": "Orchid",
   "watering_freq": [[0,1,0,0,1,0,0], 2], "fertilizer_freq": [[0,0,1,0,0,0,0], 2],
   "pesticide_freq": [[0,0,0,0,1,0,0], 1],"health": 1, "light": 0, "trimming": 1, 'instructions': "",
   "id": 2, "owner": 0, "status": {"status_code": 2, "start_date": "05/30/2018", "end_date":"06/20/2018",
