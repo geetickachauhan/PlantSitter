@@ -25,7 +25,10 @@
 }
 
 .btn {
-		white-space: normal;
+    white-space: normal;
+}
+.btn[disabled]{
+    cursor: not-allowed;
 }
 
 html {
