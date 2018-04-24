@@ -180,7 +180,10 @@ input[type="text"] {
 .weekDays-selector input[type=checkbox] + label {
     display: inline-block;
     border-radius: 6px;
-    background: #dddddd;
+/*    background: #dddddd;*/
+    background: var(--color-silver);
+    color: var(--color-black);
+    filter: opacity(0.4);
     height: 80%;
     width: 13%;
     margin-right: 1%;
@@ -192,8 +195,9 @@ input[type="text"] {
 }
 
 .weekDays-selector input[type=checkbox]:checked + label {
-  background: var(--color-green);
-  color: var(--color-white);
+    background: var(--color-green);
+    color: var(--color-white);
+    filter: opacity(1);
 }
 .g-radio-button{
     display: flex;

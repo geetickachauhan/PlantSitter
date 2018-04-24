@@ -1,12 +1,20 @@
 :root{
     --navbar-font-size: 1.5em;
-    --navbar-font-color: var(--color-white);
+    --navbar-font-color: hsla(0, 0%, 100%, 0.87);
     --navbar-background-color: var(--green);
 }
 .navbar{
     font-size: var(--navbar-font-size);
     background-color: var(--navbar-background-color) !important;
 /*    width: 100vw;*/
+}
+/*
+.navbar * {
+    color: var(--navbar-font-color);
+}
+*/
+.navbar-dark .navbar-nav .nav-link {
+    color: var(--navbar-font-color);
 }
 .navbar-brand{
     font-size: var(--navbar-font-size);
