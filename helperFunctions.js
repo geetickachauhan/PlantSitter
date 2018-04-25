@@ -6,9 +6,11 @@ class Helpers {
     button.classList.add("btn", "btn-secondary", "cancel");
     button.innerText = "Cancel";
 
-    button.addEventListener("click", function(){
+    button.addEventListener("click", function(e){
+      e.stopPropagation();
       action.call(plant);
       updateStatus(Util.one("#plant_tile_" + plant.id), plant);
+
 
     });
 
@@ -35,12 +37,13 @@ class Helpers {
     button.appendChild(Helpers.createIcon("check"));
     button_gr.appendChild(button)
 
-    button.addEventListener("click", function(){
+    button.addEventListener("click", function(e){
+      e.stopPropagation();
       action.call(plant);
       updateStatus(Util.one("#plant_tile_" + plant.id), plant);
 
     });
-    
+
     return button_gr;
   }
   //static searchplants (according to a bunch of criteria){

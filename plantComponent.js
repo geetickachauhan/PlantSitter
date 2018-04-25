@@ -121,6 +121,12 @@ function createPlantTile(plant_instance){
 
   let card = Util.create("div", {"id": "plant_tile_" + plant_instance.id});
   card.classList.add("card");
+  card.addEventListener("click", function(e){
+
+    sessionStorage.setItem('mode', 1);
+    sessionStorage.setItem('current_plant', JSON.stringify(plant_instance));
+    location.href="plant-profile.html";
+  })
 
   let header = Util.create("div");
   header.classList.add("card-header");

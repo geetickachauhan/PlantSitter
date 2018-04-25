@@ -3,6 +3,10 @@
   margin: 2%;
 }
 
+.card:hover {
+  cursor: pointer;
+}
+
 .card-img-top {
   height: 40%;
   border-bottom: 1px solid rgba(0,0,0,.125);
