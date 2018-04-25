@@ -1,8 +1,4 @@
-//$(document).ready(function(){
-//    createNavbar();
-//    createSearchFilter(0);
-//
-//});
+
 function createSearchFilter(mode){
 
 	//create the search filter up to the last common point with listeners
@@ -16,7 +12,7 @@ function createSearchFilter(mode){
             <form>
               <div class="form-group margin-top">
                 <div class="text-center search-big-font" >Search plants</div>
-                <input type="text" class="form-control" id="search_term" placeholder="Search plant name or type">
+                <input type="text" class="form-control" id="search_term" placeholder="Search plant name or type" value="">
               </div>
 
               <hr class="g-divider"/>
@@ -110,7 +106,24 @@ function createSearchFilter(mode){
 		//the rest of the volunteer style search filter
 
 	//attach it to the container
+  addFilterListeners();
+
 }
+
+
+function addFilterListeners(){
+  console.log(Util.one("#search_term"))
+    Util.one("#search_term").addEventListener("input", function(e){
+      e.stopPropagation();
+
+      Util.all(".card-title");
+      Util.all(".card-text");
+
+      console.log(e.target.value)
+    })
+}
+
+
 
 function deleteSearchFilter(){
 	//TODO: either a separate delete for each component or a universal helper delete function that accepts a criterion
