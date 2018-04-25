@@ -41,17 +41,38 @@ div{
     font-size: calc(var(--plantprofile-font-size) *2);
     font-weight: calc(var(--plantprofile-font-weight) *1.5);
 }
-.weekday div {
+.weekDays-selector{
+    height: 100%;
+    width: 100%;
+}
+.weekDays-selector input {
+  display: none!important;
+}
+.weekday-div, .weekDays-selector input[type=checkbox] + label {
     display: inline-block;
     border-radius: 6px;
-    height: 80%;
+/*    height: 80%;*/
+    height: calc(var(--plantprofile-font-size)*2);
     width: 13%;
     margin-right: 1%;
     line-height: calc(var(--plantprofile-font-size)*1.8);
     font-size: calc(var(--plantprofile-font-size)*1.2);
     text-align: center;
-    transition: 0.3s;
     margin: 1px;
+}
+.weekDays-selector input[type=checkbox] + label:hover{
+    background: var(--color-silver);
+    filter: opacity(1);
+}
+.g-radio-button{
+    font-size: calc(var(--plantprofile-font-size)*0.8);
+}
+.weekDays-selector input[type=checkbox] + label {
+    background: var(--color-silver);
+    color: var(--color-black);
+    filter: opacity(0.4);
+    cursor: pointer;
+    transition: 0.3s;
 }
 .weekday-unselect{
     background: var(--color-silver);
@@ -61,6 +82,11 @@ div{
 .weekday-select{
     background: var(--color-green);
     color: var(--color-white);
+}
+.weekDays-selector input[type=checkbox]:checked + label {
+    background: var(--color-green);
+    color: var(--color-white);
+    filter: opacity(1);
 }
 .row{
     margin-top: 0.5%;
