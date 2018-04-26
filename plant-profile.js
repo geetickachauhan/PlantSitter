@@ -15,12 +15,6 @@ $(document).ready(function(){
 });
 
 function showProfile(own, photo, name, type, watering, fertilizer, pesticide, health, light, trimming, instructions){
-    if(own == 1){
-        Util.one('#g-edit').innerHTML = '<span class="float-right"><button class="btn btn-light" id="g-edit-button"><span class="fas fa-pencil-alt fa-2x"></span></button></span>';
-//        Util.one('g-edit-button').addEventListener('click', function(){
-//            createAddPlantOverlay();
-//        });
-    }
     Util.one('#g-photo').innerHTML = "<img src='"+photo+"'>";
     Util.one('#g-plantname').innerHTML = name;
     Util.one('#g-planttype').innerHTML = type;
