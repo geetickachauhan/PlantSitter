@@ -1,5 +1,8 @@
 
-var user_registered_plants = registered_plants.filter(plant => plant.owner == logged_in_user.id);
+var user_registered_plants = registered_plants.filter(plant => plant.owner == logged_in_user.id).sort((a, b) => a.name.localeCompare(b.name));
+var all_plants = user_registered_plants.slice();
+var filter_set = user_registered_plants.slice();
+var search_set = user_registered_plants.slice();
 
 function representUserPlants(){
   for (let user_plant of user_registered_plants){

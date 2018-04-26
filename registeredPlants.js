@@ -22,4 +22,3 @@ var registered_plants = [
   "req_caretakers": [user_], "app_caretaker": user_ }},
 
 ];
-var current_plant = registered_plants[0];

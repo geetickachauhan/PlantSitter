@@ -2,6 +2,23 @@
 
  class Util{
 
+   /*
+   https://stackoverflow.com/questions/42604185/get-the-intersection-of-n-arrays
+   */
+   static intersectB(firstSet, ...sets) {
+       // function to intercept two sets
+       var intersect = (a,b) => {
+           return new Set([...a].filter(item => b.has(item)))
+       };
+
+       // iterate all sets comparing the first set to each.
+       sets.forEach(sItem => firstSet = intersect(firstSet, sItem));
+
+       // return the result.
+       return firstSet;
+   }
+
+
    /**
     * Get one element by selector
     * @param selector {String}
