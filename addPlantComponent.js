@@ -202,12 +202,8 @@ function addRadioButtons(elt, name, values, labels){
     for(i=0; i< values.length; i++){
         var div = document.createElement("div");
         div.classList.add("form-check");
-        var label = document.createElement("label");
-        var input = document.createElement("input");
-        input.setAttribute("class", "form-check-input");
-        input.setAttribute("type", "radio");
-        input.setAttribute("name", name);
-        input.setAttribute("value", values[i]);
+        var label = Util.create("label", {'for': "radio-" + name + values[i], 'class': 'form-check-label'});
+        var input = Util.create("input", {'class': 'form-check-input', 'type': 'radio', 'name': name, 'value': values[i], 'id': "radio-" + name + values[i]});
         if(i == 0){input.checked = true;}
         div.appendChild(input);
         div.appendChild(label);

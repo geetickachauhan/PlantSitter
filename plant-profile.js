@@ -57,40 +57,45 @@ function showProfile(own, photo, name, type, watering, fertilizer, pesticide, he
             Util.one('#g-planttype').innerHTML = '<input type="text" class="form-control" id="planttype-input">';
            
             Util.removeAllChildren(Util.one('#g-watering'));
-            addWeekdaySelector(Util.one('#g-watering'), 1);
-
+            addWeekdaySelector(Util.one('#g-watering'), "watering");
+            selectWeekdayCheckBox(watering[0], "watering");
             
             Util.removeAllChildren(Util.one('#g-fertilizer'));
-            addWeekdaySelector(Util.one('#g-fertilizer'), 2);
+            addWeekdaySelector(Util.one('#g-fertilizer'), "fertilizer");
+            selectWeekdayCheckBox(fertilizer[0], "fertilizer");
             
             Util.removeAllChildren(Util.one('#g-pesticide'));
-            addWeekdaySelector(Util.one('#g-pesticide'), 3);
+            addWeekdaySelector(Util.one('#g-pesticide'), "pesticide");
+            selectWeekdayCheckBox(pesticide[0], "pesticide");
             
             var values = ["everyweek", "every2weeks", "everymonth"];
             var labels = ["Every Week", "Every 2 Weeks", "Every Month"];
             Util.removeAllChildren(Util.one('#g-watering-freq'));
             addRadioButtons(Util.one('#g-watering-freq'), "watering", values, labels);
+            selectRadioButtons("watering", values, watering[1]);
+//            'id': "radio" + name + values[i]
+            
             
             Util.removeAllChildren(Util.one('#g-fertilizer-freq'));
             addRadioButtons(Util.one('#g-fertilizer-freq'), "fertilizer", values, labels);
+            selectRadioButtons("fertilizer", values, fertilizer[1]);
             
             Util.removeAllChildren(Util.one('#g-pesticide-freq'));
             addRadioButtons(Util.one('#g-pesticide-freq'), "pesticide", values, labels);
+            selectRadioButtons("pesticide", values, pesticide[1]);
             
             Util.removeAllChildren(Util.one('#g-healthstatus'));
             addRadioButtons(Util.one('#g-healthstatus'), "healthstatus", ['healthy', 'sick'], ['Healthy', 'Sick']);
+            selectRadioButtons("healthstatus", ["healthy", "sick"], health);
             
             Util.removeAllChildren(Util.one('#g-light'));
             addRadioButtons(Util.one('#g-light'), "light", ['direct', 'indirect'], ['Direct', 'Indirect']);
+            selectRadioButtons("light", ["direct", "indirect"], light);
             
             Util.removeAllChildren(Util.one('#g-trimming'));
             addRadioButtons(Util.one('#g-trimming'), "trimming", ['yes', 'no'], ['Yes', 'No']);
-            
-             // TODO
-            // only issue is have to make sure the correct weekday selector is already selected
-            //             input.setAttribute("id", "weekday-"+weekdays[i] + id);
-//            var weekdays = ["mon", "tue", "wed", "thu", "fri", "sat", "sun"];
-//    var labels = ["M", "T", "W", "T", "F", "S", "S"];
+            selectRadioButtons("trimming", ["yes", "no"], trimming);
+           
             Util.one('#g-specialinstructions').innerHTML = '<textarea class="form-control" id="specialinstructions-input" rows="4"></textarea>';
             Util.one('#specialinstructions-input').value = current_plant['instructions'];
             Util.one('#plantname-input').value = current_plant['name'];
@@ -98,9 +103,11 @@ function showProfile(own, photo, name, type, watering, fertilizer, pesticide, he
             Util.one('#g-edit-button').classList.add('g-display-none');
             Util.one('#g-save-button').classList.remove('g-display-none');
         });
-           
-//             Util.one('#save-button').addEventListener('click', function(){
+           // now just have to make the save button work
+           // TODO: make the save button work
+//        Util.one('#save-button').addEventListener('click', function(){
 //            // find a way to edit the json based on logged in user
+//            // read the buttons and then store it in the variable -- ask farnaz how she does this. Is there a function for this.
 //            logged_in_user['firstName'] = Util.one('#firstName-input').value;
 //            logged_in_user['lastName'] = Util.one('#lastName-input').value;
 //            logged_in_user['phone'] = Util.one('#phone-input').value;
@@ -114,7 +121,7 @@ function showProfile(own, photo, name, type, watering, fertilizer, pesticide, he
 //            Util.one('#description').innerHTML = logged_in_user['description'];
 //            Util.one('#save-button').classList.add('g-display-none');
 //            Util.one('#edit-button').classList.remove('g-display-none');
-//    });
+//        });
     }
     
 }
@@ -132,4 +139,15 @@ function appendWeekdayDivs(elt, vals){
         div.innerHTML = weekdays[i];
         elt.appendChild(div);
     }
+}
+function selectWeekdayCheckBox(vals, id){
+    var weekdays = ["mon", "tue", "wed", "thu", "fri", "sat", "sun"];
+    for(i=0; i<weekdays.length; i++){
+        if(vals[i] == 1){
+            Util.one("#weekday-"+weekdays[i]+id).checked = true;
+        }
+    }
+}
+function selectRadioButtons(name, values, vals){
+    Util.one("#radio-" + name + values[vals]).checked = true;
 }
