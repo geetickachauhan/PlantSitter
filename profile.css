@@ -28,6 +28,12 @@ div{
     font-size: calc(var(--font-size) *2);
     font-weight: calc(var(--font-weight) *1.5);
 }
+input[type=text]{
+    font-size: inherit;
+    font-weight: inherit;
+    color: inherit;
+    text-align: center;
+}
 
 #heading{
     display: grid;
