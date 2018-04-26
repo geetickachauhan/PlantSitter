@@ -193,7 +193,10 @@ input[type="text"] {
     cursor: pointer;
     transition: 0.3s;
 }
-
+.weekDays-selector input[type=checkbox] + label:hover{
+    background: var(--color-silver);
+    filter: opacity(1);
+}
 .weekDays-selector input[type=checkbox]:checked + label {
     background: var(--color-green);
     color: var(--color-white);

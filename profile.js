@@ -27,51 +27,70 @@ function showProfile(own, photo, star, first_name, last_name, phone, email, desc
     description_elt.innerHTML = description;
 
     if(own == 1){
-        var editbutton = '<button class="btn btn-light" id="edit-button"><span class="fas fa-pencil-alt fa-2x"></span></button>'
-        edit_elt.innerHTML = editbutton;
-        savebutton = Util.create('button', {'id': 'save-button'});
-        savebutton.classList.add('btn', 'btn-info', 'g-display-none');
-        savebutton.innerHTML = "Save";
-        edit_elt.appendChild(savebutton);
-        
-        // add click event listener for the edit button
-        // then instead of edit show it as save and when save is pressed update the json
-        Util.one('#edit-button').addEventListener('click', function(){
-            Util.one('#phone').innerHTML = '<input type="phone" class="form-control small-input" id="phone-input">';
-            Util.one('#email').innerHTML = '<input type="email" class="form-control small-input" id="email-input">'; 
-//            Util.one('#description').innerHTML = '<input type="text" class="form-control small-input" id="description-input">';
-            Util.one('#description').innerHTML = '<textarea class="form-control small-input" id="description-input" rows="2"></textarea>';
-            Util.one('#phone-input').value = logged_in_user['phone'];
-            Util.one('#email-input').value = logged_in_user['email'];
-            Util.one('#description-input').value = logged_in_user['description'];
-            Util.one('#edit-button').classList.add('g-display-none');
-            Util.one('#save-button').classList.remove('g-display-none');
-        });
-        Util.one('#save-button').addEventListener('click', function(){
-                // find a way to edit the json based on logged in user
-                logged_in_user['phone'] = Util.one('#phone-input').value;
-                logged_in_user['email'] = Util.one('#email-input').value;
-                logged_in_user['description'] = Util.one('#description-input').value;
-                // basically the user will have different stuff during the session but no database changes
-                // have been made
-                Util.one('#phone').innerHTML = logged_in_user['phone'];
-                Util.one('#email').innerHTML = logged_in_user['email']; 
-                Util.one('#description').innerHTML = logged_in_user['description'];
-                Util.one('#save-button').classList.add('g-display-none');
-                Util.one('#edit-button').classList.remove('g-display-none');
-            });
+        edit_enable(edit_elt);
         createCalendar();
     }
 
 }
 
 
+// adds the click events etc to make editing work
+function edit_enable(edit_elt){
+    var editbutton = '<button class="btn btn-light" id="edit-button"><span class="fas fa-pencil-alt fa-2x"></span></button>'
+    edit_elt.innerHTML = editbutton;
+    savebutton = Util.create('button', {'id': 'save-button'});
+    savebutton.classList.add('btn', 'btn-info', 'g-display-none', 'float-right');
+    savebutton.innerHTML = "Save";
+    edit_elt.appendChild(savebutton);
+
+    // add click event listener for the edit button
+    // then instead of edit show it as save and when save is pressed update the json
+    Util.one('#edit-button').addEventListener('click', function(){
+        Util.one('#name').innerHTML = `
+        <div class="row">
+            <div class="col-sm-6">
+                <input type="text" class="form-control" id="firstName-input">
+            </div>
+            <div class="col-sm-6">
+                <input type="text" class="form-control" id="lastName-input">
+            </div>
+        </div>`;
+        
+        Util.one('#phone').innerHTML = '<input type="phone" class="form-control small-input" id="phone-input">';
+        Util.one('#email').innerHTML = '<input type="email" class="form-control small-input" id="email-input">'; 
+//            Util.one('#description').innerHTML = '<input type="text" class="form-control small-input" id="description-input">';
+        Util.one('#description').innerHTML = '<textarea class="form-control small-input" id="description-input" rows="2"></textarea>';
+        Util.one('#firstName-input').value = logged_in_user['firstName'];
+        Util.one('#lastName-input').value = logged_in_user['lastName'];
+        Util.one('#phone-input').value = logged_in_user['phone'];
+        Util.one('#email-input').value = logged_in_user['email'];
+        Util.one('#description-input').value = logged_in_user['description'];
+        Util.one('#edit-button').classList.add('g-display-none');
+        Util.one('#save-button').classList.remove('g-display-none');
+    });
+    Util.one('#save-button').addEventListener('click', function(){
+            // find a way to edit the json based on logged in user
+            logged_in_user['firstName'] = Util.one('#firstName-input').value;
+            logged_in_user['lastName'] = Util.one('#lastName-input').value;
+            logged_in_user['phone'] = Util.one('#phone-input').value;
+            logged_in_user['email'] = Util.one('#email-input').value;
+            logged_in_user['description'] = Util.one('#description-input').value;
+            // basically the user will have different stuff during the session but no database changes
+            // have been made
+            Util.one('#name').innerHTML = logged_in_user['firstName'] + " " + logged_in_user["lastName"];
+            Util.one('#phone').innerHTML = logged_in_user['phone'];
+            Util.one('#email').innerHTML = logged_in_user['email']; 
+            Util.one('#description').innerHTML = logged_in_user['description'];
+            Util.one('#save-button').classList.add('g-display-none');
+            Util.one('#edit-button').classList.remove('g-display-none');
+    });
+}
+
 //How to create calendar using jQuery and CSS3
 //https://designmodo.com/calendar-jquery-css3/
 
 //open source calendars https://1stwebdesigner.com/calendar-ui-layout-css/
 // Semantic UI https://codepen.io/nijin39/pen/JbQBXM
-
 
 function createStars(num){
     // only accepts num between 1-5, where the stars can only be half or not
