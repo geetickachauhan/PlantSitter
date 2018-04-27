@@ -118,8 +118,6 @@ function addFilterListeners(mode){
 
       let search_term = e.target.value.toLowerCase();
 
-      //let checkbox_states = Util.all(".form-check-input").map(el => el.checked);
-
       if (search_term == ""){
         search_set = all_plants.slice();
       }
@@ -138,29 +136,7 @@ function addFilterListeners(mode){
 
       }
 
-
-      let shown_set;
-
-      // if (!checkbox_states.includes(true)){
-      //   shown_set = search_set;
-      // }
-      // else { //intersection of search and filter sets
-      shown_set =  new Set([...new Set(search_set)].filter(x => new Set(filter_set).has(x)));
-      // }
-
-      shown_set = Array.from(shown_set)
-
-      let container = Util.one("#board_container");
-      let num_tiles = Array.from(container.children).length;
-
-      for (let i = 0 ; i < num_tiles ; i++){
-        container.removeChild(container.children[0]);
-      }
-
-      shown_set.sort((a, b) => a.name.localeCompare(b.name));
-
-      for (let plant_instance of shown_set)
-        createPlantTile(plant_instance);
+      showSelectedItems(search_set, filter_set);
 
     });
 
@@ -170,34 +146,71 @@ function addFilterListeners(mode){
     var filters = {};
     let filter_list = Util.all(".option-container").map(el => el.getAttribute("id"));
     for (let filter of filter_list)
+      if (filter != "extra_care_options")
+        filters[filter] = null;
+
+    for (let filter of ['fertilizer', 'pesticide', 'trimming'])
       filters[filter] = null;
 
 
     Util.all(".form-check-input").map(el => el.addEventListener("click", function(e){
+
         let checked_status = e.target.checked;
         let filter_type = e.target.parentElement.parentElement.getAttribute("id");
+
+        let type_all_options = null;
+
+        if (filter_type == "extra_care_options"){
+          filter_type = e.target.getAttribute("id");
+        }
+        else {
+          type_all_options = Array.from(e.target.parentElement.parentElement.children).map(el => el.children[0]).filter(x => x.checked);
+        }
+
         let filter_value = e.target.getAttribute("id");
 
-        let type_all_options = Array.from(e.target.parentElement.parentElement.children).map(el => el.children[0]).filter(x => x.checked);
 
-        if (type_all_options.length == 0){
-          filters[filter_type] = filter_set.slice();
+
+        if (filter_type != e.target.getAttribute("id") && type_all_options.length == 0){
+          filters[filter_type] = null;
         }
         else{
+
+          let unchecked_flag = false;
 
           if (filters[filter_type] == null)
             filters[filter_type] = [];
 
-          let mapping_dict = {'health_options': ['health', {'healthy': 1, 'sick': 0} ]}
+          //mapping_dict is of the format: {filter_type: filter key in plant instance,
+          //[what value of plant instance corresponds to each filter id]
+          let mapping_dict = {'health_options': ['health', {'healthy': 1, 'sick': 0} ],
+          'light_options': ['light', {'directlight': 1, 'indirectlight': 0}],
+          'water_options': ['watering_freq', {'everymonth': 0, 'every2weeks': 1, 'everyweek': 2}],
+
+          'fertilizer': ['fertilizer_freq', {'fertilizer': 1}],
+          'pesticide': ['pesticide_freq', {'pesticide': 1}],
+          'trimming': ['trimming', {'trimming': 1}]
+          }
+
+          let plant_value;
 
           for (let plant_instance of all_plants){
-            let plant_value = plant_instance[mapping_dict[filter_type][0]];
+
+
+            if (filter_type == 'fertilizer' || filter_type == "pesticide")
+              plant_value = plant_instance[mapping_dict[filter_type][0]][0].some(Util.nonzero) ? 1 : 0;
+            else if (filter_type == "water_options")
+              plant_value = plant_instance[mapping_dict[filter_type][0]][1];
+            else
+              plant_value = plant_instance[mapping_dict[filter_type][0]];
+
 
             for (let j = 0 ; j < Object.keys(mapping_dict[filter_type][1]).length ; j++){
               if (filter_value == Object.keys(mapping_dict[filter_type][1])[j] )
                 {
 
                   if (plant_value == Object.entries(mapping_dict[filter_type][1])[j][1]){
+
                     if (checked_status){
                       if (!filters[filter_type].includes(plant_instance))
                         filters[filter_type].push(plant_instance);
@@ -205,14 +218,20 @@ function addFilterListeners(mode){
                     else{ //if the checkbox was just unchecked
                       if (filters[filter_type].includes(plant_instance))
                         filters[filter_type].splice(filters[filter_type].indexOf(plant_instance), 1);
+
+                      unchecked_flag = true;
+
                     }
                   }
                 }
             }
 
           }
-
+          if (unchecked_flag && Object.keys(mapping_dict[filter_type][1]).length == 1)
+            filters[filter_type] =  null;
         }
+
+
 
         let valid_filters = [];
 
@@ -220,15 +239,39 @@ function addFilterListeners(mode){
           if (value != null)
             valid_filters.push(new Set(value));
 
-        console.log("valid filters are", valid_filters)
+        if (valid_filters.length)
+          filter_set = Array.from(Util.intersectB(...valid_filters));
+        else
+          filter_set = all_plants.slice();
 
-        filter_set = Util.intersectB(...valid_filters);
-
-
+        showSelectedItems(search_set, filter_set)
 
     }));
 }
 
+
+
+function showSelectedItems(search_set, filter_set){
+
+  let shown_set;
+
+  shown_set =  new Set([...new Set(search_set)].filter(x => new Set(filter_set).has(x)));
+
+  shown_set = Array.from(shown_set)
+
+  let container = Util.one("#board_container");
+  let num_tiles = Array.from(container.children).length;
+
+  for (let i = 0 ; i < num_tiles ; i++){
+    container.removeChild(container.children[0]);
+  }
+
+  shown_set.sort((a, b) => a.name.localeCompare(b.name));
+
+  for (let plant_instance of shown_set)
+    createPlantTile(plant_instance);
+
+}
 
 
 function deleteSearchFilter(){

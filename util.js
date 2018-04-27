@@ -2,6 +2,9 @@
 
  class Util{
 
+   static nonzero (element){
+     return element != 0;
+   }
    /*
    https://stackoverflow.com/questions/42604185/get-the-intersection-of-n-arrays
    */
