@@ -17,7 +17,9 @@ function createUserDisplayStatus(plant_instance, footer){
 
     let checkbox = Util.create("input", {"type": "checkbox", "aria-label": "Checkbox for selecting this plant card"});
 
-    checkbox.addEventListener('change', function(e){
+    checkbox.addEventListener('click', function(e){
+
+      e.stopPropagation();
 
       if (this.checked){
         checked_plants.push(plant_instance);

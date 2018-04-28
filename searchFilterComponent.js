@@ -58,7 +58,7 @@ function createSearchFilter(mode){
               </div>
 
               <div class="form-group">
-                <div class="g-filter" id="varying_options" data-toggle="collapse" data-target="#varying_options">
+                <div class="g-filter" id="varying_filters" data-toggle="collapse" data-target="#varying_options">
                 </div>
 
                 <div class="collapse option-container" id="varying_options">
@@ -90,6 +90,7 @@ function createSearchFilter(mode){
     pesticide = '<span class="fas fa-bug fa-lg margin-right text-gray"></span>Pesticide';
     trimming = '<span class="fas fa-cut fa-lg margin-right text-black"></span>Trimming';
     addCheckboxes(extracare, ["fertilizer", "pesticide", "trimming"], [fertilizer, pesticide, trimming]);
+
 	if (mode == 0){
         varyingfilter = Util.one('#varying_options');
         varyingfilter.parentElement.children[0].innerHTML = '<span class="fas fa-leaf fa-lg margin-right text-green"></span><span class="fas fa-home fa-lg margin-right text-gray"></span>Plantsitting Status';
@@ -156,7 +157,10 @@ function addFilterListeners(mode){
     Util.all(".form-check-input").map(el => el.addEventListener("click", function(e){
 
         let checked_status = e.target.checked;
+
+        // groupings of filters with non overlapping subfilters
         let filter_type = e.target.parentElement.parentElement.getAttribute("id");
+
 
         let type_all_options = null;
 
@@ -168,8 +172,6 @@ function addFilterListeners(mode){
         }
 
         let filter_value = e.target.getAttribute("id");
-
-
 
         if (filter_type != e.target.getAttribute("id") && type_all_options.length == 0){
           filters[filter_type] = null;
@@ -189,18 +191,34 @@ function addFilterListeners(mode){
 
           'fertilizer': ['fertilizer_freq', {'fertilizer': 1}],
           'pesticide': ['pesticide_freq', {'pesticide': 1}],
-          'trimming': ['trimming', {'trimming': 1}]
+          'trimming': ['trimming', {'trimming': 1}],
+          }
+
+          if (mode == 0){
+            mapping_dict['varying_options'] = ['plantsitting_status', {'athome': 0, 'sentforcare': 1, 'receivedforcare': 2}];
           }
 
           let plant_value;
 
           for (let plant_instance of all_plants){
 
-
             if (filter_type == 'fertilizer' || filter_type == "pesticide")
               plant_value = plant_instance[mapping_dict[filter_type][0]][0].some(Util.nonzero) ? 1 : 0;
             else if (filter_type == "water_options")
               plant_value = plant_instance[mapping_dict[filter_type][0]][1];
+            else if (filter_type == "varying_options"){
+
+              if (mode == 0){
+                if (plant_instance.status.status_code == 3){
+                  if (plant_instance.status.app_caretaker.id == logged_in_user.id)
+                    plant_value = 2; //received for care
+                  else
+                    plant_value = 1; //sent for care
+                }
+                else //if the status_code is any of [0,1,2,4] the plant is still at home
+                  plant_value = 0;
+              }
+            }
             else
               plant_value = plant_instance[mapping_dict[filter_type][0]];
 
