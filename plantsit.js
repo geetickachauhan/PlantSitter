@@ -1,5 +1,6 @@
 
-
+var shown_plants = registered_plants.filter(plant => plant.status.status_code == 1).sort((a, b) => a.name.localeCompare(b.name));
+var all_plants = shown_plants.slice();
 
 
 Util.events(document, {
@@ -9,13 +10,13 @@ Util.events(document, {
 	"DOMContentLoaded": function() {
 
       createNavbar();
-      Helpers.representPlants(registered_plants);
+      Helpers.representPlants(shown_plants);
       createSearchFilter(1);
       $(function () {
           $(".date").datetimepicker({
               format: 'L'
           });
       });
-  
+
 
     }})

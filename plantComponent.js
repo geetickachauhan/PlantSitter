@@ -119,7 +119,7 @@ function createIcons(plant_instance){
 
 
 
-function createPlantTile(plant_instance){
+function createPlantTile(plant_instance, view_mode){
 
   let card = Util.create("div", {"id": "plant_tile_" + plant_instance.id});
   card.classList.add("card");
@@ -180,7 +180,7 @@ function createPlantTile(plant_instance){
 
   card.appendChild(card_body);
 
-  updateStatus(card, plant_instance);
+  updateStatus(card, plant_instance, view_mode);
 
   Util.one("#board_container").appendChild(card);
 

@@ -1,7 +1,7 @@
 
 class Helpers {
 
-  static representPlants(plant_collection){
+  static representPlants(plant_collection, view_mode){
     for (let plant of plant_collection){
 
       let status_params = [];
@@ -19,7 +19,7 @@ class Helpers {
       params.push(status);
 
       let plant_instance =  new Plant(...params);
-      createPlantTile(plant_instance);
+      createPlantTile(plant_instance, view_mode);
     }
   }
 

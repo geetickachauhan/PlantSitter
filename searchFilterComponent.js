@@ -114,6 +114,9 @@ function createSearchFilter(mode){
 
 function addFilterListeners(mode){
 
+    var filter_set = all_plants.slice();
+    var search_set = all_plants.slice();
+
     Util.one("#search_term").addEventListener("input", function(e){
       e.stopPropagation();
 
