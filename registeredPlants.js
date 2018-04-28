@@ -13,7 +13,7 @@ var registered_plants = [
   "watering_freq": [[0,1,0,1,0,1,0], 2], "fertilizer_freq": [[0,0,1,0,0,0,0], 1],
   "pesticide_freq": [[0,0,0,0,1,0,0], 1],"health": 0, "light": 1, "trimming": 1, 'instructions': "",
   "id": 1, "owner": 0, "status": {"status_code": 0, "start_date": null, "end_date":null,
-  "req_caretakers": null, "app_caretaker": null}},
+  "req_caretakers": [], "app_caretaker": null}},
 
   {"photo_url": 'img/plant2.svg', "name": "Balrog", "type": "Orchid",
   "watering_freq": [[0,1,0,0,1,0,0], 2], "fertilizer_freq": [[0,0,1,0,0,0,0], 2],
@@ -26,5 +26,11 @@ var registered_plants = [
   "pesticide_freq": [[0,0,0,0,1,0,0], 1],"health": 1, "light": 1, "trimming": 1, 'instructions': "",
   "id": 2, "owner": 0, "status": {"status_code": 3, "start_date": "04/30/2018", "end_date":"06/25/2018",
   "req_caretakers": [user_], "app_caretaker": user_ }},
+
+  {"photo_url": null , "name": "Luthien", "type": "Elf",
+  "watering_freq": [[0,1,0,0,1,0,1], 2], "fertilizer_freq": [[0,0,0,1,0,0,0], 1],
+  "pesticide_freq": [[0,0,0,0,1,0,0], 1],"health": 1, "light": 1, "trimming": 0, 'instructions': "",
+  "id": 2, "owner": 1, "status": {"status_code": 1, "start_date": "04/30/2018", "end_date":"06/25/2018",
+  "req_caretakers": [] , "app_caretaker": null}},
 
 ];

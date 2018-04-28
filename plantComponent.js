@@ -3,7 +3,7 @@ DEFAULT_PHOTO_URL = "./images/plant_photoholder.png"
 
 var checked_plants = [];
 
-function createUserDisplayStatus(plant_instance, footer){
+function createUserDisplayStatus(plant_instance, footer, view_mode, isOwner){
   let text = document.createElement("p");
   let status_code = plant_instance.status.status_code;
 
@@ -42,7 +42,17 @@ function createUserDisplayStatus(plant_instance, footer){
     text.innerText = "Requested plantsitting from " + plant_instance.status.start_date +
     "\xa0 to \xa0" + plant_instance.status.end_date;
 
-    extra = Helpers.createCancelButton(plant_instance, plant_instance.cancelRequestForcare);
+
+    if (isOwner){
+        extra = Helpers.createCancelButton(plant_instance, plant_instance.cancelRequestForcare, view_mode);
+    }
+    else {
+        if (plant_instance.status.req_caretakers.includes(logged_in_user))
+          extra = Helpers.createCancelButton(plant_instance, plant_instance.cancelRequestToCare, view_mode, "Cancel request to care");
+        else
+          extra = Helpers.createRequestToCare(plant_instance, plant_instance.requestToCare);
+      }
+
   }
   else if (status_code == 2){
 
@@ -51,7 +61,7 @@ function createUserDisplayStatus(plant_instance, footer){
 
     extra = Util.create("div");
     extra.appendChild(Helpers.createCheckButton("Picked up?", plant_instance, plant_instance.transitionDone))
-    extra.appendChild(Helpers.createCancelButton(plant_instance, plant_instance.cancelCareReqApproval));
+    extra.appendChild(Helpers.createCancelButton(plant_instance, plant_instance.cancelCareReqApproval, view_mode));
 
   }
   else if (status_code == 3){
@@ -64,7 +74,7 @@ function createUserDisplayStatus(plant_instance, footer){
   }
   else { //if status_code == 4
     text.innerText = "Offered for adoption";
-    extra = Helpers.createCancelButton(plant_instance, plant_instance.cancelRequestForAdoption);
+    extra = Helpers.createCancelButton(plant_instance, plant_instance.cancelRequestForAdoption, view_mode);
   }
 
   footer.appendChild(text);
@@ -191,7 +201,12 @@ function createPlantTile(plant_instance, view_mode){
   given a plant card and the corresponding plant instance, updates the status section of the plant card
   -- used both for creating initial status and when the status changes
 */
-function updateStatus(plant_card, plant) {
+function updateStatus(plant_card, plant, view_mode) {
+
+  //for when the owner has decided to cancel a request for adoption or care on the plantsit or adoption page
+  if (view_mode != 0)
+    if (plant.status.status_code == 0)
+      plant_card.remove();
 
   let old_footer = Array.from(plant_card.childNodes).filter(child => child.classList.contains("card-footer"))[0];
   if (old_footer)
@@ -200,11 +215,8 @@ function updateStatus(plant_card, plant) {
   let footer = Util.create("div");
   footer.classList.add("card-footer", "text-muted");
 
-  let status_info;
-  if (plant.owner == logged_in_user.id)
-      status_info = createUserDisplayStatus(plant, footer);
-  else
-      status_info = console.log("heeey"); //TODO: implement how status is displayed to a non owner user
+  let isOwner = plant.owner == logged_in_user.id;
+  let status_info = createUserDisplayStatus(plant, footer, view_mode, isOwner );
 
   plant_card.appendChild(status_info);
 

@@ -24,16 +24,36 @@ class Helpers {
   }
 
 
-
-  static createCancelButton(plant, action){
+  static createRequestToCare(plant, action){
     let button = Util.create("button", {"type": "button"});
-    button.classList.add("btn", "btn-secondary", "cancel");
-    button.innerText = "Cancel";
+    button.classList.add("btn", "btn-secondary");
+    button.innerText = "Request to care";
 
     button.addEventListener("click", function(e){
       e.stopPropagation();
       action.call(plant);
-      updateStatus(Util.one("#plant_tile_" + plant.id), plant);
+      updateStatus(Util.one("#plant_tile_" + plant.id), plant, 1);
+
+    });
+
+    return button;
+  };
+
+
+
+  static createCancelButton(plant, action, view_mode, text){
+    let button = Util.create("button", {"type": "button"});
+    button.classList.add("btn", "btn-secondary", "cancel");
+
+    if (text === undefined)
+      button.innerText = "Cancel";
+    else
+      button.innerText = text;
+
+    button.addEventListener("click", function(e){
+      e.stopPropagation();
+      action.call(plant);
+      updateStatus(Util.one("#plant_tile_" + plant.id), plant, view_mode);
 
 
     });
