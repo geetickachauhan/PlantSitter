@@ -6,34 +6,30 @@ $(document).ready(function(){
     // in the future, this won't be under document.ready. It will basically be called by whichever page leads to this profile page because they need to pass in registered user and the flag stating whether they are looking at their own profile
     createNavbar();
     mode = 1; // if mode is 0, you are looking at someone else's profile and shouldn't be able to edit
-    showProfile(mode, logged_in_user['photo_url'], logged_in_user['star'], logged_in_user['firstName'], logged_in_user['lastName'], logged_in_user['phone'], logged_in_user['email'], logged_in_user['description']);
+    showProfile(mode, logged_in_user);
 
 
 });
 
-function showProfile(own, photo, star, first_name, last_name, phone, email, description){
+function showProfile(own, logged_in_user){
     // own is a flag that if set to 1, displays calendar, edit and add event to calendar
-    var photo_elt = Util.one('#photo');
-    photo_elt.innerHTML = "<img src='"+photo+"'>";
-    createStars(star);
-    var edit_elt = Util.one('#edit');
-    var name_elt = Util.one('#name');
-    name_elt.innerHTML = first_name + " " + last_name;
-    var phone_elt = Util.one('#phone');
-    phone_elt.innerHTML = phone;
-    var email_elt = Util.one('#email');
-    email_elt.innerHTML = email;
-    var description_elt = Util.one('#description');
-    description_elt.innerHTML = description;
-
+    updateProfileView(logged_in_user);
     if(own == 1){
+        var edit_elt = Util.one('#edit');
         edit_enable(edit_elt);
         createCalendar();
     }
 
 }
 
-
+function updateProfileView(logged_in_user){
+    Util.one('#photo').innerHTML = "<img src='"+logged_in_user['photo_url']+"'>";
+    createStars(logged_in_user['star']);
+    Util.one('#name').innerHTML = logged_in_user['firstName'] + " " + logged_in_user["lastName"];
+    Util.one('#phone').innerHTML = logged_in_user['phone'];
+    Util.one('#email').innerHTML = logged_in_user['email']; 
+    Util.one('#description').innerHTML = logged_in_user['description'];
+}
 // adds the click events etc to make editing work
 function edit_enable(edit_elt){
     var editbutton = '<button class="btn btn-light" id="edit-button"><span class="fas fa-pencil-alt fa-2x"></span></button>'
@@ -58,7 +54,6 @@ function edit_enable(edit_elt){
         
         Util.one('#phone').innerHTML = '<input type="phone" class="form-control small-input" id="phone-input">';
         Util.one('#email').innerHTML = '<input type="email" class="form-control small-input" id="email-input">'; 
-//            Util.one('#description').innerHTML = '<input type="text" class="form-control small-input" id="description-input">';
         Util.one('#description').innerHTML = '<textarea class="form-control small-input" id="description-input" rows="2"></textarea>';
         Util.one('#firstName-input').value = logged_in_user['firstName'];
         Util.one('#lastName-input').value = logged_in_user['lastName'];
@@ -77,10 +72,7 @@ function edit_enable(edit_elt){
             logged_in_user['description'] = Util.one('#description-input').value;
             // basically the user will have different stuff during the session but no database changes
             // have been made
-            Util.one('#name').innerHTML = logged_in_user['firstName'] + " " + logged_in_user["lastName"];
-            Util.one('#phone').innerHTML = logged_in_user['phone'];
-            Util.one('#email').innerHTML = logged_in_user['email']; 
-            Util.one('#description').innerHTML = logged_in_user['description'];
+            updateProfileView(logged_in_user);
             Util.one('#save-button').classList.add('g-display-none');
             Util.one('#edit-button').classList.remove('g-display-none');
     });
@@ -105,7 +97,6 @@ function createStars(num){
     }
     var star = Util.one("#star");
     Util.removeAllChildren(star);
-//    removeAllChildren(star);
     for(i=0; i<full_stars; i++){
         span = Util.create('span');
         span.classList.add("fas", "fa-star", "text-green");
