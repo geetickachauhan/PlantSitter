@@ -10,11 +10,19 @@ $(document).ready(function(){
 
     let mode = parseInt(sessionStorage.getItem('mode'));
     let current_plant = JSON.parse(sessionStorage.getItem('current_plant'));
-    showProfile(mode, current_plant['photo_url'], current_plant['name'], current_plant['type'], current_plant['watering_freq'], current_plant['fertilizer_freq'], current_plant['pesticide_freq'], current_plant['health'], current_plant['light'], current_plant['trimming'], current_plant['instructions'], current_plant);
+    showProfile(mode, current_plant);
 
 });
 
-function showProfile(own, photo, name, type, watering, fertilizer, pesticide, health, light, trimming, instructions, current_plant){
+function showProfile(own, current_plant){
+    updatePlantView(current_plant);
+       if(own == 1){
+        edit_enable(current_plant);
+    }
+    
+}
+function updatePlantView(current_plant){
+    watering = current_plant['watering_freq'], fertilizer = current_plant['fertilizer_freq'], pesticide = current_plant['fertilizer_freq'], health = current_plant['health'], light = current_plant['light'], trimming = current_plant['trimming'], photo=current_plant['photo_url'], name = current_plant['name'], type = current_plant['type'], instructions = current_plant['instructions']; 
     Util.one('#g-photo').innerHTML = "<img src='"+photo+"'>";
     Util.one('#g-plantname').innerHTML = name;
     Util.one('#g-planttype').innerHTML = type;
@@ -33,10 +41,6 @@ function showProfile(own, photo, name, type, watering, fertilizer, pesticide, he
     Util.one('#g-trimming').innerHTML = trimming_dict[trimming];
 
     Util.one('#g-specialinstructions').innerHTML = instructions;
-       if(own == 1){
-        edit_enable(watering, fertilizer, pesticide, health, light, trimming, current_plant);
-    }
-    
 }
 
 function appendWeekdayDivs(elt, vals){
@@ -61,10 +65,33 @@ function selectWeekdayCheckBox(vals, id){
         }
     }
 }
+function readWeekdayCheckBox(id){
+    var weekdays = ["mon", "tue", "wed", "thu", "fri", "sat", "sun"];
+    var vals = [];
+    for(i=0; i<weekdays.length; i++){
+        if(Util.one("#weekday-"+weekdays[i]+id).checked){
+            vals.push(1);
+        }
+        else{
+            vals.push(0);
+        }
+    }
+    return vals;
+}
+function readRadioButtons(name, values){
+//    "radio-" + name + values[i]
+    var val = 0;
+    for(i=0; i<values.length; i++){
+        if(Util.one('#radio-' + name + values[i]).checked){
+            val = i;
+        }
+    }
+    return val;
+}
 function selectRadioButtons(name, values, vals){
     Util.one("#radio-" + name + values[vals]).checked = true;
 }
-function edit_enable(watering, fertilizer, pesticide, health, light, trimming, current_plant){
+function edit_enable(current_plant){
     edit_elt = Util.one('#g-edit');
     edit_elt.innerHTML = '<span class="float-right"><button class="btn btn-light" id="g-edit-button"><span class="fas fa-pencil-alt fa-2x"></span></button></span>';
     savebutton = Util.create('button', {'id': 'g-save-button'});
@@ -74,6 +101,7 @@ function edit_enable(watering, fertilizer, pesticide, health, light, trimming, c
    // next add an event listener for edit such that it replaces things
    // also for save just read what the checkbox values are and then update accordingly
     Util.one('#g-edit-button').addEventListener('click', function(){
+        watering = current_plant['watering_freq'], fertilizer = current_plant['fertilizer_freq'], pesticide = current_plant['fertilizer_freq'], health = current_plant['health'], light = current_plant['light'], trimming = current_plant['trimming']; 
        Util.one('#g-photo').innerHTML = 
            `<button class="btn btn-info g-big-button">
                 <span class="fas fa-camera fa-5x"></span>
@@ -128,21 +156,69 @@ function edit_enable(watering, fertilizer, pesticide, health, light, trimming, c
     });
        // now just have to make the save button work
        // TODO: make the save button work
-//        Util.one('#save-button').addEventListener('click', function(){
-//            // find a way to edit the json based on logged in user
-//            // read the buttons and then store it in the variable -- ask farnaz how she does this. Is there a function for this.
-//            logged_in_user['firstName'] = Util.one('#firstName-input').value;
-//            logged_in_user['lastName'] = Util.one('#lastName-input').value;
-//            logged_in_user['phone'] = Util.one('#phone-input').value;
-//            logged_in_user['email'] = Util.one('#email-input').value;
-//            logged_in_user['description'] = Util.one('#description-input').value;
-//            // basically the user will have different stuff during the session but no database changes
-//            // have been made
-//            Util.one('#name').innerHTML = logged_in_user['firstName'] + " " + logged_in_user["lastName"];
-//            Util.one('#phone').innerHTML = logged_in_user['phone'];
-//            Util.one('#email').innerHTML = logged_in_user['email']; 
-//            Util.one('#description').innerHTML = logged_in_user['description'];
-//            Util.one('#save-button').classList.add('g-display-none');
-//            Util.one('#edit-button').classList.remove('g-display-none');
-//        });
+        Util.one('#g-save-button').addEventListener('click', function(){
+            // find a way to edit the json based on logged in user
+            // read the buttons and then store it in the variable -- ask farnaz how she does this. Is there a function for this.
+            current_plant['name'] = Util.one('#plantname-input').value;
+            current_plant['type'] = Util.one('#planttype-input').value;
+            current_plant['instructions'] = Util.one('#specialinstructions-input').value;
+            var watering = [], fertilizer = [], pesticide = [], health, light, trimming;
+            var values = ["everyweek", "every2weeks", "everymonth"];
+            watering[0] = readWeekdayCheckBox('watering');
+            watering[1] = readRadioButtons('watering', values);
+            
+            fertilizer[0] = readWeekdayCheckBox('fertilizer');
+            fertilizer[1] = readRadioButtons('fertilizer', values);
+            
+            pesticide[0] = readWeekdayCheckBox('pesticide');
+            pesticide[1] = readRadioButtons('pesticide', values);
+            
+            health = readRadioButtons('healthstatus', ['healthy', 'sick']);
+            light = readRadioButtons('light', ['direct', 'indirect']);
+            trimming = readRadioButtons('trimming', ['yes', 'no']);
+            
+            current_plant['watering_freq'] = watering;
+            current_plant['fertilizer_freq'] = fertilizer;
+            current_plant['pesticide_freq'] = pesticide;
+            current_plant['health'] = health;
+            current_plant['light'] = light;
+            current_plant['trimming'] = trimming;
+            
+            
+            // now need to read the various textboxes and radio buttons and change the values of watering, pesticide, etc. This is dependent on the id's that you set in the edit
+            
+            
+            // basically the user will have different stuff during the session but no database changes
+            // have been made
+//            Util.one('#g-plantname').innerHTML = current_plant['name'];
+//            Util.one('#g-planttype').innerHTML = current_plant['type'];
+//            Util.one('#g-specialinstructions').innerHTML = current_plant['instructions'];
+//            Util.one('#g-photo').innerHTML = "<img src='" +current_plant['photo_url']+ "'>";
+            
+            Util.removeAllChildren(Util.one('#g-watering'));
+            Util.removeAllChildren(Util.one('#g-watering-freq'));
+            Util.removeAllChildren(Util.one('#g-fertilizer'));
+            Util.removeAllChildren(Util.one('#g-fertilizer-freq'));
+            Util.removeAllChildren(Util.one('#g-pesticide'));
+            Util.removeAllChildren(Util.one('#g-pesticide-freq'));
+            Util.removeAllChildren(Util.one('#g-healthstatus'));
+            Util.removeAllChildren(Util.one('#g-light'));
+            Util.removeAllChildren(Util.one('#g-trimming'));
+//            appendWeekdayDivs(Util.one('#g-watering'), watering[0]);
+//    Util.one('#g-watering-freq').innerHTML = freq_dict[watering[1]];
+//
+//    appendWeekdayDivs(Util.one('#g-fertilizer'), fertilizer[0]);
+//    Util.one('#g-fertilizer-freq').innerHTML = freq_dict[fertilizer[1]];
+//
+//    appendWeekdayDivs(Util.one('#g-pesticide'), pesticide[0]);
+//    Util.one('#g-pesticide-freq').innerHTML = freq_dict[pesticide[1]];
+//
+//    Util.one('#g-healthstatus').innerHTML = health_dict[health];
+//    Util.one('#g-light').innerHTML = light_dict[light];
+//    Util.one('#g-trimming').innerHTML = trimming_dict[trimming];
+            updatePlantView(current_plant);
+            
+            Util.one('#g-save-button').classList.add('g-display-none');
+            Util.one('#g-edit-button').classList.remove('g-display-none');
+        });
 }
