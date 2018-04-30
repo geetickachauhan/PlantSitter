@@ -13,7 +13,7 @@ function createNavbar(){
             <ul class="navbar-nav nav-fill w-100">
                 <li class="nav-item mt-1"><a class="nav-link" href="index.html">My Plants</a></li>
                 <li class="nav-item mt-1"><a class="nav-link" href="plantsit.html">PlantSit</a></li>
-                <li class="nav-item mt-1"><a class="nav-link" href="#">Adopt</a></li>
+                <li class="nav-item mt-1"><a class="nav-link" href="adopt.html">Adopt</a></li>
                 <li class="nav-item dropdown mt-1">
                     <a class="nav-link dropdown-toggle" href="#" id="notifDropDown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span class="fas fa-bell fa-lg"></span></a>
                     <div class="dropdown-menu" aria-labelledby="notifDropdown" id="g-notification">

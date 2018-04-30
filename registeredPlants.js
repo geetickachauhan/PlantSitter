@@ -17,7 +17,7 @@ var registered_plants = [
 
   {"photo_url": 'img/plant2.svg', "name": "Balrog", "type": "Orchid",
   "watering_freq": [[0,1,0,0,1,0,0], 2], "fertilizer_freq": [[0,0,1,0,0,0,0], 2],
-  "pesticide_freq": [[0,0,0,0,1,0,0], 1],"health": 1, "light": 0, "trimming": 1, 'instructions': "",
+  "pesticide_freq": [[0,0,0,0,1,0,0], 1],"health": 1, "light": 0, "trimming": 1, 'instructions': "Beware of his whip.",
   "id": 2, "owner": 0, "status": {"status_code": 2, "start_date": "05/30/2018", "end_date":"06/20/2018",
   "req_caretakers": [user_], "app_caretaker": user_ }},
 
@@ -33,4 +33,15 @@ var registered_plants = [
   "id": 4, "owner": 1, "status": {"status_code": 1, "start_date": "04/30/2018", "end_date":"06/25/2018",
   "req_caretakers": [] , "app_caretaker": null}},
 
+  {"photo_url": null , "name": "Denethor", "type": "Steward",
+  "watering_freq": [[0,1,0,0,1,0,1], 0], "fertilizer_freq": [[0,0,0,1,0,0,0], 0],
+  "pesticide_freq": [[0,0,0,0,1,0,0], 1],"health": 0, "light": 0, "trimming": 0, 'instructions': "His wits are failing him.",
+  "id": 5, "owner": 1, "status": {"status_code": 4, "start_date": null, "end_date": null,
+  "req_caretakers": [] , "app_caretaker": null}},
+
+  {"photo_url": null , "name": "Theoden", "type": "Rohirim",
+  "watering_freq": [[0,1,0,1,1,0,1], 1], "fertilizer_freq": [[0,0,0,1,0,0,0], 0],
+  "pesticide_freq": [[0,0,0,0,1,0,0], 1],"health": 0, "light": 1, "trimming": 0, 'instructions': "Keep him away from Wormtongue.",
+  "id": 6, "owner": 0, "status": {"status_code": 4, "start_date": null, "end_date": null,
+  "req_caretakers": [] , "app_caretaker": null}},
 ];

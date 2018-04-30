@@ -1,5 +1,5 @@
 //view of the plant logic
-DEFAULT_PHOTO_URL = "./images/plant_photoholder.png"
+DEFAULT_PHOTO_URL = "./img/plant_photoholder.png"
 
 var checked_plants = [];
 
@@ -80,8 +80,19 @@ function createUserDisplayStatus(plant_instance, footer, view_mode, isOwner){
   }
   else { //if status_code == 4
     text.innerText = "Offered for adoption";
-    extra = Helpers.createCancelButton(plant_instance, plant_instance.cancelRequestForAdoption, view_mode);
-  }
+
+
+    if (isOwner){
+        extra = Helpers.createCancelButton(plant_instance, plant_instance.cancelRequestForAdoption, view_mode);
+    }
+    else {
+        if (plant_instance.status.req_caretakers.includes(logged_in_user))
+          extra = Helpers.createCancelButton(plant_instance, plant_instance.cancelRequestToCare, view_mode, "Cancel request to care");
+        else
+          extra = Helpers.createRequestToCare(plant_instance, plant_instance.requestToCare);
+      }
+
+    }
 
   footer.appendChild(text);
   footer.appendChild(extra);

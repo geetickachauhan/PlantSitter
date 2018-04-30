@@ -1,7 +1,7 @@
 var registered_users = [
     {
       "id": 0, 'firstName': "Gandalf", "lastName": "The Grey",
-      "photo_url": "images/gandalf.png","star": 5, "phone": '4078663956',
+      "photo_url": "img/gandalf.png","star": 5, "phone": '4078663956',
       "email": 'gandalf@gmail.com', "description" : "I'm a wizard. Deal with it."
     },
     {
