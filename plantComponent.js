@@ -100,6 +100,7 @@ function createUserDisplayStatus(plant_instance, footer, view_mode, isOwner){
   return footer;
 }
 
+
 /*
 creates icons based on plant properties
 */
@@ -116,10 +117,16 @@ function createIcons(plant_instance){
 
   water_container = Util.create("span");
   for (let i = 0 ; i < plant_instance.watering_freq[1] + 1; i++){
-      water_container.appendChild(Helpers.createIcon("tint", "text-aqua"));
+    //plant_value = plant_instance[mapping_dict[filter_type][0]][0].some(Util.nonzero) ? 1 : 0;
+      if (plant_instance.watering_freq[0].some(Util.nonzero))
+        water_container.appendChild(Helpers.createIcon("tint", "text-aqua"));
   }
-  water_container.classList.add("icon-group");
-  container.appendChild(water_container);
+
+  if (water_container.hasChildNodes()){
+    water_container.classList.add("icon-group");
+    container.appendChild(water_container);
+  }
+
 
   if (plant_instance.light)
     light = Helpers.createIcon("sun", 'icon-group', "gold");
@@ -128,14 +135,20 @@ function createIcons(plant_instance){
 
   container.appendChild(light);
 
+
   fertilizer_container = Util.create("span");
   for (let i = 0 ; i < plant_instance.fertilizer_freq[1]+ 1; i++){
-      fertilizer_container.appendChild(Helpers.createIcon("poo", 'text-brown'));
+      if (plant_instance.fertilizer_freq[0].some(Util.nonzero))
+        fertilizer_container.appendChild(Helpers.createIcon("poo", 'text-brown'));
   }
-  fertilizer_container.classList.add("icon-group");
-  container.appendChild(fertilizer_container);
 
-  if (plant_instance.pesticide_freq[1])
+  if (fertilizer_container.hasChildNodes()){
+    fertilizer_container.classList.add("icon-group");
+    container.appendChild(fertilizer_container);
+  }
+
+
+  if (plant_instance.pesticide_freq[1] && plant_instance.pesticide_freq[0].some(Util.nonzero))
     container.appendChild(Helpers.createIcon("bug", 'icon-group', 'text-gray'));
 
   if (plant_instance.trimming)

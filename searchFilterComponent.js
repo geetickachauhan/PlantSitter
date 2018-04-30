@@ -211,7 +211,7 @@ function addFilterListeners(mode){
             if (filter_type == 'fertilizer' || filter_type == "pesticide")
               plant_value = plant_instance[mapping_dict[filter_type][0]][0].some(Util.nonzero) ? 1 : 0;
             else if (filter_type == "water_options")
-              plant_value = plant_instance[mapping_dict[filter_type][0]][1];
+              plant_value = !plant_instance[mapping_dict[filter_type][0]][0] ? 0 : plant_instance[mapping_dict[filter_type][0]][1];
             else if (filter_type == "varying_options"){
 
               if (mode == 0){ //if viewed from homepage
