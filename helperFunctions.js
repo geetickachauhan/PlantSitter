@@ -1,6 +1,15 @@
 
 class Helpers {
 
+  static subtractDates(start, end){
+
+    let start_date = new Date(start.slice(6), start.slice(0,2), start.slice(3,5) );
+    let end_date = new Date(end.slice(6), end.slice(0,2), end.slice(3,5) );
+    return (end_date - start_date)/(24 * 60 * 60 * 1000 );
+
+  }
+
+
   static representPlants(plant_collection, view_mode){
     for (let plant of plant_collection){
 

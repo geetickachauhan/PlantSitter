@@ -91,20 +91,19 @@ function createSearchFilter(mode){
     trimming = '<span class="fas fa-cut fa-lg margin-right text-black"></span>Trimming';
     addCheckboxes(extracare, ["fertilizer", "pesticide", "trimming"], [fertilizer, pesticide, trimming]);
 
-	if (mode == 0){
+	  if (mode == 0){ //filter viewed in homepage
         varyingfilter = Util.one('#varying_options');
         varyingfilter.parentElement.children[0].innerHTML = '<span class="fas fa-leaf fa-lg margin-right text-green"></span><span class="fas fa-home fa-lg margin-right text-gray"></span>Plantsitting Status';
         addCheckboxes(varyingfilter, ["athome", "sentforcare", "receivedforcare"], ["At Home", "Sent for Care", "Received for Care"]);
     }
-    else{
-        // the rest of the volunteer style filter
+    else if (mode == 1){ //filter viewed in the plantsit page
         varyingfilter = Util.one('#varying_options');
         varyingfilter.parentElement.children[0].innerHTML = '<span class="fas fa-leaf fa-lg margin-right text-green"></span><span class="fas fa-clock fa-lg margin-right text-gray"></span>Care Duration';
-        addCheckboxes(varyingfilter, ["1to7days", "8to14days", "15to24days", "22daysandabove"], ["1 to 7 days", "8 to 14 days", "15 to 24 days", "22 days and above"]);
+        addCheckboxes(varyingfilter, ["1to7days", "8to14days", "15to21days", "22daysandabove"], ["1 to 7 days", "8 to 14 days", "15 to 21 days", "22 days and above"]);
     }
-		//the rest of the owner style search filter
-//	else
-		//the rest of the volunteer style search filter
+    else { //filter viewed in the adoption page
+      Util.one("#varying_filters").parentElement.remove();
+    }
 
 	//attach it to the container
   addFilterListeners(mode);
@@ -128,7 +127,8 @@ function addFilterListeners(mode){
       else {
 
         for (let plant_instance of all_plants){
-          if (plant_instance.name.toLowerCase().includes(search_term)){
+          if (plant_instance.name.toLowerCase().includes(search_term) ||
+          plant_instance.type.toLowerCase().includes(search_term)){
             if (!search_set.includes(plant_instance))
               search_set.push(plant_instance);
             }
@@ -143,7 +143,6 @@ function addFilterListeners(mode){
       showSelectedItems(search_set, filter_set);
 
     });
-
 
 
 
@@ -197,9 +196,13 @@ function addFilterListeners(mode){
           'trimming': ['trimming', {'trimming': 1}],
           }
 
-          if (mode == 0){
+          if (mode == 0){ //if viewed from homepage
             mapping_dict['varying_options'] = ['plantsitting_status', {'athome': 0, 'sentforcare': 1, 'receivedforcare': 2}];
           }
+          else if (mode == 1){ //if viewed from plantsit page
+            mapping_dict['varying_options'] = ['care_duration', {'1to7days': 0, '8to14days': 1, '15to21days': 2, '22daysandabove': 3}];
+          }
+
 
           let plant_value;
 
@@ -211,7 +214,7 @@ function addFilterListeners(mode){
               plant_value = plant_instance[mapping_dict[filter_type][0]][1];
             else if (filter_type == "varying_options"){
 
-              if (mode == 0){
+              if (mode == 0){ //if viewed from homepage
                 if (plant_instance.status.status_code == 3){
                   if (plant_instance.status.app_caretaker.id == logged_in_user.id)
                     plant_value = 2; //received for care
@@ -220,6 +223,19 @@ function addFilterListeners(mode){
                 }
                 else //if the status_code is any of [0,1,2,4] the plant is still at home
                   plant_value = 0;
+              }
+              else if (mode == 1) { //if viewed from plantsit
+                let care_duration = Helpers.subtractDates(plant_instance.status.start_date, plant_instance.status.end_date);
+
+                if (care_duration < 8)
+                  plant_value = 0;
+                else if (care_duration < 15)
+                  plant_value = 1;
+                else if (care_duration < 22)
+                  plant_value = 2;
+                else
+                  plant_value = 3;
+
               }
             }
             else

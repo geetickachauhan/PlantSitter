@@ -224,7 +224,6 @@ function updateStatus(plant_card, plant, view_mode) {
 
   let old_footer = Array.from(plant_card.childNodes).filter(child => child.classList.contains("card-footer"))[0];
 
-  console.log("old_footer is", old_footer)
   if (old_footer)
     plant_card.removeChild(old_footer);
 

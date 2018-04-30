@@ -66,24 +66,25 @@ function edit_enable(edit_elt){
         Util.one('#phone').innerHTML = '<input type="phone" class="form-control small-input" id="phone-input">';
         Util.one('#email').innerHTML = '<input type="email" class="form-control small-input" id="email-input">';
         Util.one('#description').innerHTML = '<textarea class="form-control small-input" id="description-input" rows="2"></textarea>';
-        Util.one('#firstName-input').value = user['firstName'];
-        Util.one('#lastName-input').value = user['lastName'];
-        Util.one('#phone-input').value = user['phone'];
-        Util.one('#email-input').value = user['email'];
-        Util.one('#description-input').value = user['description'];
+        Util.one('#firstName-input').value = logged_in_user['firstName'];
+        Util.one('#lastName-input').value = logged_in_user['lastName'];
+        Util.one('#phone-input').value = logged_in_user['phone'];
+        Util.one('#email-input').value = logged_in_user['email'];
+        Util.one('#description-input').value = logged_in_user['description'];
         Util.one('#edit-button').classList.add('g-display-none');
         Util.one('#save-button').classList.remove('g-display-none');
     });
+
     Util.one('#save-button').addEventListener('click', function(){
             // find a way to edit the json based on logged in user
-            user['firstName'] = Util.one('#firstName-input').value;
-            user['lastName'] = Util.one('#lastName-input').value;
-            user['phone'] = Util.one('#phone-input').value;
-            user['email'] = Util.one('#email-input').value;
-            user['description'] = Util.one('#description-input').value;
+            logged_in_user['firstName'] = Util.one('#firstName-input').value;
+            logged_in_user['lastName'] = Util.one('#lastName-input').value;
+            logged_in_user['phone'] = Util.one('#phone-input').value;
+            logged_in_user['email'] = Util.one('#email-input').value;
+            logged_in_user['description'] = Util.one('#description-input').value;
             // basically the user will have different stuff during the session but no database changes
             // have been made
-            updateProfileView(user);
+            updateProfileView(logged_in_user);
             Util.one('#save-button').classList.add('g-display-none');
             Util.one('#edit-button').classList.remove('g-display-none');
     });
