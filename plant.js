@@ -74,6 +74,10 @@ class Plant {
     this.status.update(0);
   }
 
+  returnHome(){
+    this.status.update(0);
+  }
+
 
 }
 

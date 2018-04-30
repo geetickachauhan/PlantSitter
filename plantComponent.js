@@ -4,6 +4,8 @@ DEFAULT_PHOTO_URL = "./images/plant_photoholder.png"
 var checked_plants = [];
 
 function createUserDisplayStatus(plant_instance, footer, view_mode, isOwner){
+
+
   let text = document.createElement("p");
   let status_code = plant_instance.status.status_code;
 
@@ -60,7 +62,7 @@ function createUserDisplayStatus(plant_instance, footer, view_mode, isOwner){
     ". Not yet in their care.";
 
     extra = Util.create("div");
-    extra.appendChild(Helpers.createCheckButton("Picked up?", plant_instance, plant_instance.transitionDone))
+    extra.appendChild(Helpers.createCheckButton("Picked up?", plant_instance, plant_instance.transitionDone));
     extra.appendChild(Helpers.createCancelButton(plant_instance, plant_instance.cancelCareReqApproval, view_mode));
 
   }
@@ -68,9 +70,13 @@ function createUserDisplayStatus(plant_instance, footer, view_mode, isOwner){
     text.innerText = "Sent for plantsitting from " + plant_instance.status.start_date +
     "\xa0 to \xa0" + plant_instance.status.end_date;
 
-    extra = Util.create("button")
-    extra.classList.add("btn", "btn-dark", "req-photo");
-    extra.innerText = "Request photo";
+    extra = Util.create("div");
+    extra.appendChild(Helpers.createCheckButton("Back home?", plant_instance, plant_instance.returnHome));
+
+
+    // extra = Util.create("button")
+    // extra.classList.add("btn", "btn-dark", "req-photo");
+    // extra.innerText = "Request photo";
   }
   else { //if status_code == 4
     text.innerText = "Offered for adoption";
@@ -147,13 +153,21 @@ function createPlantTile(plant_instance, view_mode){
   let profile_link = Util.create("a", {"href": "#"});
   profile_link.classList.add("green-link");
 
+  let plant_owner;
   if (plant_instance.owner == logged_in_user.id){
       profile_link.innerText = "me";
-      profile_link.setAttribute("href", "profile.html")
+      //profile_link.setAttribute("href", "profile.html")
+      plant_owner = logged_in_user;
   }
-  else
-      profile_link.innerText = logged_in_user.firstName + " " +
-      logged_in_user.lastName;
+  else{
+    plant_owner = registered_users.filter(user => user.id == plant_instance.owner)[0];
+    profile_link.innerText = plant_owner.firstName + " " +
+    plant_owner.lastName;
+
+  }
+  profile_link.setAttribute("href", "profile.html?id=" + plant_owner.id);
+
+
 
   header.appendChild(profile_link);
 
@@ -209,6 +223,8 @@ function updateStatus(plant_card, plant, view_mode) {
       plant_card.remove();
 
   let old_footer = Array.from(plant_card.childNodes).filter(child => child.classList.contains("card-footer"))[0];
+
+  console.log("old_footer is", old_footer)
   if (old_footer)
     plant_card.removeChild(old_footer);
 

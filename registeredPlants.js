@@ -24,13 +24,13 @@ var registered_plants = [
   {"photo_url": null , "name": "Rosie", "type": "Miniature Rose",
   "watering_freq": [[0,1,0,0,1,0,1], 2], "fertilizer_freq": [[0,0,0,1,0,0,0], 1],
   "pesticide_freq": [[0,0,0,0,1,0,0], 1],"health": 1, "light": 1, "trimming": 1, 'instructions': "",
-  "id": 2, "owner": 0, "status": {"status_code": 3, "start_date": "04/30/2018", "end_date":"06/25/2018",
+  "id": 3, "owner": 0, "status": {"status_code": 3, "start_date": "04/30/2018", "end_date":"06/25/2018",
   "req_caretakers": [user_], "app_caretaker": user_ }},
 
   {"photo_url": null , "name": "Luthien", "type": "Elf",
   "watering_freq": [[0,1,0,0,1,0,1], 2], "fertilizer_freq": [[0,0,0,1,0,0,0], 1],
   "pesticide_freq": [[0,0,0,0,1,0,0], 1],"health": 1, "light": 1, "trimming": 0, 'instructions': "",
-  "id": 2, "owner": 1, "status": {"status_code": 1, "start_date": "04/30/2018", "end_date":"06/25/2018",
+  "id": 4, "owner": 1, "status": {"status_code": 1, "start_date": "04/30/2018", "end_date":"06/25/2018",
   "req_caretakers": [] , "app_caretaker": null}},
 
 ];

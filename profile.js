@@ -5,15 +5,26 @@ $(document).ready(function(){
     //    showProfile(own, photo, star, name, phone, email, description);
     // in the future, this won't be under document.ready. It will basically be called by whichever page leads to this profile page because they need to pass in registered user and the flag stating whether they are looking at their own profile
     createNavbar();
-    mode = 1; // if mode is 0, you are looking at someone else's profile and shouldn't be able to edit
-    showProfile(mode, logged_in_user);
+    let mode; // if mode is 0, you are looking at someone else's profile and shouldn't be able to edit
+    let user;
+
+    if (Util.getURLParam("id") == logged_in_user.id){
+      mode = 1;
+      user = logged_in_user;
+    }
+    else{
+      mode = 0;
+      user = registered_users.filter(user => user.id == Util.getURLParam("id"))[0];
+    }
+
+    showProfile(mode, user);
 
 
 });
 
-function showProfile(own, logged_in_user){
+function showProfile(own, user){
     // own is a flag that if set to 1, displays calendar, edit and add event to calendar
-    updateProfileView(logged_in_user);
+    updateProfileView(user);
     if(own == 1){
         var edit_elt = Util.one('#edit');
         edit_enable(edit_elt);
@@ -22,13 +33,13 @@ function showProfile(own, logged_in_user){
 
 }
 
-function updateProfileView(logged_in_user){
-    Util.one('#photo').innerHTML = "<img src='"+logged_in_user['photo_url']+"'>";
-    createStars(logged_in_user['star']);
-    Util.one('#name').innerHTML = logged_in_user['firstName'] + " " + logged_in_user["lastName"];
-    Util.one('#phone').innerHTML = logged_in_user['phone'];
-    Util.one('#email').innerHTML = logged_in_user['email']; 
-    Util.one('#description').innerHTML = logged_in_user['description'];
+function updateProfileView(user){
+    Util.one('#photo').innerHTML = "<img src='"+user['photo_url']+"'>";
+    createStars(user['star']);
+    Util.one('#name').innerHTML = user['firstName'] + " " + user["lastName"];
+    Util.one('#phone').innerHTML = user['phone'];
+    Util.one('#email').innerHTML = user['email'];
+    Util.one('#description').innerHTML = user['description'];
 }
 // adds the click events etc to make editing work
 function edit_enable(edit_elt){
@@ -51,28 +62,28 @@ function edit_enable(edit_elt){
                 <input type="text" class="form-control" id="lastName-input">
             </div>
         </div>`;
-        
+
         Util.one('#phone').innerHTML = '<input type="phone" class="form-control small-input" id="phone-input">';
-        Util.one('#email').innerHTML = '<input type="email" class="form-control small-input" id="email-input">'; 
+        Util.one('#email').innerHTML = '<input type="email" class="form-control small-input" id="email-input">';
         Util.one('#description').innerHTML = '<textarea class="form-control small-input" id="description-input" rows="2"></textarea>';
-        Util.one('#firstName-input').value = logged_in_user['firstName'];
-        Util.one('#lastName-input').value = logged_in_user['lastName'];
-        Util.one('#phone-input').value = logged_in_user['phone'];
-        Util.one('#email-input').value = logged_in_user['email'];
-        Util.one('#description-input').value = logged_in_user['description'];
+        Util.one('#firstName-input').value = user['firstName'];
+        Util.one('#lastName-input').value = user['lastName'];
+        Util.one('#phone-input').value = user['phone'];
+        Util.one('#email-input').value = user['email'];
+        Util.one('#description-input').value = user['description'];
         Util.one('#edit-button').classList.add('g-display-none');
         Util.one('#save-button').classList.remove('g-display-none');
     });
     Util.one('#save-button').addEventListener('click', function(){
             // find a way to edit the json based on logged in user
-            logged_in_user['firstName'] = Util.one('#firstName-input').value;
-            logged_in_user['lastName'] = Util.one('#lastName-input').value;
-            logged_in_user['phone'] = Util.one('#phone-input').value;
-            logged_in_user['email'] = Util.one('#email-input').value;
-            logged_in_user['description'] = Util.one('#description-input').value;
+            user['firstName'] = Util.one('#firstName-input').value;
+            user['lastName'] = Util.one('#lastName-input').value;
+            user['phone'] = Util.one('#phone-input').value;
+            user['email'] = Util.one('#email-input').value;
+            user['description'] = Util.one('#description-input').value;
             // basically the user will have different stuff during the session but no database changes
             // have been made
-            updateProfileView(logged_in_user);
+            updateProfileView(user);
             Util.one('#save-button').classList.add('g-display-none');
             Util.one('#edit-button').classList.remove('g-display-none');
     });

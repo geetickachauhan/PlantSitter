@@ -5,6 +5,7 @@
    static nonzero (element){
      return element != 0;
    }
+
    /*
    https://stackoverflow.com/questions/42604185/get-the-intersection-of-n-arrays
    */
@@ -82,6 +83,7 @@
       Util.clear(elt.firstChild);
     }
   }
+
   /*
   helper method to clear first child recursively
   */
@@ -91,5 +93,14 @@
     }
     elt.parentNode.removeChild(elt);
   }
+
+
+  /**
+ * Get a parameter from the URL query string
+ * @param name {String}
+ */
+static getURLParam(name) {
+  return new URL(location).searchParams.get(name);
+}
 
  }

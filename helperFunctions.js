@@ -26,7 +26,7 @@ class Helpers {
 
   static createRequestToCare(plant, action){
     let button = Util.create("button", {"type": "button"});
-    button.classList.add("btn", "btn-secondary");
+    button.classList.add("btn", "btn-success");
     button.innerText = "Request to care";
 
     button.addEventListener("click", function(e){
@@ -86,7 +86,7 @@ class Helpers {
     button.addEventListener("click", function(e){
       e.stopPropagation();
       action.call(plant);
-      updateStatus(Util.one("#plant_tile_" + plant.id), plant);
+      updateStatus(Util.one("#plant_tile_" + plant.id), plant, 0);
 
     });
 

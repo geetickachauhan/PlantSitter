@@ -21,11 +21,11 @@ function createNavbar(){
                 </li>
                 <li class="nav-item dropdown text-right mt-1">
                   <a class="nav-link dropdown-toggle" href="#" id="usernameDropDown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></a>
-                    <div class="dropdown-menu" aria-labelledby="usernameDropdown">
-                      <a class="dropdown-item" href="profile.html">
+                  <div class="dropdown-menu" aria-labelledby="usernameDropdown">
+                  <a class="dropdown-item" id="linkToProfile" href="profile.html">
                         <span class="fas fa-id-card fa-lg text-gray margin-right"></span>
                         Profile and Calendar
-                      </a>
+                  </a>
                       <a class="dropdown-item" href="#">
                         <span class="fas fa-camera fa-lg text-gray margin-right"></span>
                         Photos by Volunteers
@@ -45,6 +45,8 @@ function createNavbar(){
     navbar.innerHTML = inner;
     body = Util.one('body');
     body.insertBefore(navbar, body.firstChild);
+    Util.one('#linkToProfile').setAttribute("href", "profile.html?id=" + logged_in_user.id)
+
     Util.one('#usernameDropDown').innerHTML = logged_in_user.firstName;
     notification = Util.one('#g-notification');
     notifInner = `
