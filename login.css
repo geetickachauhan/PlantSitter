@@ -16,6 +16,11 @@ body, html{
 .login-pad-top{
     padding-top: 2%;
 }
+.required-label:after {
+    content:"*"; 
+    margin-left: 5px;
+    color: var(--red);
+}
 
 /*
 html {

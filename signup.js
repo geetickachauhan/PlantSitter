@@ -1,9 +1,9 @@
 Util.events(document, {
     "DOMContentLoaded": function() {  
-        $("#btnLogin").click(function(event) {
+        $("#btnSignUp").click(function(event) {
             event.preventDefault(); //stops the page from refreshing
             //Fetch form to apply custom Bootstrap validation
-            var form = Util.one("#formLogin");
+            var form = Util.one("#formSignUp");
 
             if (form.checkValidity() === false) {
                 event.preventDefault();
@@ -18,3 +18,13 @@ Util.events(document, {
           });
     }
 });
+
+function checkPassword(input){
+    if (input.value != Util.one('#pwd1').value) {
+        input.setCustomValidity('Password Must be Matching');
+    } 
+    else {
+            // input is valid -- reset the error message
+        input.setCustomValidity('');
+    }
+}

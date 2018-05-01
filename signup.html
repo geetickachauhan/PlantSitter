@@ -7,7 +7,7 @@
 
 <head>
 <meta charset="utf-8">
-<title>Login</title>
+<title>Signup</title>
 
 <!-- Use mobile-aware viewport -->
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -33,15 +33,15 @@
 
 <!--<script src="navbarComponent.js"></script>-->
 <script src="util.js"></script>
-<script src="login.js"></script>
+<script src="signup.js"></script>
 
-    
+<!--    TODO: need to check how to match password-->
 </head>
-
+<!--https://bootsnipp.com/snippets/0BVEA sign up-->
 <body>
 <!--    from https://www.codeply.com/go/nhbdi2FkJm/bootstrap-4-login-form-->
 <!--    and https://getbootstrap.com/docs/4.0/components/forms/#custom-styles-->
-   <div class="container py-5">
+   <div class="container py-3">
     <div class="row">
         <div class="col-md-12">
             <h1 class="text-center text-green mb-4"><span class="fab fa-pagelines fa-lg margin-right"></span>PlantSitter</h1>
@@ -51,29 +51,45 @@
                     <!-- form card login -->
                     <div class="card rounded-0">
                         <div class="card-header">
-                            <h3 class="mb-0 text-center">Login</h3>
+                            <h3 class="mb-0 text-center">Sign Up</h3>
                         </div>
                         <div class="card-body">
-                            <form class="needs-validation" id="formLogin" novalidate>
+                            <form class="needs-validation" id="formSignUp" novalidate>
                                 <div class="form-group">
-                                    <label for="email" class="required-label"><span class="fas fa-at fa-lg margin-right text-gray"></span>Email</label>
-                                    <input type="email" class="form-control form-control-lg rounded-0" name="email" id="email" placeholder="example@gmail.com" required>
+                                    <label for="email"><span class="fas fa-at fa-lg margin-right text-gray"></span>Email</label>
+                                    <input type="email" class="form-control form-control-lg rounded-0" name="email" id="email" required placeholder="example@gmail.com">
                                     <div class="invalid-feedback">Please enter a valid email</div>
                                 </div>
                                 <div class="form-group">
-                                    <label class="required-label"><span class="fas fa-key fa-lg margin-right text-gray"></span>Password</label>
+                                    <label for="pws1"><span class="fas fa-key fa-lg margin-right text-gray"></span>Password</label>
                                     <input type="password" class="form-control form-control-lg rounded-0" id="pwd1" required autocomplete="new-password">
                                     <div class="invalid-feedback">Enter your password too!</div>
                                 </div>
-                                <div>
-                                    <div class="form-check">
-                                      <input class="form-check-input" type="checkbox" name="checkbox" id="checkbox" value="rememberme">
-                                      <label class="form-check-label" for="checkbox">
-                                        <span class="custom-control-description small text-dark">Remember me</span>
-                                      </label>
-                                    </div>
+                                <div class="form-group">
+                                    <label for="pwd2"><span class="fas fa-key fa-lg margin-right text-gray"></span>Re-enter Password</label>
+                                    <input type="password" class="form-control form-control-lg rounded-0" id="pwd2" required autocomplete="new-password" oninput="checkPassword(this)">
+                                    <div class="invalid-feedback">Re-enter your password</div>
                                 </div>
-                                <button type="submit" class="btn btn-success btn-lg float-right" id="btnLogin"><span class="fas fa-sign-in-alt fa-lg"></span></button>
+                                <div class="form-row">
+                                    <div class="col-md-6 mb-3">
+                                      <label for="firstname"><span class="fas fa-user-circle fa-lg margin-right text-gray"></span>First name</label>
+                                      <input type="text" class="form-control form-control-lg rounded-0" id="firstname" placeholder="John" required>
+                                      <div class="invalid-feedback">
+                                        Oops you forgot this!
+                                      </div>
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                      <label for="lastname"><span class="fas fa-user-circle fa-lg margin-right text-gray"></span>Last name</label>
+                                      <input type="text" class="form-control form-control-lg rounded-0" id="lastname" placeholder="Doe" required>
+                                      <div class="invalid-feedback">
+                                        Forgot this too!
+                                      </div>
+                                    </div>
+                                
+                                </div>
+                                
+                                
+                                <button type="submit" class="btn btn-success btn-lg float-right" id="btnSignUp"><span class="fas fa-user-plus fa-lg"></span></button>
                             </form>
                         </div>
                         <!--/card-block-->
@@ -104,9 +120,9 @@
                             <div class="row">
                             
                             <div class="col-sm-6">
-                            <h3 class="mb-0">New?</h3></div>
+                            <h3 class="mb-0">Have an account already?</h3></div>
                             <div class="col-sm-6">
-                                <button type="submit" class="btn btn-danger btn-lg float-right" id="btnLogin"><span class="fas fa-user-plus margin-right"></span>Sign Up</button>
+                                <button type="submit" class="btn btn-danger btn-lg float-right" id="btnLogin"><span class="fas fa-sign-in-alt margin-right"></span>Login</button>
                             </div>
                         </div>
                             </div>
