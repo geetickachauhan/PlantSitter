@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<!--
+---- PlantSitter
+---- By: Geeticka Chauhan
+-->
+<html>
+
+<head>
+<meta charset="utf-8">
+<title>Signup</title>
+
+<!-- Use mobile-aware viewport -->
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+<!-- Load style sheets -->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
+<link rel="stylesheet" href="login.css">
+<link rel="stylesheet" href="shared.css">
+
+<!-- Load any supplemental Javascript libraries here -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/seedrandom/2.4.2/seedrandom.js"></script>
+
+<!-- Constructible EventTarget polyfill — Only Chrome 64+ supports constructible EventTarget objects natively -->
+<script src="https://unpkg.com/event-target@latest/min.js"></script>
+<!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>-->
+<!--<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>-->
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
+<script defer src="https://use.fontawesome.com/releases/v5.0.10/js/all.js" integrity="sha384-slN8GvtUJGnv6ca26v8EzVaR9DC58QEwsIk9q1QXdCU8Yu8ck/tL/5szYlBbqmS+" crossorigin="anonymous"></script>
+<!--above is needed to use font awesome-->
+<!--<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>-->
+
+<!--<script src="navbarComponent.js"></script>-->
+<script src="util.js"></script>
+<script src="signup.js"></script>
+
+<!--    TODO: need to check how to match password-->
+</head>
+<!--https://bootsnipp.com/snippets/0BVEA sign up-->
+<body>
+<!--    from https://www.codeply.com/go/nhbdi2FkJm/bootstrap-4-login-form-->
+<!--    and https://getbootstrap.com/docs/4.0/components/forms/#custom-styles-->
+   <div class="container py-3">
+    <div class="row">
+        <div class="col-md-12">
+            <h1 class="text-center text-green mb-4"><span class="fab fa-pagelines fa-lg margin-right"></span>PlantSitter</h1>
+            <div class="row">
+                <div class="col-md-6 mx-auto">
+
+                    <!-- form card login -->
+                    <div class="card rounded-0">
+                        <div class="card-header">
+                            <h3 class="mb-0 text-center">Sign Up</h3>
+                        </div>
+                        <div class="card-body">
+                            <form class="needs-validation" id="formSignUp" novalidate>
+                                <div class="form-group">
+                                    <label for="email"><span class="fas fa-at fa-lg margin-right text-gray"></span>Email</label>
+                                    <input type="email" class="form-control form-control-lg rounded-0" name="email" id="email" required placeholder="example@gmail.com">
+                                    <div class="invalid-feedback">Please enter a valid email</div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="pws1"><span class="fas fa-key fa-lg margin-right text-gray"></span>Password</label>
+                                    <input type="password" class="form-control form-control-lg rounded-0" id="pwd1" required autocomplete="new-password">
+                                    <div class="invalid-feedback">Enter your password too!</div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="pwd2"><span class="fas fa-key fa-lg margin-right text-gray"></span>Re-enter Password</label>
+                                    <input type="password" class="form-control form-control-lg rounded-0" id="pwd2" required autocomplete="new-password" oninput="checkPassword(this)">
+                                    <div class="invalid-feedback">Re-enter your password</div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="col-md-6 mb-3">
+                                      <label for="firstname"><span class="fas fa-user-circle fa-lg margin-right text-gray"></span>First name</label>
+                                      <input type="text" class="form-control form-control-lg rounded-0" id="firstname" placeholder="John" required>
+                                      <div class="invalid-feedback">
+                                        Oops you forgot this!
+                                      </div>
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                      <label for="lastname"><span class="fas fa-user-circle fa-lg margin-right text-gray"></span>Last name</label>
+                                      <input type="text" class="form-control form-control-lg rounded-0" id="lastname" placeholder="Doe" required>
+                                      <div class="invalid-feedback">
+                                        Forgot this too!
+                                      </div>
+                                    </div>
+                                
+                                </div>
+                                
+                                
+                                <button type="submit" class="btn btn-success btn-lg float-right" id="btnSignUp"><span class="fas fa-user-plus fa-lg"></span></button>
+                            </form>
+                        </div>
+                        <!--/card-block-->
+                    </div>
+                    <!-- /form card login -->
+
+                </div>
+
+
+            </div>
+            <!--/row-->
+
+        </div>
+        <!--/col-->
+    </div>
+    <!--/row-->
+    
+       
+    <div class="row login-pad-top">
+        <div class="col-md-12">
+            <div class="row">
+                <div class="col-md-6 mx-auto">
+
+                    <!-- form card login -->
+                    <div class="card rounded-0">
+                        <div class="card-body">
+                            
+                            <div class="row">
+                            
+                            <div class="col-sm-6">
+                            <h3 class="mb-0">Have an account already?</h3></div>
+                            <div class="col-sm-6">
+                                <button type="submit" class="btn btn-danger btn-lg float-right" id="btnLogin"><span class="fas fa-sign-in-alt margin-right"></span>Login</button>
+                            </div>
+                        </div>
+                            </div>
+                        <!--/card-block-->
+                    </div>
+                    <!-- /form card login -->
+
+                </div>
+
+
+            </div>
+            <!--/row-->
+
+        </div>
+        <!--/col-->
+    </div>
+    <!--/row-->
+</div>
+<!--/container--> 
+
+ 
+</body>
+
+</html>

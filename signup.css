@@ -1,0 +1,15 @@
+body, html{
+/*    height: 100%;*/
+/* 	background-repeat: no-repeat;*/
+ 	background-color: var(--color-lightest-gray);
+/* 	font-family: 'Oxygen', sans-serif;*/
+}
+
+.login-pad-top{
+    padding-top: 2%;
+}
+.required-label:after {
+    content:"*"; 
+    margin-left: 5px;
+    color: var(--red);
+}
