@@ -1,6 +1,14 @@
 
 class Helpers {
 
+
+  static updatePlantStorage(plant_instance){
+    let registered_plants = JSON.parse(sessionStorage.getItem('registered_plants'));
+    registered_plants[registered_plants.findIndex(x => x.id == plant_instance.id)] = JSON.parse(JSON.stringify(plant_instance));
+    sessionStorage.setItem('registered_plants', JSON.stringify(registered_plants));
+  }
+
+
   static subtractDates(start, end){
 
     let start_date = new Date(start.slice(6), start.slice(0,2), start.slice(3,5) );
@@ -10,26 +18,39 @@ class Helpers {
   }
 
 
-  static representPlants(plant_collection, view_mode){
+  static createPlantInstances(plant_collection){
+    let plant_instances = [];
+
     for (let plant of plant_collection){
 
-      let status_params = [];
-      for (let [key, value] of Object.entries(plant.status))
-        status_params.push(value);
+      let status_params = [plant.status.status_code, plant.status.start_date, plant.status.end_date,
+      plant.status.req_caretakers, plant.status.app_caretaker];
 
-      let status = new Status(...status_params);
+      //let status = new Status(...status_params);
 
-      let params = [];
-      for (let [key, value] of Object.entries(plant)){
-        if (key != "status")
-          params.push(value);
+      let params = [plant.photo_url, plant.name, plant.type, plant.watering_freq, plant.fertilizer_freq, plant.pesticide_freq,
+      plant.health, plant.light, plant.trimming, plant.instructions];
+
+      if (typeof plant.id !== 'undefined'){
+        params.push(plant.id);
+        params.push(plant.owner);
       }
+      params.push(status_params);
 
-      params.push(status);
+      let new_instance = new Plant(...params)
 
-      let plant_instance =  new Plant(...params);
-      createPlantTile(plant_instance, view_mode);
+      plant_instances.push(new_instance);
+
     }
+    return plant_instances;
+
+  }
+
+
+  static representPlants(plant_instances, view_mode){
+
+    for (let plant of plant_instances)
+      createPlantTile(plant, view_mode );
   }
 
 

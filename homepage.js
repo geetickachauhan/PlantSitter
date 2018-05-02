@@ -1,4 +1,6 @@
 
+let registered_plants = Helpers.createPlantInstances(JSON.parse(sessionStorage.getItem('registered_plants')));
+
 var user_registered_plants = registered_plants.filter(plant => plant.owner == logged_in_user.id).sort((a, b) => a.name.localeCompare(b.name));
 var all_plants = user_registered_plants.slice();
 
@@ -10,13 +12,16 @@ Util.events(document, {
 	"DOMContentLoaded": function() {
 
       createNavbar();
+
       Helpers.representPlants(user_registered_plants, 0);
       createSearchFilter(0);
+
       $(function () {
           $(".date").datetimepicker({
               format: 'L'
           });
       });
+
       setupPlantManipulation();
 
     }})

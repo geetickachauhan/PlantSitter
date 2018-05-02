@@ -2,6 +2,8 @@
 
  class Util{
 
+
+
    static nonzero (element){
      return element != 0;
    }

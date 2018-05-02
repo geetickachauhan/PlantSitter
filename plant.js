@@ -7,9 +7,8 @@ var uniqueID = (function() {
    return function() { return id++; };
 })();
 
-class Plant {
 
-	//{'name': null, 'type': null, 'watering_freq': [[0,0,0,0,0,0,0],null], }
+class Plant {
 
 	constructor(photo_url, name, type, watering_freq, fertilizer_freq, pesticide_freq, health, light, trimming, instructions, ...args){
 		let keys = ['name', 'type', 'watering_freq', 'fertilizer_freq', 'pesticide_freq', 'health', 'light', 'trimming', 'instructions'];
@@ -23,11 +22,12 @@ class Plant {
       this.owner = logged_in_user.id;
       this.status = new Status();
 
+
     }
     else { //for registering plants into the system, since we don't have a backend
       this.id = args[0];
       this.owner = args[1];
-      this.status = args[2];
+      this.status = new Status(...args[2]);
     }
 
 
@@ -36,46 +36,59 @@ class Plant {
 	updateProperties(prop_obj){
 		for (let key of prop_obj)
 			this[key] = prop_obj[key];
+
+    Helpers.updatePlantStorage(this);
 	}
 
 	requestForCare(start_date, end_date){
-		this.status.update(1, start_date, end_date)
+		this.status.update(1, start_date, end_date);
+
+    Helpers.updatePlantStorage(this);
 	}
 
 	cancelRequestForcare(){
 		this.status.update(0);
+    Helpers.updatePlantStorage(this);
 	}
 
 	requestToCare(){
 		this.status.addRequester(logged_in_user);
+    Helpers.updatePlantStorage(this);
 	}
 
 	cancelRequestToCare(){
 		this.status.removeRequester(logged_in_user);
+    Helpers.updatePlantStorage(this);
 	}
 
 	approveCareRequest(requester_id){
 		this.status.update(2);
+    Helpers.updatePlantStorage(this);
 	}
 
 	cancelCareReqApproval(){
 		this.status.revertApproval();
+    Helpers.updatePlantStorage(this);
 	}
 
 	transitionDone(){
 		this.status.update(3);
+    Helpers.updatePlantStorage(this);
 	}
 
   requestForAdoption(){
     this.status.update(4);
+    Helpers.updatePlantStorage(this);
   }
 
   cancelRequestForAdoption(){
     this.status.update(0);
+    Helpers.updatePlantStorage(this);
   }
 
   returnHome(){
     this.status.update(0);
+    Helpers.updatePlantStorage(this);
   }
 
 

@@ -1,3 +1,4 @@
+let registered_plants = Helpers.createPlantInstances(JSON.parse(sessionStorage.getItem('registered_plants')));
 
 var shown_plants = registered_plants.filter(plant => plant.status.status_code == 4).sort((a, b) => a.name.localeCompare(b.name));
 var all_plants = shown_plants.slice();

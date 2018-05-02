@@ -44,9 +44,11 @@ function createUserDisplayStatus(plant_instance, footer, view_mode, isOwner){
     text.innerText = "Requested plantsitting from " + plant_instance.status.start_date +
     "\xa0 to \xa0" + plant_instance.status.end_date;
 
+    console.log("plant instance is ", plant_instance)
+    console.log("f is ", plant_instance.requestToCare);
 
     if (isOwner){
-        extra = Helpers.createCancelButton(plant_instance, plant_instance.cancelRequestForcare, view_mode);
+        extra = Helpers.createCancelButton(plant_instance, plant_instance.cancelRequestForcare, 1);
     }
     else {
         if (plant_instance.status.req_caretakers.includes(logged_in_user))
@@ -83,7 +85,7 @@ function createUserDisplayStatus(plant_instance, footer, view_mode, isOwner){
 
 
     if (isOwner){
-        extra = Helpers.createCancelButton(plant_instance, plant_instance.cancelRequestForAdoption, view_mode);
+        extra = Helpers.createCancelButton(plant_instance, plant_instance.cancelRequestForAdoption, 1);
     }
     else {
         if (plant_instance.status.req_caretakers.includes(logged_in_user))
@@ -202,10 +204,10 @@ function createPlantTile(plant_instance, view_mode){
 
   if (plant_instance.photo_url)
     top_img.setAttribute("src", plant_instance.photo_url);
-  else{
+  else
     top_img.setAttribute("src", DEFAULT_PHOTO_URL)
     //top_img.classList.add("transparent");
-  }
+
 
   card.appendChild(top_img);
 

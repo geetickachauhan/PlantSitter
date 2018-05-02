@@ -19,7 +19,7 @@
 }
 
 #search_filter_container{
-    height: 92vh;
+    height: 100vh;
     overflow-y: scroll;
 /*    above is important to enable vertical scrolling in search filter*/
     width: 23%;
@@ -85,4 +85,3 @@
 #search_filter_container .label-text{
 
 }
-    

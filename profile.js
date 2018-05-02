@@ -77,16 +77,25 @@ function edit_enable(edit_elt){
 
     Util.one('#save-button').addEventListener('click', function(){
             // find a way to edit the json based on logged in user
-            logged_in_user['firstName'] = Util.one('#firstName-input').value;
-            logged_in_user['lastName'] = Util.one('#lastName-input').value;
-            logged_in_user['phone'] = Util.one('#phone-input').value;
-            logged_in_user['email'] = Util.one('#email-input').value;
-            logged_in_user['description'] = Util.one('#description-input').value;
-            // basically the user will have different stuff during the session but no database changes
-            // have been made
-            updateProfileView(logged_in_user);
-            Util.one('#save-button').classList.add('g-display-none');
-            Util.one('#edit-button').classList.remove('g-display-none');
+        logged_in_user['firstName'] = Util.one('#firstName-input').value;
+        logged_in_user['lastName'] = Util.one('#lastName-input').value;
+        logged_in_user['phone'] = Util.one('#phone-input').value;
+        logged_in_user['email'] = Util.one('#email-input').value;
+        logged_in_user['description'] = Util.one('#description-input').value;
+
+
+        sessionStorage.setItem('logged_in_user', JSON.stringify(logged_in_user));
+
+        //update the database of users
+        registered_users[registered_users.findIndex(x => x.id == logged_in_user.id)] = logged_in_user;
+        sessionStorage.setItem('registered_users', JSON.stringify(registered_users));
+
+
+        // basically the user will have different stuff during the session but no database changes
+        // have been made
+        updateProfileView(logged_in_user);
+        Util.one('#save-button').classList.add('g-display-none');
+        Util.one('#edit-button').classList.remove('g-display-none');
     });
 }
 

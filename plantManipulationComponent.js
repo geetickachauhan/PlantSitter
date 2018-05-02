@@ -40,7 +40,7 @@ function setupPlantManipulation(){
         aggregate_frequencies.push([frequency_input_weekdays[i], frequencies[i]]);
       }
 
-      let plant_args = [null, plant_name, plant_type];
+      let plant_args = ["", plant_name, plant_type];
       plant_args = plant_args.concat(aggregate_frequencies);
       plant_args = plant_args.concat(booleans);
       plant_args.push(Util.one("#special-instructions").value);
@@ -83,7 +83,9 @@ function setupPlantManipulation(){
   Util.one("#temp_care_confirm").addEventListener("click", function(e){
     e.preventDefault();
 
+    console.log("checked plants are ", checked_plants)
     for (let plant of checked_plants){
+      console.log("here", plant)
       plant.requestForCare(start_date, end_date);
       updateStatus(Util.one("#plant_tile_" + plant.id), plant);
     }
@@ -99,6 +101,8 @@ function setupPlantManipulation(){
     $('#collapseFunctionForm').collapse('hide');
     for (let plant of checked_plants){
         plant.requestForAdoption();
+        console.log(plant)
+        //requestForAdoption.call(plant);
         updateStatus(Util.one("#plant_tile_" + plant.id), plant);
     }
 
