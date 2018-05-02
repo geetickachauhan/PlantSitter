@@ -23,7 +23,12 @@ function showProfile(own, current_plant){
 }
 function updatePlantView(current_plant){
     watering = current_plant['watering_freq'], fertilizer = current_plant['fertilizer_freq'], pesticide = current_plant['fertilizer_freq'], health = current_plant['health'], light = current_plant['light'], trimming = current_plant['trimming'], photo=current_plant['photo_url'], name = current_plant['name'], type = current_plant['type'], instructions = current_plant['instructions']; 
-    Util.one('#g-photo').innerHTML = "<img src='"+photo+"'>";
+    if(photo != ""){
+        Util.one('#g-photo').innerHTML = "<img src='"+photo+"'>";
+    }
+    else{
+        Util.one('#g-photo').innerHTML = "<img src='images/plant_photoholder.png'>";
+    }
     Util.one('#g-plantname').innerHTML = name;
     Util.one('#g-planttype').innerHTML = type;
     // now it is time to append the weekday divs

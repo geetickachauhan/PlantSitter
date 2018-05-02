@@ -28,6 +28,10 @@ div{
     font-size: calc(var(--font-size) *2);
     font-weight: calc(var(--font-weight) *1.5);
 }
+.g-small-text{
+    font-size: calc(var(--font-size) * 0.4);
+    font-weight: calc(var(--font-weight));
+}
 input[type=text]{
     font-size: inherit;
     font-weight: inherit;
