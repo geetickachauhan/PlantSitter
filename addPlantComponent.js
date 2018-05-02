@@ -21,9 +21,10 @@ function createAddPlantOverlay(){
 
     box.innerHTML = `
     <div id="photo" class=“centerdiv”>
-    <button class="btn btn-info g-big-button">
+    <label class="btn btn-info g-big-button label-center">
       <span class="fas fa-camera fa-5x"></span>
-    </button>
+        <input type="file" hidden>
+    </label>
   </div>
   <div id="plant-name" class="formgroup centerdiv">
     <div class="formtext centerdiv">Nickname</div>

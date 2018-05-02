@@ -103,9 +103,10 @@ function edit_enable(current_plant){
     Util.one('#g-edit-button').addEventListener('click', function(){
         watering = current_plant['watering_freq'], fertilizer = current_plant['fertilizer_freq'], pesticide = current_plant['fertilizer_freq'], health = current_plant['health'], light = current_plant['light'], trimming = current_plant['trimming']; 
        Util.one('#g-photo').innerHTML = 
-           `<button class="btn btn-info g-big-button">
+           `<label class="btn btn-info g-big-button label-center">
                 <span class="fas fa-camera fa-5x"></span>
-            </button>`; 
+                <input type="file" hidden>
+            </label>`; 
         Util.one('#g-plantname').innerHTML = '<input type="text" class="form-control" id="plantname-input">';
         Util.one('#g-planttype').innerHTML = '<input type="text" class="form-control" id="planttype-input">';
 
