@@ -48,7 +48,7 @@ function createUserDisplayStatus(plant_instance, footer, view_mode, isOwner){
     console.log("f is ", plant_instance.requestToCare);
 
     if (isOwner){
-        extra = Helpers.createCancelButton(plant_instance, plant_instance.cancelRequestForcare, 1);
+        extra = Helpers.createCancelButton(plant_instance, plant_instance.cancelRequestForcare, view_mode);
     }
     else {
         if (plant_instance.status.req_caretakers.includes(logged_in_user))
@@ -85,7 +85,7 @@ function createUserDisplayStatus(plant_instance, footer, view_mode, isOwner){
 
 
     if (isOwner){
-        extra = Helpers.createCancelButton(plant_instance, plant_instance.cancelRequestForAdoption, 1);
+        extra = Helpers.createCancelButton(plant_instance, plant_instance.cancelRequestForAdoption, view_mode);
     }
     else {
         if (plant_instance.status.req_caretakers.includes(logged_in_user))

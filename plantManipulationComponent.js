@@ -47,6 +47,10 @@ function setupPlantManipulation(){
 
       let plant_instance = new Plant(...plant_args);
 
+      let registered_plants = JSON.parse(sessionStorage.getItem('registered_plants'));
+      registered_plants.push(plant_instance);
+      sessionStorage.setItem('registered_plants', JSON.stringify(registered_plants));
+
       removeAddPlantOverlay();
       createPlantTile(plant_instance);
 
@@ -83,9 +87,7 @@ function setupPlantManipulation(){
   Util.one("#temp_care_confirm").addEventListener("click", function(e){
     e.preventDefault();
 
-    console.log("checked plants are ", checked_plants)
     for (let plant of checked_plants){
-      console.log("here", plant)
       plant.requestForCare(start_date, end_date);
       updateStatus(Util.one("#plant_tile_" + plant.id), plant);
     }
@@ -101,7 +103,6 @@ function setupPlantManipulation(){
     $('#collapseFunctionForm').collapse('hide');
     for (let plant of checked_plants){
         plant.requestForAdoption();
-        console.log(plant)
         //requestForAdoption.call(plant);
         updateStatus(Util.one("#plant_tile_" + plant.id), plant);
     }

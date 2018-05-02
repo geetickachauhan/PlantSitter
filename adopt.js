@@ -11,7 +11,7 @@ Util.events(document, {
 	"DOMContentLoaded": function() {
 
       createNavbar();
-      Helpers.representPlants(shown_plants);
+      Helpers.representPlants(shown_plants, 1);
       createSearchFilter(2);
       $(function () {
           $(".date").datetimepicker({
