@@ -16,12 +16,7 @@ input[type="text"]{
     color: inherit;
     text-align: center;
 }
-.g-pad{
-    padding: 1%;
-}
-.g-high-pad{
-    padding: 5%;
-}
+
 img{
     max-width: 70%;
     border-radius: 0.3em;
@@ -41,8 +36,12 @@ div{
     font-size: calc(var(--plantprofile-font-size) *2);
     font-weight: calc(var(--plantprofile-font-weight) *1.5);
 }
+.g-small-text{
+    font-size: calc(var(--plantprofile-font-size) * 0.4);
+    font-weight: calc(var(--plantprofile-font-weight));
+}
 .weekDays-selector{
-    height: 100%;
+/*    height: 100%;*/
     width: 100%;
 }
 .weekDays-selector input {
@@ -99,9 +98,7 @@ div{
 .small-input{
     width: 70%;
 }
-.eliminate-padding-left{
-    padding-left: 0;
-}
+
 .label-center{
     display: flex;
     align-items: center;
