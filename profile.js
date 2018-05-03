@@ -66,8 +66,6 @@ function edit_enable(edit_elt){
             </div>
         </div>`;
 
-//        Util.one('#phone').innerHTML = '<input type="phone" class="form-control small-input" id="phone-input">';
-//        Util.one('#email').innerHTML = '<input type="email" class="form-control small-input" id="email-input">';
         phone = Util.one('#phone');
         phone.classList.add("form-group");
         phone.innerHTML = `<input type="number" class="form-control small-input" id="phone-input" required oninput="checkPattern(this, '^[0-9]{10}$', 'e-phone', 'phonevalid')">

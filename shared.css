@@ -94,7 +94,15 @@ body {
     font-size: 2.5em;
 }
 */
-
+.g-pad{
+    padding: 1%;
+}
+.g-high-pad{
+    padding: 5%;
+}
+.eliminate-padding-left{
+    padding-left: 0;
+}
 .wrapper{
     display: flex;
     justify-content: center;
