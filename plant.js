@@ -4,7 +4,7 @@
 
 var uniqueID = (function() {
    var id = 100;
-   return function() { return id++; };
+   return function(f) { return id++; };
 })();
 
 
@@ -88,6 +88,12 @@ class Plant {
 
   returnHome(){
     this.status.update(0);
+    Helpers.updatePlantStorage(this);
+  }
+
+  approveAdoptionRequest(requester_id){
+    this.status.update(0);
+    this.owner = requester_id;
     Helpers.updatePlantStorage(this);
   }
 

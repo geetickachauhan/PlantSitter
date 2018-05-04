@@ -2,6 +2,8 @@
 //dynamically loads the content of profile
 var fnvalid = true, lnvalid = true, phonevalid = true, emailvalid = true;
 
+var logged_in_user = JSON.parse(sessionStorage.getItem('logged_in_user'));
+
 $(document).ready(function(){
     //    showProfile(own, photo, star, name, phone, email, description);
     // in the future, this won't be under document.ready. It will basically be called by whichever page leads to this profile page because they need to pass in registered user and the flag stating whether they are looking at their own profile
@@ -70,18 +72,18 @@ function edit_enable(edit_elt){
         phone.classList.add("form-group");
         phone.innerHTML = `<input type="number" class="form-control small-input" id="phone-input" required oninput="checkPattern(this, '^[0-9]{10}$', 'e-phone', 'phonevalid')">
                             <div class="invalid-feedback" id="e-phone">Please enter a valid phone number</div>`;
-        
+
         email = Util.one('#email');
         email.classList.add("form-group");
         email.innerHTML = `<input type="email" class="form-control small-input" id="email-input" required oninput="checkPattern(this, '^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$', 'e-email', 'emailvalid')">
                             <div class="invalid-feedback" id="e-email">Enter a valid email!</div>`;
         Util.one('#description').innerHTML = '<textarea class="form-control small-input" id="description-input" rows="2"></textarea>';
-        Util.one('#photo').innerHTML = 
+        Util.one('#photo').innerHTML =
            `<label class="btn btn-info g-big-button label-center">
                 <span class="fas fa-camera fa-5x"></span>
                 <input type="file" hidden>
-            </label>`; 
-        
+            </label>`;
+
         Util.one('#firstName-input').value = logged_in_user['firstName'];
         Util.one('#lastName-input').value = logged_in_user['lastName'];
         Util.one('#phone-input').value = logged_in_user['phone'];
@@ -122,7 +124,7 @@ function edit_enable(edit_elt){
 // below will be useful
 function checkPattern(input, pattern, errormessageid, variable){
     console.log("checking!");
-    
+
     var regex = new RegExp(pattern);
     if(!!regex.test(input.value) == false){
         input.style.setProperty('border-color',  'var(--red)');

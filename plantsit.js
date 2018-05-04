@@ -1,3 +1,4 @@
+var logged_in_user = JSON.parse(sessionStorage.getItem('logged_in_user'));
 
 let registered_plants = Helpers.createPlantInstances(JSON.parse(sessionStorage.getItem('registered_plants')));
 
@@ -11,7 +12,6 @@ Util.events(document, {
 	"DOMContentLoaded": function() {
 
       createNavbar();
-			console.log("shown plants are", shown_plants)
       Helpers.representPlants(shown_plants, 1);
       createSearchFilter(1);
       $(function () {

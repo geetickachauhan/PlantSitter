@@ -5,13 +5,13 @@ function createNavbar(){
     navbar = Util.create("nav");
     navbar.classList.add("navbar", "navbar-expand-lg", "navbar-dark", "sticky-top");
     inner = `
-    <a class="navbar-brand mt-1" href="index.html"><span class="fab fa-pagelines fa-lg margin-right"></span>PlantSitter</a>
+    <a class="navbar-brand mt-1" href="homepage.html"><span class="fab fa-pagelines fa-lg margin-right"></span>PlantSitter</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#main-navbar" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span></button>
     <div class="container">
         <div class="navbar-collapse collapse" id="main-navbar">
             <ul class="navbar-nav nav-fill w-100">
-                <li class="nav-item mt-1"><a class="nav-link" href="index.html">My Plants</a></li>
+                <li class="nav-item mt-1"><a class="nav-link" href="homepage.html">My Plants</a></li>
                 <li class="nav-item mt-1"><a class="nav-link" href="plantsit.html">PlantSit</a></li>
                 <li class="nav-item mt-1"><a class="nav-link" href="adopt.html">Adopt</a></li>
                 <li class="nav-item dropdown mt-1">
@@ -26,12 +26,14 @@ function createNavbar(){
                         <span class="fas fa-id-card fa-lg text-gray margin-right"></span>
                         Profile and Calendar
                   </a>
+                  <!--
                       <a class="dropdown-item" href="#">
                         <span class="fas fa-camera fa-lg text-gray margin-right"></span>
                         Photos by Volunteers
                       </a>
+                    -->
                     <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="#">
+                    <a class="dropdown-item" id="signOut" href="#">
                       <span class="fas fa-sign-out-alt fa-lg text-gray margin-right"></span>
                       Signout
                     </a>
@@ -47,10 +49,16 @@ function createNavbar(){
     body.insertBefore(navbar, body.firstChild);
     Util.one('#linkToProfile').setAttribute("href", "profile.html?id=" + logged_in_user.id)
 
+    Util.one("#signOut").addEventListener("click", function(e){
+      sessionStorage.setItem('logged_in_user', JSON.stringify({}));
+      window.location.href = "index.html";
+    });
+
+
     Util.one('#usernameDropDown').innerHTML = logged_in_user.firstName;
     notification = Util.one('#g-notification');
     notifInner = `
-      <a class="dropdown-item" href="profile.html">
+      <a class="dropdown-item" href="profile.html?id=1">
         Bilbo has requested to <br>care for Grishnakh
         <div class="row text-center">
             <div class="col-sm-6">
@@ -66,6 +74,9 @@ function createNavbar(){
       Water Balrog on 12/3
     </a>`;
    notification.innerHTML = notifInner;
+
+
+
 }
 
 function deleteNavbar(){

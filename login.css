@@ -17,11 +17,14 @@ body, html{
     padding-top: 2%;
 }
 .required-label:after {
-    content:"*"; 
+    content:"*";
     margin-left: 5px;
     color: var(--red);
 }
 
+.hidden {
+	display: none;
+}
 /*
 html {
 	display: flex;
@@ -40,7 +43,7 @@ body {
     flex-flow: column;
     border-radius: 6px;
     box-shadow: 0 1px 40px rgba(95, 95, 95, 0.47), 0 0 30px rgba(255, 255, 255, 0.2) inset;
-    
+
 }
 .login-center{
     display: flex;

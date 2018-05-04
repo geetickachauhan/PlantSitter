@@ -1,4 +1,5 @@
 
+var logged_in_user = JSON.parse(sessionStorage.getItem('logged_in_user'));
 let registered_plants = Helpers.createPlantInstances(JSON.parse(sessionStorage.getItem('registered_plants')));
 
 var user_registered_plants = registered_plants.filter(plant => plant.owner == logged_in_user.id).sort((a, b) => a.name.localeCompare(b.name));
