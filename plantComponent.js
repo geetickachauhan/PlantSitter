@@ -60,7 +60,9 @@ function createUserDisplayStatus(plant_instance, footer, view_mode, isOwner){
   }
   else if (status_code == 2){
 
-    text.innerText = "Claimed for plantsitting by " + plant_instance.status.app_caretaker.firstName +
+    let care_taker = JSON.parse(sessionStorage.getItem("registered_users")).filter(user => user.id == plant_instance.status.app_caretaker)[0];
+
+    text.innerText = "Claimed for plantsitting by " + care_taker.firstName +
     ". Not yet in their care.";
 
     extra = Util.create("div");
@@ -244,7 +246,7 @@ function createPlantTile(plant_instance, view_mode){
 function updateStatus(plant_card, plant, view_mode) {
 
   //for when the owner has decided to cancel a request for adoption or care on the plantsit or adoption page
-  if (view_mode != 0)
+  if (view_mode != 0) //when a page other than the homepage is being viewed
     if (plant.status.status_code == 0)
       plant_card.remove();
 

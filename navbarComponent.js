@@ -59,10 +59,10 @@ function createNavbar(){
     notification = Util.one('#g-notification');
     notifInner = `
       <a class="dropdown-item" href="profile.html?id=1">
-        Bilbo has requested to <br>care for Grishnakh
+        Bilbo has requested to <br>care for Beren
         <div class="row text-center">
             <div class="col-sm-6">
-            <button type="button" class="btn btn-success"><span class="fas fa-check fa-lg"></span></button>
+            <button type="button" class="btn btn-success" id="accept_bilbo"><span class="fas fa-check fa-lg"></span></button>
             </div>
         <div class="col-sm-6">
             <button type="button" class="btn btn-danger"><span class="fas fa-ban fa-lg"></span></button>
@@ -73,8 +73,29 @@ function createNavbar(){
     <a class="dropdown-item" href="#">
       Water Balrog on 12/3
     </a>`;
+
    notification.innerHTML = notifInner;
 
+   Util.one("#accept_bilbo").addEventListener("click", function(e){
+     e.preventDefault();
+     e.stopPropagation();
+
+     let plant = Helpers.createPlantInstances(JSON.parse(sessionStorage.getItem("registered_plants"))).filter(pl => pl.name == "Beren")[0];
+
+     if (plant.owner == logged_in_user.id){
+
+       plant.approveCareRequest(1);
+
+       let plant_tile = Util.one("#plant_tile_"+ plant.id);
+       if (plant_tile){
+          if (window.location.href.includes("homepage"))
+            updateStatus(plant_tile, plant, 0);
+          else
+            updateStatus(plant_tile, plant, 1);
+       }
+
+     }
+   });
 
 
 }

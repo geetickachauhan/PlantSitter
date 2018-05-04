@@ -1,7 +1,7 @@
 //acts as the plants database
 
-let bilbo = registered_users[1];
-let saruman = registered_users[2];
+let bilbo = registered_users[1].id;
+let saruman = registered_users[2].id;
 
 var registered_plants_arr = [
   {"photo_url": 'img/plant4.png', "name": "Beren", "type": "Cactus",

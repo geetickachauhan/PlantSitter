@@ -208,13 +208,13 @@ function createCalendar(){
           start: '2018-03-01'
         },
         {
-          title: 'Long Event',
+          title: 'Long plant event',
           start: '2018-03-07',
           end: '2018-03-10'
         },
         {
           id: 999,
-          title: 'Repeating Event',
+          title: 'Repeating watering event',
           start: '2018-03-09T16:00:00'
         },
         {
@@ -223,33 +223,33 @@ function createCalendar(){
           start: '2018-03-16T16:00:00'
         },
         {
-          title: 'Conference',
+          title: 'Sauron Care day',
           start: '2018-03-11',
           end: '2018-03-13'
         },
         {
-          title: 'Meeting',
+          title: 'Meeting with Theoden',
           start: '2018-03-12T10:30:00',
           end: '2018-03-12T12:30:00'
         },
         {
-          title: 'Lunch',
+          title: 'Lunch for Sauron',
           start: '2018-03-12T12:00:00'
         },
         {
-          title: 'Meeting',
+          title: 'Meeting with Beren',
           start: '2018-03-12T14:30:00'
         },
         {
-          title: 'Happy Hour',
+          title: 'Happy Beren Hour',
           start: '2018-03-12T17:30:00'
         },
         {
-          title: 'Dinner',
+          title: 'Dinner for Rosie',
           start: '2018-03-12T20:00:00'
         },
         {
-          title: 'Birthday Party',
+          title: 'Balrog Fertilizer Party',
           start: '2018-03-13T07:00:00'
         },
         {

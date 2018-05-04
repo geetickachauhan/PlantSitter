@@ -62,7 +62,7 @@ class Plant {
 	}
 
 	approveCareRequest(requester_id){
-		this.status.update(2);
+		this.status.update(2, requester_id);
     Helpers.updatePlantStorage(this);
 	}
 
