@@ -76,6 +76,12 @@ function edit_enable(edit_elt){
         email.innerHTML = `<input type="email" class="form-control small-input" id="email-input" required oninput="checkPattern(this, '^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$', 'e-email', 'emailvalid')">
                             <div class="invalid-feedback" id="e-email">Enter a valid email!</div>`;
         Util.one('#description').innerHTML = '<textarea class="form-control small-input" id="description-input" rows="2"></textarea>';
+        Util.one('#photo').innerHTML = 
+           `<label class="btn btn-info g-big-button label-center">
+                <span class="fas fa-camera fa-5x"></span>
+                <input type="file" hidden>
+            </label>`; 
+        
         Util.one('#firstName-input').value = logged_in_user['firstName'];
         Util.one('#lastName-input').value = logged_in_user['lastName'];
         Util.one('#phone-input').value = logged_in_user['phone'];
