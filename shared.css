@@ -132,3 +132,7 @@ body {
 .check-margin-left {
 	margin-left: 5px;
 }
+.text-center{
+    float: none; 
+    margin: 0 auto;
+}
