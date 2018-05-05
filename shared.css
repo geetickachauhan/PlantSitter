@@ -103,6 +103,9 @@ body {
 .eliminate-padding-left{
     padding-left: 0;
 }
+.eliminate-padding-right{
+    padding-right: 0;
+}
 .wrapper{
     display: flex;
     justify-content: center;

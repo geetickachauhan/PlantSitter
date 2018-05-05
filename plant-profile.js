@@ -17,7 +17,8 @@ $(document).ready(function(){
 
 function showProfile(own, current_plant){
     updatePlantView(current_plant);
-       if(own == 1){
+    if(own == 1)
+    {
         edit_enable(current_plant);
     }
 
@@ -104,9 +105,6 @@ function addWeekdaySelector(elt, id, variable){
     for(i=0; i<weekdays.length; i++){
         var input = Util.create("input", {'type': 'checkbox', 'id': "weekday-"+weekdays[i] + id, 'onclick': 'checkCheckBoxes(this, "' + id + '", "e-'+id + '", "'+variable+'")'});
         input.classList.add("weekday");
-//        var input = document.createElement("input");
-//        input.setAttribute("type", "checkbox");
-//        input.setAttribute("id", "weekday-"+weekdays[i] + id);
         input.setAttribute("class", "weekday");
         selector.appendChild(input);
         var label = document.createElement("label");
@@ -143,8 +141,6 @@ function checkPattern(input, pattern, errormessageid, variable){
 }
 function checkCheckBoxes(current, id, errormessageid, variable){
     // TODO: check for all checkboxes, if all of them have the value 0, then show the error message
-//    <input type="text" class="form-control" id="plantname-input" oninput="checkPattern(this, '^[A-z]+$', 'e-plantname', 'pnvalid')">
-//                                <div class="invalid-feedback g-small-text" id="e-plantname">Please enter only alphabets</div>
     // if all of them are unchecked then you should set the variable as false and then show the error message
     // this is technically only relevant if the checkbox is unchecked
     var weekdays = ["mon", "tue", "wed", "thu", "fri", "sat", "sun"];
@@ -281,17 +277,6 @@ function edit_enable(current_plant){
             current_plant['light'] = light;
             current_plant['trimming'] = trimming;
 
-
-            // now need to read the various textboxes and radio buttons and change the values of watering, pesticide, etc. This is dependent on the id's that you set in the edit
-
-
-            // basically the user will have different stuff during the session but no database changes
-            // have been made
-//            Util.one('#g-plantname').innerHTML = current_plant['name'];
-//            Util.one('#g-planttype').innerHTML = current_plant['type'];
-//            Util.one('#g-specialinstructions').innerHTML = current_plant['instructions'];
-//            Util.one('#g-photo').innerHTML = "<img src='" +current_plant['photo_url']+ "'>";
-
             Util.removeAllChildren(Util.one('#g-watering'));
             Util.removeAllChildren(Util.one('#g-watering-freq'));
             Util.removeAllChildren(Util.one('#g-fertilizer'));
@@ -301,18 +286,6 @@ function edit_enable(current_plant){
             Util.removeAllChildren(Util.one('#g-healthstatus'));
             Util.removeAllChildren(Util.one('#g-light'));
             Util.removeAllChildren(Util.one('#g-trimming'));
-//            appendWeekdayDivs(Util.one('#g-watering'), watering[0]);
-//    Util.one('#g-watering-freq').innerHTML = freq_dict[watering[1]];
-//
-//    appendWeekdayDivs(Util.one('#g-fertilizer'), fertilizer[0]);
-//    Util.one('#g-fertilizer-freq').innerHTML = freq_dict[fertilizer[1]];
-//
-//    appendWeekdayDivs(Util.one('#g-pesticide'), pesticide[0]);
-//    Util.one('#g-pesticide-freq').innerHTML = freq_dict[pesticide[1]];
-//
-//    Util.one('#g-healthstatus').innerHTML = health_dict[health];
-//    Util.one('#g-light').innerHTML = light_dict[light];
-//    Util.one('#g-trimming').innerHTML = trimming_dict[trimming];
             updatePlantView(current_plant);
 
             Util.one('#g-save-button').classList.add('g-display-none');
