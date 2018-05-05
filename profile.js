@@ -2,7 +2,7 @@
 //dynamically loads the content of profile
 var fnvalid = true, lnvalid = true, phonevalid = true, emailvalid = true;
 
-var logged_in_user = JSON.parse(sessionStorage.getItem('logged_in_user'));
+var logged_in_user = JSON.parse(localStorage.getItem('logged_in_user'));
 
 $(document).ready(function(){
     //    showProfile(own, photo, star, name, phone, email, description);
@@ -106,11 +106,11 @@ function edit_enable(edit_elt){
         logged_in_user['description'] = Util.one('#description-input').value;
 
 
-        sessionStorage.setItem('logged_in_user', JSON.stringify(logged_in_user));
+        localStorage.setItem('logged_in_user', JSON.stringify(logged_in_user));
 
         //update the database of users
         registered_users[registered_users.findIndex(x => x.id == logged_in_user.id)] = logged_in_user;
-        sessionStorage.setItem('registered_users', JSON.stringify(registered_users));
+        localStorage.setItem('registered_users', JSON.stringify(registered_users));
 
 
         // basically the user will have different stuff during the session but no database changes

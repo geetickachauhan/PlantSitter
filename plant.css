@@ -3,6 +3,13 @@
   margin: 2%;
 }
 
+@media (max-width: 1220px){
+  .card{
+      width: 95%;
+  }
+
+}
+
 .card:hover {
   cursor: pointer;
 }

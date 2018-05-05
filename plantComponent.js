@@ -60,7 +60,7 @@ function createUserDisplayStatus(plant_instance, footer, view_mode, isOwner){
   }
   else if (status_code == 2){
 
-    let care_taker = JSON.parse(sessionStorage.getItem("registered_users")).filter(user => user.id == plant_instance.status.app_caretaker)[0];
+    let care_taker = JSON.parse(localStorage.getItem("registered_users")).filter(user => user.id == plant_instance.status.app_caretaker)[0];
 
     text.innerText = "Claimed for plantsitting by " + care_taker.firstName +
     ". Not yet in their care.";
@@ -169,8 +169,8 @@ function createPlantTile(plant_instance, view_mode){
   card.classList.add("card");
   card.addEventListener("click", function(e){
 
-    sessionStorage.setItem('mode', 1);
-    sessionStorage.setItem('current_plant', JSON.stringify(plant_instance));
+    localStorage.setItem('mode', 1);
+    localStorage.setItem('current_plant', JSON.stringify(plant_instance));
     location.href="plant-profile.html";
   })
 

@@ -49,7 +49,7 @@ var registered_plants_arr = [
 
 
 
-if (!JSON.parse(sessionStorage.getItem('registered_plants'))){
+if (!JSON.parse(localStorage.getItem('registered_plants'))){
 
-  sessionStorage.setItem('registered_plants', JSON.stringify(registered_plants_arr));
+  localStorage.setItem('registered_plants', JSON.stringify(registered_plants_arr));
 }

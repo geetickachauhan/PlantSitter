@@ -23,8 +23,8 @@ Util.events(document, {
               "photo_url": "", "star": star, "phone": "", "email": email, "description": "",
               "password": password}
               registered_users.push(new_user);
-              sessionStorage.setItem('registered_users', JSON.stringify(registered_users));
-              sessionStorage.setItem('logged_in_user', JSON.stringify(new_user));
+              localStorage.setItem('registered_users', JSON.stringify(registered_users));
+              localStorage.setItem('logged_in_user', JSON.stringify(new_user));
 
               window.location.href = "homepage.html";
               }

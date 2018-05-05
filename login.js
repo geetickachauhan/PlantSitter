@@ -26,7 +26,7 @@ Util.events(document, {
                   Util.one(".alert").classList.remove("hidden");
                 }
                 else {
-                  sessionStorage.setItem('logged_in_user', JSON.stringify(auth_user));
+                  localStorage.setItem('logged_in_user', JSON.stringify(auth_user));
                   window.location.href = "homepage.html";
                 }
 

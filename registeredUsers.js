@@ -30,12 +30,12 @@ var registered_users_arr = [
 
 
 
-if (!JSON.parse(sessionStorage.getItem('registered_users'))){
-  sessionStorage.setItem('registered_users', JSON.stringify(registered_users_arr));
+if (!JSON.parse(localStorage.getItem('registered_users'))){
+  localStorage.setItem('registered_users', JSON.stringify(registered_users_arr));
 }
-var registered_users = JSON.parse(sessionStorage.getItem('registered_users'));
+var registered_users = JSON.parse(localStorage.getItem('registered_users'));
 
 
 
 
-//var logged_in_user = JSON.parse(sessionStorage.getItem('logged_in_user'));
+//var logged_in_user = JSON.parse(localStorage.getItem('logged_in_user'));

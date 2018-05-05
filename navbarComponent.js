@@ -50,7 +50,7 @@ function createNavbar(){
     Util.one('#linkToProfile').setAttribute("href", "profile.html?id=" + logged_in_user.id)
 
     Util.one("#signOut").addEventListener("click", function(e){
-      sessionStorage.setItem('logged_in_user', JSON.stringify({}));
+      localStorage.setItem('logged_in_user', JSON.stringify({}));
       window.location.href = "index.html";
     });
 
@@ -80,7 +80,7 @@ function createNavbar(){
      e.preventDefault();
      e.stopPropagation();
 
-     let plant = Helpers.createPlantInstances(JSON.parse(sessionStorage.getItem("registered_plants"))).filter(pl => pl.name == "Beren")[0];
+     let plant = Helpers.createPlantInstances(JSON.parse(localStorage.getItem("registered_plants"))).filter(pl => pl.name == "Beren")[0];
 
      if (plant.owner == logged_in_user.id){
 

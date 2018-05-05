@@ -3,9 +3,9 @@ class Helpers {
 
 
   static updatePlantStorage(plant_instance){
-    let registered_plants = JSON.parse(sessionStorage.getItem('registered_plants'));
+    let registered_plants = JSON.parse(localStorage.getItem('registered_plants'));
     registered_plants[registered_plants.findIndex(x => x.id == plant_instance.id)] = plant_instance;
-    sessionStorage.setItem('registered_plants', JSON.stringify(registered_plants));
+    localStorage.setItem('registered_plants', JSON.stringify(registered_plants));
   }
 
 

@@ -2,3 +2,11 @@
   width: 25% !important;
   margin: 2%;
 }
+
+
+@media (max-width: 1220px){
+  .card{
+      width: 42% !important;
+  }
+
+}

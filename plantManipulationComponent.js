@@ -47,9 +47,9 @@ function setupPlantManipulation(){
 
       let plant_instance = new Plant(...plant_args);
 
-      let registered_plants = JSON.parse(sessionStorage.getItem('registered_plants'));
+      let registered_plants = JSON.parse(localStorage.getItem('registered_plants'));
       registered_plants.push(plant_instance);
-      sessionStorage.setItem('registered_plants', JSON.stringify(registered_plants));
+      localStorage.setItem('registered_plants', JSON.stringify(registered_plants));
 
       removeAddPlantOverlay();
       createPlantTile(plant_instance);

@@ -9,8 +9,8 @@ $(document).ready(function(){
     //    showProfile(own, photo, star, name, phone, email, description);
     createNavbar();
 
-    let mode = parseInt(sessionStorage.getItem('mode'));
-    let current_plant = JSON.parse(sessionStorage.getItem('current_plant'));
+    let mode = parseInt(localStorage.getItem('mode'));
+    let current_plant = JSON.parse(localStorage.getItem('current_plant'));
     showProfile(mode, current_plant);
 
 });
@@ -20,10 +20,10 @@ function showProfile(own, current_plant){
        if(own == 1){
         edit_enable(current_plant);
     }
-    
+
 }
 function updatePlantView(current_plant){
-    watering = current_plant['watering_freq'], fertilizer = current_plant['fertilizer_freq'], pesticide = current_plant['fertilizer_freq'], health = current_plant['health'], light = current_plant['light'], trimming = current_plant['trimming'], photo=current_plant['photo_url'], name = current_plant['name'], type = current_plant['type'], instructions = current_plant['instructions']; 
+    watering = current_plant['watering_freq'], fertilizer = current_plant['fertilizer_freq'], pesticide = current_plant['fertilizer_freq'], health = current_plant['health'], light = current_plant['light'], trimming = current_plant['trimming'], photo=current_plant['photo_url'], name = current_plant['name'], type = current_plant['type'], instructions = current_plant['instructions'];
     if(photo != ""){
         Util.one('#g-photo').innerHTML = "<img src='"+photo+"'>";
     }
@@ -126,7 +126,7 @@ function selectRadioButtons(name, values, vals){
 // below will be useful
 function checkPattern(input, pattern, errormessageid, variable){
     console.log("checking!");
-    
+
     var regex = new RegExp(pattern);
     if(!!regex.test(input.value) == false){
         input.style.setProperty('border-color',  'var(--red)');
@@ -165,7 +165,7 @@ function checkCheckBoxes(current, id, errormessageid, variable){
         window[variable] = true;
         Util.one('#' + errormessageid).style.setProperty('display', 'none');
     }
-    
+
 }
 function edit_enable(current_plant){
     edit_elt = Util.one('#g-edit');
@@ -177,19 +177,19 @@ function edit_enable(current_plant){
    // next add an event listener for edit such that it replaces things
    // also for save just read what the checkbox values are and then update accordingly
     Util.one('#g-edit-button').addEventListener('click', function(){
-        watering = current_plant['watering_freq'], fertilizer = current_plant['fertilizer_freq'], pesticide = current_plant['fertilizer_freq'], health = current_plant['health'], light = current_plant['light'], trimming = current_plant['trimming']; 
-       Util.one('#g-photo').innerHTML = 
+        watering = current_plant['watering_freq'], fertilizer = current_plant['fertilizer_freq'], pesticide = current_plant['fertilizer_freq'], health = current_plant['health'], light = current_plant['light'], trimming = current_plant['trimming'];
+       Util.one('#g-photo').innerHTML =
            `<label class="btn btn-info g-big-button label-center">
                 <span class="fas fa-camera fa-5x"></span>
                 <input type="file" hidden>
-            </label>`; 
-        
-        
+            </label>`;
+
+
         plantname = Util.one('#g-plantname');
         plantname.classList.add("form-group");
         plantname.innerHTML = `<input type="text" class="form-control" id="plantname-input" oninput="checkPattern(this, '^[A-z]+$', 'e-plantname', 'pnvalid')">
                                 <div class="invalid-feedback g-small-text" id="e-plantname">Please enter only alphabets</div>`;
-        
+
 //        Util.one('#g-plantname').innerHTML = '<input type="text" class="form-control" id="plantname-input">';
         planttype = Util.one('#g-planttype');
         planttype.classList.add("form-group");
@@ -201,7 +201,7 @@ function edit_enable(current_plant){
         addWeekdaySelector(Util.one('#g-watering'), "watering", "watervalid");
         // TODO insert an invalid feedback div that appears if you uncheck the checkboxes and you try to press save
         // may need an onclick listener on the checkboxes to check if any of the checkboxes become 0, then we know that there is a problem
-        // this idea is way too extended and we could simply have the errors for the checkboxes appear seperately 
+        // this idea is way too extended and we could simply have the errors for the checkboxes appear seperately
         selectWeekdayCheckBox(watering[0], "watering");
 
         Util.removeAllChildren(Util.one('#g-fertilizer'));
@@ -263,35 +263,35 @@ function edit_enable(current_plant){
             var values = ["everyweek", "every2weeks", "everymonth"];
             watering[0] = readWeekdayCheckBox('watering');
             watering[1] = readRadioButtons('watering', values);
-            
+
             fertilizer[0] = readWeekdayCheckBox('fertilizer');
             fertilizer[1] = readRadioButtons('fertilizer', values);
-            
+
             pesticide[0] = readWeekdayCheckBox('pesticide');
             pesticide[1] = readRadioButtons('pesticide', values);
-            
+
             health = readRadioButtons('healthstatus', ['healthy', 'sick']);
             light = readRadioButtons('light', ['direct', 'indirect']);
             trimming = readRadioButtons('trimming', ['yes', 'no']);
-            
+
             current_plant['watering_freq'] = watering;
             current_plant['fertilizer_freq'] = fertilizer;
             current_plant['pesticide_freq'] = pesticide;
             current_plant['health'] = health;
             current_plant['light'] = light;
             current_plant['trimming'] = trimming;
-            
-            
+
+
             // now need to read the various textboxes and radio buttons and change the values of watering, pesticide, etc. This is dependent on the id's that you set in the edit
-            
-            
+
+
             // basically the user will have different stuff during the session but no database changes
             // have been made
 //            Util.one('#g-plantname').innerHTML = current_plant['name'];
 //            Util.one('#g-planttype').innerHTML = current_plant['type'];
 //            Util.one('#g-specialinstructions').innerHTML = current_plant['instructions'];
 //            Util.one('#g-photo').innerHTML = "<img src='" +current_plant['photo_url']+ "'>";
-            
+
             Util.removeAllChildren(Util.one('#g-watering'));
             Util.removeAllChildren(Util.one('#g-watering-freq'));
             Util.removeAllChildren(Util.one('#g-fertilizer'));
@@ -314,7 +314,7 @@ function edit_enable(current_plant){
 //    Util.one('#g-light').innerHTML = light_dict[light];
 //    Util.one('#g-trimming').innerHTML = trimming_dict[trimming];
             updatePlantView(current_plant);
-            
+
             Util.one('#g-save-button').classList.add('g-display-none');
             Util.one('#g-edit-button').classList.remove('g-display-none');
         });
