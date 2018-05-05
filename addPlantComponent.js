@@ -35,6 +35,7 @@ function createAddPlantOverlay(){
                     </div>
                     <div class="col-sm-8">
                         <input type="text" class="form-control" id="name" placeholder="Plant Nickname">
+                        <div class="invalid-feedback" id="e-plantname">Please enter alphabets</div>
                     </div>
             </div>
             <div class="row g-pad">
@@ -46,6 +47,7 @@ function createAddPlantOverlay(){
                     </div>
                     <div class="col-sm-8">
                         <input type="text" class="form-control" id="type" placeholder="Plant Type (eg. orchid, rose)">
+                        <div class="invalid-feedback" id="e-planttype">Alphabets only!</div>
                     </div>
             </div>
         </div>
