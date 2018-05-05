@@ -1,6 +1,12 @@
 Util.events(document, {
     "DOMContentLoaded": function() {
 
+        let remembered_user = JSON.parse(localStorage.getItem('remembered_user'));
+        if (remembered_user){
+          Util.one("#email").value = remembered_user.email;
+          Util.one("#pwd1").value = remembered_user.password;
+        }
+
         Util.all("input").map(el => el.addEventListener("change", function(e){
             Util.one(".alert").classList.add("hidden");
         }));
@@ -26,6 +32,9 @@ Util.events(document, {
                   Util.one(".alert").classList.remove("hidden");
                 }
                 else {
+                  let remember = Util.one("#checkbox").checked;
+                  if (remember)
+                    localStorage.setItem('remembered_user', JSON.stringify(auth_user));
                   localStorage.setItem('logged_in_user', JSON.stringify(auth_user));
                   window.location.href = "homepage.html";
                 }

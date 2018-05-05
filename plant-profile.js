@@ -5,6 +5,9 @@ var health_dict = {0: 'Healthy', 1: 'Sick'};
 var trimming_dict = {0: 'Yes', 1: 'No'};
 var pnvalid = true, ptvalid = true, watervalid = true, fertilizervalid = true, pesticidevalid = true; // this is to check if the plant name and type are written in the correct format
 
+var logged_in_user = JSON.parse(localStorage.getItem('logged_in_user'));
+
+
 $(document).ready(function(){
     //    showProfile(own, photo, star, name, phone, email, description);
     createNavbar();
