@@ -15,13 +15,40 @@ function createAddPlantOverlay(){
     //create a form
     var box = create("div");
     box.setAttribute("id", "box");
-    box.classList.add("centerdiv");
+//    box.classList.add("centerdiv");
 //    form.setAttribute("onclick", "none");
 //    box.setAttribute("cursor", "default");
     box.innerHTML = `
     <div class="row">
-        <div class="col-sm-3"> </div>
-        <div class="col-sm-9"> </div>
+        <div class="col-sm-6">
+                <div id="photo">
+                    <label class="btn btn-info g-big-button">
+                      <span class="fas fa-camera fa-5x"></span>
+                        <input type="file" hidden>
+                    </label>
+                  </div>
+        </div>
+        <div class="col-sm-6">
+            <div class="row">
+                  <div id="plant-name" class="formgroup centerdiv">
+                    <div class="formtext centerdiv">Nickname</div>
+                    <div class="forminput centerdiv">
+                      <input type="text" class="form-control" id="name" placeholder="Plant Nickname">
+                    </div>
+                    </div>
+            </div>
+            <div class="row">
+                    <div id="plant-type" class="formgroup centerdiv g-pad">
+                      <div class="formtext centerdiv">
+                        <span class="fas fa-leaf fa-2x margin-right text-green"></span>
+                          <div>Type</div>
+                      </div>
+                      <div class="forminput centerdiv g-pad">
+                        <input type="text" class="form-control" id="type" placeholder="Plant Type (eg. orchid, rose)">
+                      </div>
+                    </div>
+            </div>
+        </div>
     </div>
     `
     
