@@ -95,10 +95,12 @@ body {
 }
 */
 .g-pad{
-    padding: 1%;
+    padding-top: 1%;
+    padding-bottom: 1%;
 }
 .g-high-pad{
-    padding: 5%;
+    padding-top: 5%;
+    padding-bottom: 5%;
 }
 .eliminate-padding-left{
     padding-left: 0;

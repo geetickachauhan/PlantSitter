@@ -206,6 +206,7 @@ function edit_enable(current_plant){
         Util.one('#planttype-input').value = current_plant['type'];
         Util.one('#g-edit-button').classList.add('g-display-none');
         Util.one('#g-save-button').classList.remove('g-display-none');
+        Util.one('#g-delete-button').classList.remove('g-display-none');
     });
        // now just have to make the save button work
        // TODO: make the save button work
@@ -255,6 +256,7 @@ function edit_enable(current_plant){
             updatePlantView(current_plant);
 
             Util.one('#g-save-button').classList.add('g-display-none');
+            Util.one('#g-delete-button').classList.add('g-display-none');
             Util.one('#g-edit-button').classList.remove('g-display-none');
         });
 }
