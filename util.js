@@ -129,15 +129,21 @@ static checkPattern(input, pattern, errormessageid, variable){
      
  /* 
 a function to create the weekday selectors in the overlay and plant profile
+The last parameter is a boolean flag for whether validation is necessary for the weekday selectors
 */
-static addWeekdaySelector(elt, id, variable){
+static addWeekdaySelector(elt, id, variable, checkunselected=false){
     // pass in variable as a string - it'll be wateringvalid etc depending on what element is being looked at
     var selector = document.createElement("div");
     selector.classList.add("weekDays-selector");
     var weekdays = ["mon", "tue", "wed", "thu", "fri", "sat", "sun"];
     var labels = ["M", "T", "W", "T", "F", "S", "S"];
     for(i=0; i<weekdays.length; i++){
-        var input = Util.create("input", {'type': 'checkbox', 'id': "weekday-"+weekdays[i] + id, 'onclick': 'Util.checkUnselectedWeekdayCheckBoxes(this, "' + id + '", "e-'+id + '", "'+variable+'")'});
+        if(checkunselected == true){
+            var input = Util.create("input", {'type': 'checkbox', 'id': "weekday-"+weekdays[i] + id, 'onclick': 'Util.showErrorMessageWeekdayCheckboxes("' + id + '", "e-'+id + '", "'+variable+'")'});
+        }
+        else{
+           var input = Util.create("input", {'type': 'checkbox', 'id': "weekday-"+weekdays[i] + id}); 
+        }
         input.classList.add("weekday");
         input.setAttribute("class", "weekday");
         selector.appendChild(input);
@@ -149,26 +155,27 @@ static addWeekdaySelector(elt, id, variable){
     elt.appendChild(selector);
     var errormessage = Util.create("div", {'id': "e-"+id});
     errormessage.classList.add("invalid-feedback");
-    errormessage.innerHTML = "Please select at least one checkbox";
+    errormessage.innerHTML = "Please select at least one checkbox above";
     elt.appendChild(errormessage);
 }
 
 /*
  present error message if no checkboxes are checked
 */
-static checkUnselectedWeekdayCheckBoxes(current, id, errormessageid, variable){
+static showErrorMessageWeekdayCheckboxes(id, errormessageid, variable){
     // TODO: check for all checkboxes, if all of them have the value 0, then show the error message
     // if all of them are unchecked then you should set the variable as false and then show the error message
     // this is technically only relevant if the checkbox is unchecked
-    var weekdays = ["mon", "tue", "wed", "thu", "fri", "sat", "sun"];
-    var nonechecked = true; // we are going to assume at first that none are checked and then it'll be proven wrong by the first checked checkbox
-    for(i=0; i <weekdays.length; i++){
-        var input = Util.one('#weekday-'+weekdays[i] + id);
-        if(input.checked == true){
-            nonechecked = false;
-            break;
-        }
-    }
+//    var weekdays = ["mon", "tue", "wed", "thu", "fri", "sat", "sun"];
+//    var nonechecked = true; // we are going to assume at first that none are checked and then it'll be proven wrong by the first checked checkbox
+//    for(i=0; i <weekdays.length; i++){
+//        var input = Util.one('#weekday-'+weekdays[i] + id);
+//        if(input.checked == true){
+//            nonechecked = false;
+//            break;
+//        }
+//    }
+    var nonechecked = Util.checkUnselectedWeekdayCheckboxes(id);
     if(nonechecked == true){
         // set that variable to false because the variable is no longer valid
         window[variable] = false;
@@ -180,7 +187,19 @@ static checkUnselectedWeekdayCheckBoxes(current, id, errormessageid, variable){
     }
 
 }
-     
+
+static checkUnselectedWeekdayCheckboxes(id){
+    var weekdays = ["mon", "tue", "wed", "thu", "fri", "sat", "sun"];
+    var nonechecked = true; // we are going to assume at first that none are checked and then it'll be proven wrong by the first checked checkbox
+    for(i=0; i <weekdays.length; i++){
+        var input = Util.one('#weekday-'+weekdays[i] + id);
+        if(input.checked == true){
+            nonechecked = false;
+            break;
+        }
+    }
+    return nonechecked;
+}   
 /*
 util method to add radio buttons
 */

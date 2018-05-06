@@ -94,12 +94,6 @@ div{
 .small-input{
     width: 70%;
 }
-
-.label-center{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
 /*ask farnaz if i should have this*/
 .g-min-max-width{
     min-width: 450px;

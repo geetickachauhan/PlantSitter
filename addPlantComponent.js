@@ -1,4 +1,4 @@
-var pnvalid = true, ptvalid = true, wateringvalid = true, fertilizervalid = true, pesticidevalid = true; // this is to check if the plant name and type are written in the correct format
+var pnvalid = false, ptvalid = false, wateringvalid = true, fertilizervalid = true, pesticidevalid = true; // this is to check if the plant name and type are written in the correct format
 // using the example from https://www.w3schools.com/howto/tryit.asp?filename=tryhow_css_overlay_text
 // if you want below function to also create the div that creates the overlay, follow this
 // https://www.safaribooksonline.com/library/view/javascript-cookbook/9781449390211/ch13s07.html
@@ -7,7 +7,7 @@ function createAddPlantOverlay(){
     // create overlay and append to page
     var overlay = Util.create("div");
     overlay.setAttribute("id","overlay");
-    overlay.classList.add("centerdiv");
+//    overlay.classList.add("centerdiv");
 //    overlay.setAttribute("onclick", "removeAddPlantOverlay()");
     // later we want to be more sophisticated and remove this only when clicked outside the form
 
@@ -22,7 +22,7 @@ function createAddPlantOverlay(){
     <div class="row g-pad">
         <div class="col-sm-6">
                 <div id="photo">
-                    <label class="btn btn-info g-big-button">
+                    <label class="btn btn-info g-big-button vertical-center">
                       <span class="fas fa-camera fa-5x"></span>
                         <input type="file" hidden>
                     </label>
@@ -144,7 +144,7 @@ function createAddPlantOverlay(){
             <input type="text" class="form-control" id="special-instructions" placeholder="Special Instructions">
         </div>
         <div class="col-sm-4">
-                <div id="save" class="centerdiv">
+                <div id="save" class="vertical-center">
                   <button class="btn btn-secondary g-big-button">
                     <span class="fas fa-plus-circle fa-3x"></span>
                   </button>
@@ -160,7 +160,7 @@ function createAddPlantOverlay(){
     // now we are going to add repeated elements and give functionality such that pressing start triggers the remove
     var watering = Util.one("#watering-weekdays");
 //    addWeekdaySelector(watering, 1);
-    Util.addWeekdaySelector(watering, 1, "wateringvalid");
+    Util.addWeekdaySelector(watering, 1, "wateringvalid", true);
     watering = Util.one("#watering-frequency");
     var values = ["everyweek", "every2weeks", "everymonth"];
     var labels = ["Every Week", "Every 2 Weeks", "Every Month"];

@@ -143,3 +143,9 @@ body {
 #board_container{
 		margin-top: 3%;
 }
+
+.vertical-center{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
