@@ -90,9 +90,12 @@ function createSearchFilter(mode){
     addCheckboxes(light, ["directlight", "indirectlight"], ["Direct Light", "Indirect Light"]);
 
     extracare = Util.one('#extra_care_options');
-    fertilizer = '<span class="fas fa-poo fa-lg margin-right text-brown"></span>Fertilizer';
+    fertilizer = `<span class="fas fa-poo fa-lg margin-right text-brown"></span>Fertilizer`;
+//    fertilizer = `Fertilizer`;
     pesticide = '<span class="fas fa-bug fa-lg margin-right text-gray"></span>Pesticide';
+//    pesticide = 'Pesticide';
     trimming = '<span class="fas fa-cut fa-lg margin-right text-black"></span>Trimming';
+//    trimming = 'Trimming';
     addCheckboxes(extracare, ["fertilizer", "pesticide", "trimming"], [fertilizer, pesticide, trimming]);
 
 	  if (mode == 0){ //filter viewed in homepage
