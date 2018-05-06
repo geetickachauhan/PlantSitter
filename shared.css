@@ -139,3 +139,7 @@ body {
     float: none;
     margin: 0 auto;
 }
+
+#board_container{
+		margin-top: 3%;
+}
