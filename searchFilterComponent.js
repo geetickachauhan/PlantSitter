@@ -76,6 +76,10 @@ function createSearchFilter(mode){
 
     searchfilter.innerHTML = inner;
 
+    if (window.screen.width <= 1200){
+      Util.one("#search_term").setAttribute("placeholder", "search name or type");
+    }
+
     healthstatus = Util.one("#health_options");
     addCheckboxes(healthstatus, ["healthy", "sick"], ["Healthy", "Sick"]);
 

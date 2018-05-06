@@ -29,7 +29,7 @@ input[type="text"] {
     height: 100%;
 }
 .height-full{
-    
+
 }
 .border{
     border: 1px solid black;
@@ -59,9 +59,9 @@ input[type="text"] {
 */
     width: 80%;
 /*    max height and max width will need to be changed later*/
-    max-width: 900px;
-    max-height: 700px;
-    height: 80%;
+    max-width: 1000px;
+    -max-height: 700px;
+    -height: 80%;
     padding: 2%;
     background-color: var(--color-white);
     border: 1px solid rgba(255, 255, 255, 0.4);

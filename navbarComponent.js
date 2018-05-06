@@ -76,6 +76,10 @@ function createNavbar(){
 
    notification.innerHTML = notifInner;
 
+   if (window.screen.width <= 991){
+     notification.children[0].children[0].remove(); //removing <br>
+   };
+
    Util.one("#accept_bilbo").addEventListener("click", function(e){
      e.preventDefault();
      e.stopPropagation();
