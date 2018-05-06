@@ -26,6 +26,16 @@ function showProfile(own, current_plant){
     }
 
 }
+function areAllZero(variable){
+    var haszeros = true;
+    for(i=0; i<variable.length; i++){
+        if(variable[i] != 0){
+            haszeros = false;
+            break;
+        }
+    }
+    return haszeros;
+}
 function updatePlantView(current_plant){
     watering = current_plant['watering_freq'], fertilizer = current_plant['fertilizer_freq'], pesticide = current_plant['fertilizer_freq'], health = current_plant['health'], light = current_plant['light'], trimming = current_plant['trimming'], photo=current_plant['photo_url'], name = current_plant['name'], type = current_plant['type'], instructions = current_plant['instructions'];
     if(photo != ""){
@@ -38,13 +48,29 @@ function updatePlantView(current_plant){
     Util.one('#g-planttype').innerHTML = type;
     // now it is time to append the weekday divs
     appendWeekdayDivs(Util.one('#g-watering'), watering[0]);
-    Util.one('#g-watering-freq').innerHTML = freq_dict[watering[1]];
+    if(areAllZero(watering[0])){
+        Util.one('#g-watering-freq').innerHTML = "None";
+    }
+    else{
+        Util.one('#g-watering-freq').innerHTML = freq_dict[watering[1]];
+    }
 
     appendWeekdayDivs(Util.one('#g-fertilizer'), fertilizer[0]);
-    Util.one('#g-fertilizer-freq').innerHTML = freq_dict[fertilizer[1]];
+    if(areAllZero(fertilizer[0])){
+        Util.one('#g-fertilizer-freq').innerHTML = "None";
+    }
+    else{
+        Util.one('#g-fertilizer-freq').innerHTML = freq_dict[fertilizer[1]];
+    }
+    // TODO: check that if one of the checkboxes is not checked, make this display nothing
 
     appendWeekdayDivs(Util.one('#g-pesticide'), pesticide[0]);
-    Util.one('#g-pesticide-freq').innerHTML = freq_dict[pesticide[1]];
+    if(areAllZero(pesticide[0])){
+        Util.one("#g-pesticide-freq").innerHTML = "None";
+    }
+    else{
+        Util.one('#g-pesticide-freq').innerHTML = freq_dict[pesticide[1]];
+    }
 
     Util.one('#g-healthstatus').innerHTML = health_dict[health];
     Util.one('#g-light').innerHTML = light_dict[light];
@@ -115,7 +141,7 @@ function edit_enable(current_plant){
     Util.one('#g-edit-button').addEventListener('click', function(){
         watering = current_plant['watering_freq'], fertilizer = current_plant['fertilizer_freq'], pesticide = current_plant['fertilizer_freq'], health = current_plant['health'], light = current_plant['light'], trimming = current_plant['trimming'];
        Util.one('#g-photo').innerHTML =
-           `<label class="btn btn-info g-big-button label-center">
+           `<label class="btn btn-info g-big-button vertical-center">
                 <span class="fas fa-camera fa-5x"></span>
                 <input type="file" hidden>
             </label>`;
@@ -134,7 +160,7 @@ function edit_enable(current_plant){
 //        Util.one('#g-planttype').innerHTML = '<input type="text" class="form-control" id="planttype-input">';
 
         Util.removeAllChildren(Util.one('#g-watering'));
-        Util.addWeekdaySelector(Util.one('#g-watering'), "watering", "wateringvalid");
+        Util.addWeekdaySelector(Util.one('#g-watering'), "watering", "wateringvalid", true);
         // TODO insert an invalid feedback div that appears if you uncheck the checkboxes and you try to press save
         // may need an onclick listener on the checkboxes to check if any of the checkboxes become 0, then we know that there is a problem
         // this idea is way too extended and we could simply have the errors for the checkboxes appear seperately
