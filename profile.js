@@ -59,23 +59,23 @@ function edit_enable(edit_elt){
         Util.one('#name').innerHTML = `
         <div class="row">
             <div class="col-sm-6 form-group">
-                <input type="text" class="form-control" id="firstName-input" required oninput="checkPattern(this, '^[A-z]+$', 'e-firstName', 'fnvalid')">
+                <input type="text" class="form-control" id="firstName-input" required oninput="Util.checkPattern(this, '^[A-z]+$', 'e-firstName', 'fnvalid')">
                 <div class="invalid-feedback g-small-text" id="e-firstName">Please enter only alphabets</div>
             </div>
             <div class="col-sm-6 form-group">
-                <input type="text" class="form-control" id="lastName-input" required oninput="checkPattern(this, '^[A-z ]+$', 'e-lastName', 'lnvalid')">
+                <input type="text" class="form-control" id="lastName-input" required oninput="Util.checkPattern(this, '^[A-z ]+$', 'e-lastName', 'lnvalid')">
                 <div class="invalid-feedback g-small-text" id='e-lastName'>Alphabets only</div>
             </div>
         </div>`;
 
         phone = Util.one('#phone');
         phone.classList.add("form-group");
-        phone.innerHTML = `<input type="number" class="form-control small-input" id="phone-input" required oninput="checkPattern(this, '^[0-9]{10}$', 'e-phone', 'phonevalid')">
+        phone.innerHTML = `<input type="number" class="form-control small-input" id="phone-input" required oninput="Util.checkPattern(this, '^[0-9]{10}$', 'e-phone', 'phonevalid')">
                             <div class="invalid-feedback" id="e-phone">Please enter a valid phone number</div>`;
 
         email = Util.one('#email');
         email.classList.add("form-group");
-        email.innerHTML = `<input type="email" class="form-control small-input" id="email-input" required oninput="checkPattern(this, '^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$', 'e-email', 'emailvalid')">
+        email.innerHTML = `<input type="email" class="form-control small-input" id="email-input" required oninput="Util.checkPattern(this, '^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$', 'e-email', 'emailvalid')">
                             <div class="invalid-feedback" id="e-email">Enter a valid email!</div>`;
         Util.one('#description').innerHTML = '<textarea class="form-control small-input" id="description-input" rows="2"></textarea>';
         Util.one('#photo').innerHTML =
@@ -121,24 +121,6 @@ function edit_enable(edit_elt){
     });
 }
 
-// below will be useful
-function checkPattern(input, pattern, errormessageid, variable){
-    console.log("checking!");
-
-    var regex = new RegExp(pattern);
-    if(!!regex.test(input.value) == false){
-        input.style.setProperty('border-color',  'var(--red)');
-        Util.one('#'+errormessageid).style.setProperty('display', 'inline');
-        console.log("invalid");
-        window[variable] = false;
-    }
-    else{
-        input.style.setProperty('border',  '1px solid #ced4da');
-        Util.one('#'+errormessageid).style.setProperty('display', 'none');
-        window[variable] = true;
-        console.log("valid");
-    }
-}
 
 //How to create calendar using jQuery and CSS3
 //https://designmodo.com/calendar-jquery-css3/
