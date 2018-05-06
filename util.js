@@ -104,5 +104,27 @@
 static getURLParam(name) {
   return new URL(location).searchParams.get(name);
 }
+     
+     
+/*
+check pattern for an input type text
+*/
+static checkPattern(input, pattern, errormessageid, variable){
+    console.log("checking!");
+
+    var regex = new RegExp(pattern);
+    if(!!regex.test(input.value) == false){
+        input.style.setProperty('border-color',  'var(--red)');
+        Util.one('#'+errormessageid).style.setProperty('display', 'inline');
+        console.log("invalid");
+        window[variable] = false;
+    }
+    else{
+        input.style.setProperty('border',  '1px solid #ced4da');
+        Util.one('#'+errormessageid).style.setProperty('display', 'none');
+        window[variable] = true;
+        console.log("valid");
+    }
+}
 
  }
