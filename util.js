@@ -104,30 +104,30 @@
 static getURLParam(name) {
   return new URL(location).searchParams.get(name);
 }
-     
-     
+
+
 /*
 check pattern for an input type text
 */
 static checkPattern(input, pattern, errormessageid, variable){
-    console.log("checking!");
+    //console.log("checking!");
 
     var regex = new RegExp(pattern);
     if(!!regex.test(input.value) == false){
         input.style.setProperty('border-color',  'var(--red)');
         Util.one('#'+errormessageid).style.setProperty('display', 'inline');
-        console.log("invalid");
+        //console.log("invalid");
         window[variable] = false;
     }
     else{
         input.style.setProperty('border',  '1px solid #ced4da');
         Util.one('#'+errormessageid).style.setProperty('display', 'none');
         window[variable] = true;
-        console.log("valid");
+        //console.log("valid");
     }
 }
-     
- /* 
+
+ /*
 a function to create the weekday selectors in the overlay and plant profile
 The last parameter is a boolean flag for whether validation is necessary for the weekday selectors
 */
@@ -142,7 +142,7 @@ static addWeekdaySelector(elt, id, variable, checkunselected=false){
             var input = Util.create("input", {'type': 'checkbox', 'id': "weekday-"+weekdays[i] + id, 'onclick': 'Util.showErrorMessageWeekdayCheckboxes("' + id + '", "e-'+id + '", "'+variable+'")'});
         }
         else{
-           var input = Util.create("input", {'type': 'checkbox', 'id': "weekday-"+weekdays[i] + id}); 
+           var input = Util.create("input", {'type': 'checkbox', 'id': "weekday-"+weekdays[i] + id});
         }
         input.classList.add("weekday");
         input.setAttribute("class", "weekday");
@@ -199,7 +199,7 @@ static checkUnselectedWeekdayCheckboxes(id){
         }
     }
     return nonechecked;
-}   
+}
 /*
 util method to add radio buttons
 */

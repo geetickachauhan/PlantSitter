@@ -34,8 +34,8 @@ function createAddPlantOverlay(){
                         Nickname
                     </div>
                     <div class="col-sm-8">
-                        <input type="text" class="form-control" id="name" placeholder="Plant Nickname" oninput="Util.checkPattern(this, '^[A-z]+$', 'e-plantname', 'pnvalid')">
-                        <div class="invalid-feedback" id="e-plantname">Please enter alphabets</div>
+                        <input type="text" class="form-control" id="name" placeholder="Plant Nickname" oninput="Util.checkPattern(this, '^[A-z \-]+$', 'e-plantname', 'pnvalid')">
+                        <div class="invalid-feedback" id="e-plantname">Hmm...Name with a number?</div>
                     </div>
             </div>
             <div class="row g-pad">
@@ -46,8 +46,11 @@ function createAddPlantOverlay(){
                         Type
                     </div>
                     <div class="col-sm-8">
-                        <input type="text" class="form-control" id="type" placeholder="Plant Type (eg. orchid, rose)" oninput="Util.checkPattern(this, '^[A-z]+$', 'e-planttype', 'ptvalid')">
-                        <div class="invalid-feedback" id="e-planttype">Alphabets only!</div>
+                    <!--
+                        <input type="text" class="form-control" id="type" placeholder="Plant Type (eg. orchid, rose)" oninput="Util.checkPattern(this, '^[A-z\-\s]+$', 'e-planttype', 'ptvalid')">
+                        -->
+                        <input type="text" class="form-control" id="type" placeholder="Plant Type (eg. orchid, rose)" oninput="Util.checkPattern(this, '^[A-z \-]+$', 'e-planttype', 'ptvalid')">
+                        <div class="invalid-feedback" id="e-planttype">Hmm...type with a number?</div>
                     </div>
             </div>
         </div>
