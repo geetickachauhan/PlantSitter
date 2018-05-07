@@ -20,6 +20,8 @@ input[type="text"]{
 img{
     max-width: 70%;
     border-radius: 0.3em;
+    display: block;
+    margin: auto;
 }
 .g-big-button{
     height: 100%;
