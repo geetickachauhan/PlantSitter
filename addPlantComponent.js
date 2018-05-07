@@ -20,7 +20,7 @@ function createAddPlantOverlay(){
 //    box.setAttribute("cursor", "default");
     box.innerHTML = `
     <div class="row g-pad">
-        <div class="col-6">
+        <div class="col-sm-6">
                 <div id="photo">
                     <label class="btn btn-info g-big-button vertical-center">
                       <span class="fas fa-camera fa-5x"></span>
@@ -28,24 +28,24 @@ function createAddPlantOverlay(){
                     </label>
                   </div>
         </div>
-        <div class="col-6">
+        <div class="col-sm-6">
             <div class="row g-pad">
-                    <div class="col-4">
+                    <div class="col-sm-4">
                         Nickname
                     </div>
-                    <div class="col-8">
+                    <div class="col-sm-8">
                         <input type="text" class="form-control" id="name" placeholder="Plant Nickname" oninput="Util.checkPattern(this, '^[A-z \-]+$', 'e-plantname', 'pnvalid')">
                         <div class="invalid-feedback" id="e-plantname">Hmm...Name with a number?</div>
                     </div>
             </div>
             <div class="row g-pad">
-                    <div class="col-2">
+                    <div class="col-sm-2">
                         <span class="fas fa-leaf fa-2x text-green"></span>
                     </div>
-                    <div class="col-2 eliminate-padding-right">
+                    <div class="col-sm-2 eliminate-padding-right">
                         Type
                     </div>
-                    <div class="col-8">
+                    <div class="col-sm-8">
                     <!--
                         <input type="text" class="form-control" id="type" placeholder="Plant Type (eg. orchid, rose)" oninput="Util.checkPattern(this, '^[A-z\-\s]+$', 'e-planttype', 'ptvalid')">
                         -->
@@ -56,97 +56,97 @@ function createAddPlantOverlay(){
         </div>
     </div>
     <div class="row mt-4 mb-4">
-        <div class="col-8">
+        <div class="col-sm-8">
                 <div class="row">
-                    <div class="col-1 eliminate-padding-right">
+                    <div class="col-sm-1 eliminate-padding-right">
                         <span class="fas fa-tint fa-2x text-aqua"></span>
                     </div>
-                    <div class="col-2 small-font eliminate-padding-right">
+                    <div class="col-sm-2 small-font eliminate-padding-right">
                         Watering Frequency
                     </div>
-                    <div class="col-6 eliminate-padding-right" id="watering-weekdays">
+                    <div class="col-sm-6 eliminate-padding-right" id="watering-weekdays">
                     </div>
-                    <div class="col-3" id="watering-frequency">
+                    <div class="col-sm-3" id="watering-frequency">
                     </div>
                 </div>
         </div>
-        <div class="col-4">
+        <div class="col-sm-4">
                 <div class="row">
-                    <div class="col-2 eliminate-padding-right">
+                    <div class="col-sm-2 eliminate-padding-right">
                         <span class="fas fa-heartbeat fa-2x text-red"></span>
                     </div>
-                    <div class="col-6 small-font eliminate-padding-right">
+                    <div class="col-sm-6 small-font eliminate-padding-right">
                         Health Status
                     </div>
-                    <div class="col-4" id="health-frequency">
+                    <div class="col-sm-4" id="health-frequency">
                     </div>
                 </div>
         </div>
     </div>
     <div class="row mb-4 mt-4">
-        <div class="col-8">
+        <div class="col-sm-8">
                 <div class="row">
-                    <div class="col-1 eliminate-padding-right">
+                    <div class="col-sm-1 eliminate-padding-right">
                         <span class="fas fa-poo fa-2x margin-right text-brown"></span>
                     </div>
-                    <div class="col-2 small-font eliminate-padding-right">
+                    <div class="col-sm-2 small-font eliminate-padding-right">
                         Fertilizer Frequency
                     </div>
-                    <div class="col-6 eliminate-padding-right" id="fertilizer-weekdays">
+                    <div class="col-sm-6 eliminate-padding-right" id="fertilizer-weekdays">
                     </div>
-                    <div class="col-3" id="fertilizer-frequency">
+                    <div class="col-sm-3" id="fertilizer-frequency">
                     </div>
                 </div>
         </div>
-        <div class="col-4">
+        <div class="col-sm-4">
                 <div class="row">
-                    <div class="col-2 eliminate-padding-right">
+                    <div class="col-sm-2 eliminate-padding-right">
                         <span class="fas fa-lightbulb fa-2x margin-right text-yellow"></span>
                     </div>
-                    <div class="col-6 small-font eliminate-padding-right">
+                    <div class="col-sm-6 small-font eliminate-padding-right">
                         Light Intensity
                     </div>
-                    <div class="col-4" id="light-frequency">
+                    <div class="col-sm-4" id="light-frequency">
                     </div>
                 </div>
         </div>
     </div>
     <div class="row mb-4 mt-4">
-        <div class="col-8">
+        <div class="col-sm-8">
                 <div class="row">
-                    <div class="col-1 eliminate-padding-right">
+                    <div class="col-sm-1 eliminate-padding-right">
                         <span class="fas fa-bug fa-2x margin-right text-gray"></span>
                     </div>
-                    <div class="col-2 small-font eliminate-padding-right">
+                    <div class="col-sm-2 small-font eliminate-padding-right">
                         Pesticide Frequency
                     </div>
-                    <div class="col-6 eliminate-padding-right" id="pesticide-weekdays">
+                    <div class="col-sm-6 eliminate-padding-right" id="pesticide-weekdays">
                     </div>
-                    <div class="col-3" id="pesticide-frequency">
+                    <div class="col-sm-3" id="pesticide-frequency">
                     </div>
                 </div>
         </div>
-        <div class="col-4">
+        <div class="col-sm-4">
                 <div class="row">
-                    <div class="col-2 eliminate-padding-right">
+                    <div class="col-sm-2 eliminate-padding-right">
                         <span class="fas fa-cut fa-2x margin-right"></span>
                     </div>
-                    <div class="col-6 small-font eliminate-padding-right">
+                    <div class="col-sm-6 small-font eliminate-padding-right">
                         Requires Trimming
                     </div>
-                    <div class="col-4" id="trimming-frequency">
+                    <div class="col-sm-4" id="trimming-frequency">
                     </div>
                 </div>
         </div>
     </div>
     <div class="row mb-3 mt-3">
-        <div class="col-1">
+        <div class="col-sm-1">
             <span class="fas fa-info-circle fa-2x margin-right text-orange"></span>
         </div>
-        <div class="col-7">
+        <div class="col-sm-7">
             <input type="text" class="form-control" id="special-instructions" placeholder="Special Instructions">
         </div>
-        <div class="col-4">
+        <div class="col-sm-4">
                 <div id="save" class="vertical-center">
                   <button class="btn btn-secondary g-big-button" disabled>
                     <span class="fas fa-plus-circle fa-3x"></span>
