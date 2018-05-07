@@ -1,5 +1,5 @@
 :root{
-    --plantprofile-font-size: 1em;
+    --plantprofile-font-size: calc(0.5em + 1vh);
     --plantprofile-font-weight: 400;
 }
 #breadcrumb, #plantprofilecontent{
@@ -98,4 +98,10 @@ div{
 .g-min-max-width{
     min-width: 450px;
 /*    max-width: 600px;*/
+}
+
+@media (max-width: 690px){
+    :root{
+        --plantprofile-font-size: calc(0.3em + 1vh);
+    }
 }
