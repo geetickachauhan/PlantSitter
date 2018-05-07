@@ -102,6 +102,11 @@ div{
 
 @media (max-width: 690px){
     :root{
-        --plantprofile-font-size: calc(0.3em + 1vh);
+        --plantprofile-font-size: calc(0.5em + 1vh);
     }
+}
+@media (max-width: 500px){
+  .weekday-div, .weekDays-selector input[type=checkbox] + label {
+    width: 13vw;
+  }
 }
