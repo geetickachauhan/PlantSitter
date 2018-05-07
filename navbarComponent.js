@@ -19,7 +19,7 @@ function createNavbar(){
                     <div class="dropdown-menu" aria-labelledby="notifDropdown" id="g-notification">
                     </div>
                 </li>
-                <li class="nav-item dropdown text-right mt-1">
+                <li class="nav-item dropdown mt-1">
                   <a class="nav-link dropdown-toggle" href="#" id="usernameDropDown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></a>
                   <div class="dropdown-menu" aria-labelledby="usernameDropdown">
                   <a class="dropdown-item" id="linkToProfile" href="profile.html">
@@ -76,7 +76,7 @@ function createNavbar(){
 
    notification.innerHTML = notifInner;
 
-   if (window.screen.width <= 991){
+   if (window.innerWidth <= 991){
      notification.children[0].children[0].remove(); //removing <br>
    };
 
