@@ -1,8 +1,8 @@
 var weekdays = ['M', 'T', 'W', 'T', 'F', 'S', 'S'];
-var freq_dict = {0: 'Every Week', 1: 'Every 2 Weeks', 2: 'Every Month'};
-var light_dict = {0: 'Direct', 1: 'Indirect'};
-var health_dict = {0: 'Healthy', 1: 'Sick'};
-var trimming_dict = {0: 'Yes', 1: 'No'};
+var freq_dict = {2: 'Every Week', 1: 'Every 2 Weeks', 0: 'Every Month'};
+var light_dict = {1: 'Direct', 0: 'Indirect'};
+var health_dict = {1: 'Healthy', 0: 'Sick'};
+var trimming_dict = {1: 'Yes', 0: 'No'};
 var pnvalid = true, ptvalid = true, wateringvalid = true, fertilizervalid = true, pesticidevalid = true; // this is to check if the plant name and type are written in the correct format
 
 var logged_in_user = JSON.parse(localStorage.getItem('logged_in_user'));
@@ -12,8 +12,8 @@ $(document).ready(function(){
     //    showProfile(own, photo, star, name, phone, email, description);
     createNavbar();
 
-    let mode = parseInt(localStorage.getItem('mode'));
-    let current_plant = JSON.parse(localStorage.getItem('current_plant'));
+    let mode = parseInt(sessionStorage.getItem('mode'));
+    let current_plant = JSON.parse(sessionStorage.getItem('current_plant'));
     showProfile(mode, current_plant);
 
 });
@@ -208,55 +208,72 @@ function edit_enable(current_plant){
         Util.one('#g-save-button').classList.remove('g-display-none');
         Util.one('#g-delete-button').classList.remove('g-display-none');
     });
-       // now just have to make the save button work
-       // TODO: make the save button work
-        Util.one('#g-save-button').addEventListener('click', function(){
-            // find a way to edit the json based on logged in user
-            if(pnvalid == false || ptvalid == false || wateringvalid == false || fertilizervalid == false || pesticidevalid == false){
-                console.log("one of the inputs was not valid");
-                return;
-            }
-            // TODO just check over here if the watering, fertlizer and pesticide frequency are ok.
-            // basically none of the checkboxes should ever be empty when save is pressed
-            // when you read watering[0] or fertilizer[0] or pesticide[0], it should never be 0000
-            current_plant['name'] = Util.one('#plantname-input').value;
-            current_plant['type'] = Util.one('#planttype-input').value;
-            current_plant['instructions'] = Util.one('#specialinstructions-input').value;
-            var watering = [], fertilizer = [], pesticide = [], health, light, trimming;
-            var values = ["everyweek", "every2weeks", "everymonth"];
-            watering[0] = readWeekdayCheckBox('watering');
-            watering[1] = readRadioButtons('watering', values);
 
-            fertilizer[0] = readWeekdayCheckBox('fertilizer');
-            fertilizer[1] = readRadioButtons('fertilizer', values);
 
-            pesticide[0] = readWeekdayCheckBox('pesticide');
-            pesticide[1] = readRadioButtons('pesticide', values);
+    Util.one('#g-delete-button').addEventListener('click', function(){
 
-            health = readRadioButtons('healthstatus', ['healthy', 'sick']);
-            light = readRadioButtons('light', ['direct', 'indirect']);
-            trimming = readRadioButtons('trimming', ['yes', 'no']);
+      Util.one(".modal-body").children[0].innerText = "Do you really want to delete " + current_plant.name + "?";
+      $('#delete_plant_modal').modal('show');
+    });
 
-            current_plant['watering_freq'] = watering;
-            current_plant['fertilizer_freq'] = fertilizer;
-            current_plant['pesticide_freq'] = pesticide;
-            current_plant['health'] = health;
-            current_plant['light'] = light;
-            current_plant['trimming'] = trimming;
 
-            Util.removeAllChildren(Util.one('#g-watering'));
-            Util.removeAllChildren(Util.one('#g-watering-freq'));
-            Util.removeAllChildren(Util.one('#g-fertilizer'));
-            Util.removeAllChildren(Util.one('#g-fertilizer-freq'));
-            Util.removeAllChildren(Util.one('#g-pesticide'));
-            Util.removeAllChildren(Util.one('#g-pesticide-freq'));
-            Util.removeAllChildren(Util.one('#g-healthstatus'));
-            Util.removeAllChildren(Util.one('#g-light'));
-            Util.removeAllChildren(Util.one('#g-trimming'));
-            updatePlantView(current_plant);
+    Util.one("#delete_plant_btn").addEventListener('click', function(){
+      let registered_plants = Helpers.createPlantInstances(JSON.parse(localStorage.getItem('registered_plants')));
+      registered_plants.splice(registered_plants.indexOf(current_plant), 1);
+      localStorage.setItem('registered_plants', JSON.stringify(registered_plants));
+      window.location.href = "homepage.html";
 
-            Util.one('#g-save-button').classList.add('g-display-none');
-            Util.one('#g-delete-button').classList.add('g-display-none');
-            Util.one('#g-edit-button').classList.remove('g-display-none');
-        });
+    });
+
+   // now just have to make the save button work
+   // TODO: make the save button work
+    Util.one('#g-save-button').addEventListener('click', function(){
+        // find a way to edit the json based on logged in user
+        if(pnvalid == false || ptvalid == false || wateringvalid == false || fertilizervalid == false || pesticidevalid == false){
+            //console.log("one of the inputs was not valid");
+            return;
+        }
+        // TODO just check over here if the watering, fertlizer and pesticide frequency are ok.
+        // basically none of the checkboxes should ever be empty when save is pressed
+        // when you read watering[0] or fertilizer[0] or pesticide[0], it should never be 0000
+        current_plant['name'] = Util.one('#plantname-input').value;
+        current_plant['type'] = Util.one('#planttype-input').value;
+        current_plant['instructions'] = Util.one('#specialinstructions-input').value;
+        var watering = [], fertilizer = [], pesticide = [], health, light, trimming;
+        var values = ["everyweek", "every2weeks", "everymonth"];
+        watering[0] = readWeekdayCheckBox('watering');
+        watering[1] = readRadioButtons('watering', values);
+
+        fertilizer[0] = readWeekdayCheckBox('fertilizer');
+        fertilizer[1] = readRadioButtons('fertilizer', values);
+
+        pesticide[0] = readWeekdayCheckBox('pesticide');
+        pesticide[1] = readRadioButtons('pesticide', values);
+
+        health = readRadioButtons('healthstatus', ['healthy', 'sick']);
+        light = readRadioButtons('light', ['direct', 'indirect']);
+        trimming = readRadioButtons('trimming', ['yes', 'no']);
+
+        current_plant['watering_freq'] = watering;
+        current_plant['fertilizer_freq'] = fertilizer;
+        current_plant['pesticide_freq'] = pesticide;
+        current_plant['health'] = health;
+        current_plant['light'] = light;
+        current_plant['trimming'] = trimming;
+
+        Util.removeAllChildren(Util.one('#g-watering'));
+        Util.removeAllChildren(Util.one('#g-watering-freq'));
+        Util.removeAllChildren(Util.one('#g-fertilizer'));
+        Util.removeAllChildren(Util.one('#g-fertilizer-freq'));
+        Util.removeAllChildren(Util.one('#g-pesticide'));
+        Util.removeAllChildren(Util.one('#g-pesticide-freq'));
+        Util.removeAllChildren(Util.one('#g-healthstatus'));
+        Util.removeAllChildren(Util.one('#g-light'));
+        Util.removeAllChildren(Util.one('#g-trimming'));
+        updatePlantView(current_plant);
+
+        Util.one('#g-save-button').classList.add('g-display-none');
+        Util.one('#g-delete-button').classList.add('g-display-none');
+        Util.one('#g-edit-button').classList.remove('g-display-none');
+    });
 }

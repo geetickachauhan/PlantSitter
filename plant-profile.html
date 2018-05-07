@@ -34,20 +34,43 @@
 
       <!--  for the add plant overlay -->
 <!--    <link rel="stylesheet" href="addPlantComponent.css">-->
-    <link rel="stylesheet" href="shared.css">
-    <script src="addPlantComponent.js"></script>
-    
+<link rel="stylesheet" href="shared.css">
+<script src="addPlantComponent.js"></script>
+
 <script src="navbarComponent.js"></script>
 <script src="util.js"></script>
-<script src="plant-profile.js"></script>
+<script src="plant.js"></script>
 <script src ="registeredUsers.js"></script>
 <script src="registeredPlants.js"></script>
+<script src="helperFunctions.js"></script>
+<script src="plant-profile.js"></script>
 <!--    the order may matter-->
-    
+
 </head>
 
-<body>  
-    <div class = "container g-pad" id="plantprofilecontent"> 
+<body>
+
+<div class="modal" id="delete_plant_modal" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Delete plant</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p></p>
+      </div>
+      <div class="modal-footer">
+        <button id="delete_plant_btn" type="button" class="btn btn-danger float-left">Delete</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+    <div class = "container g-pad" id="plantprofilecontent">
         <div class="row g-pad">
             <div class="col-sm-3" id="g-photo"></div>
             <div class="col-sm-6">
@@ -136,17 +159,17 @@
             <span class="fas fa-info-circle fa-2x margin-right text-orange"></span>
             </div>
             <div class="col-sm-2">Special Instructions</div>
-            
+
             <div class="col-sm-8" id="g-specialinstructions"></div>
             <div class="col-sm-1">
                 <span class="float-right">
                     <button class="btn btn-danger g-display-none" id="g-delete-button"><span class="fas fa-trash-alt fa-lg"></span></button>
                 </span>
             </div>
-        </div>  
+        </div>
     </div>
 
- 
+
 </body>
 
 </html>

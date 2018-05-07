@@ -44,8 +44,8 @@ function createUserDisplayStatus(plant_instance, footer, view_mode, isOwner){
     text.innerText = "Requested plantsitting from " + plant_instance.status.start_date +
     "\xa0 to \xa0" + plant_instance.status.end_date;
 
-    console.log("plant instance is ", plant_instance)
-    console.log("f is ", plant_instance.requestToCare);
+    //console.log("plant instance is ", plant_instance)
+    //console.log("f is ", plant_instance.requestToCare);
 
     if (isOwner){
         extra = Helpers.createCancelButton(plant_instance, plant_instance.cancelRequestForcare, view_mode);
@@ -169,8 +169,8 @@ function createPlantTile(plant_instance, view_mode){
   card.classList.add("card");
   card.addEventListener("click", function(e){
 
-    localStorage.setItem('mode', 1);
-    localStorage.setItem('current_plant', JSON.stringify(plant_instance));
+    sessionStorage.setItem('mode', 1);
+    sessionStorage.setItem('current_plant', JSON.stringify(plant_instance));
     location.href="plant-profile.html";
   })
 

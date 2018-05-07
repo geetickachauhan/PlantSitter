@@ -16,8 +16,14 @@ function setupPlantManipulation(){
 
       let radios = Util.all("#overlay .form-check-input");
 
-      let frequency_radios = radios.slice(0,9);
-      let bool_radios = radios.slice(9);
+      let frequency_radios = radios.slice(0,3);
+      frequency_radios.push(...radios.slice(5,8));
+      frequency_radios.push(...radios.slice(10,13))
+
+      let bool_radios = radios.slice(3,5);
+      bool_radios.push(...radios.slice(8,10));
+      bool_radios.push(...radios.slice(13,15));
+
 
       let frequencies = [], booleans = [];
 
@@ -31,7 +37,6 @@ function setupPlantManipulation(){
           if (bool_radios[j].checked)
             booleans.push(1 - (j - i*2));
 
-
       let plant_name = Util.one("#name").value;
       let plant_type = Util.one("#type").value;
 
@@ -44,6 +49,7 @@ function setupPlantManipulation(){
       plant_args = plant_args.concat(aggregate_frequencies);
       plant_args = plant_args.concat(booleans);
       plant_args.push(Util.one("#special-instructions").value);
+
 
       let plant_instance = new Plant(...plant_args);
 
