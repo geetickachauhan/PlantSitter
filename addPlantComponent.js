@@ -1,4 +1,4 @@
-var pnvalid = false, ptvalid = false, wateringvalid = true, fertilizervalid = true, pesticidevalid = true; // this is to check if the plant name and type are written in the correct format
+var pnvalid = false, ptvalid = false, wateringvalid = false, fertilizervalid = true, pesticidevalid = true; // this is to check if the plant name and type are written in the correct format
 // using the example from https://www.w3schools.com/howto/tryit.asp?filename=tryhow_css_overlay_text
 // if you want below function to also create the div that creates the overlay, follow this
 // https://www.safaribooksonline.com/library/view/javascript-cookbook/9781449390211/ch13s07.html
@@ -40,13 +40,13 @@ function createAddPlantOverlay(){
             </div>
             <div class="row g-pad">
                     <div class="col-sm-2">
-                        <span class="fas fa-leaf fa-2x text-green"></span> 
+                        <span class="fas fa-leaf fa-2x text-green"></span>
                     </div>
                     <div class="col-sm-2 eliminate-padding-right">
                         Type
                     </div>
                     <div class="col-sm-8">
-                        <input type="text" class="form-control" id="type" placeholder="Plant Type (eg. orchid, rose)" oninput="Util.checkPattern(this, '^[A-z]+$', 'e-planttype', 'pnvalid')">
+                        <input type="text" class="form-control" id="type" placeholder="Plant Type (eg. orchid, rose)" oninput="Util.checkPattern(this, '^[A-z]+$', 'e-planttype', 'ptvalid')">
                         <div class="invalid-feedback" id="e-planttype">Alphabets only!</div>
                     </div>
             </div>
@@ -145,7 +145,7 @@ function createAddPlantOverlay(){
         </div>
         <div class="col-sm-4">
                 <div id="save" class="vertical-center">
-                  <button class="btn btn-secondary g-big-button">
+                  <button class="btn btn-secondary g-big-button" disabled>
                     <span class="fas fa-plus-circle fa-3x"></span>
                   </button>
                 </div>
@@ -165,7 +165,7 @@ function createAddPlantOverlay(){
     var values = ["everyweek", "every2weeks", "everymonth"];
     var labels = ["Every Week", "Every 2 Weeks", "Every Month"];
     Util.addRadioButtons(watering, "watering", values, labels);
-    
+
     health = Util.one("#health-frequency");
     Util.addRadioButtons(health, "health", ["healthy", "sick"], ["Healthy", "Sick"]);
 
@@ -175,7 +175,7 @@ function createAddPlantOverlay(){
     // if you want to remove validation on that, just make sure to change Util.addWeekdaySelector to not include the function that seems to be called on input
     fertilizer = Util.one("#fertilizer-frequency");
     Util.addRadioButtons(fertilizer, "fertilizer", values, labels);
-    
+
     sunlight = Util.one("#light-frequency");
     Util.addRadioButtons(sunlight, "sunlight", ["direct", "indirect"], ["Direct", "Indirect"]);
 
@@ -184,14 +184,25 @@ function createAddPlantOverlay(){
     Util.addWeekdaySelector(pesticide, 3, "pesticidevalid");
     pesticide = Util.one("#pesticide-frequency");
     Util.addRadioButtons(pesticide, "pesticide", values, labels);
-    
+
     trimming = Util.one("#trimming-frequency");
     Util.addRadioButtons(trimming, "trimming", ["yes", "no"], ["Yes", "No"]);
 
 	//listener for save which reads the inputs and makes an instance of the plant logic, create a plant component
 	// and closes the overlay
-    //
 
+  /*
+    enable the save button if the inputs are correct
+  */
+  let must_be_valid_inputs = Array.from(Util.one("#watering-weekdays").children[0].children).filter(el => el.type == "checkbox");
+
+  must_be_valid_inputs.push(Util.one("#name"));
+  must_be_valid_inputs.push(Util.one("#type"));
+
+  must_be_valid_inputs.map(el => el.addEventListener("input", function(e){
+    if (pnvalid && ptvalid && wateringvalid)
+      Util.one("#save").children[0].removeAttribute("disabled");
+  }));
 
 }
 
@@ -233,12 +244,12 @@ function go(){
 window.onclick = function(event) {
     var modal = Util.one('#overlay');
     if (event.target == modal) {
-        if (window.confirm("Are you sure you want to exit without adding the plant?")) { 
+        if (window.confirm("Are you sure you want to exit without adding the plant?")) {
             removeAddPlantOverlay();
         }
     }
 }
-    
+
 //    box.innerHTML = `
 //    <div id="photo" class=“centerdiv”>
 //    <label class="btn btn-info g-big-button label-center">

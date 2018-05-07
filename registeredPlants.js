@@ -6,7 +6,7 @@ let saruman = registered_users[2].id;
 var registered_plants_arr = [
   {"photo_url": 'img/plant4.png', "name": "Beren", "type": "Cactus",
   "watering_freq": [[0,1,0,0,0,0,0], 0], "fertilizer_freq": [[0,0,1,0,0,0,0], 1],
-  "pesticide_freq": [[0,0,0,0,0,0,0], 2],"health": 1, "light": 1, "trimming": 0, 'instructions': "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+  "pesticide_freq": [[0,0,0,0,0,0,0], 2],"health": 1, "light": 1, "trimming": 0, 'instructions': "Beren is the last survivor of his kind.",
   "id": 0, "owner": 0, "status": {"status_code": 1, "start_date": "04/24/2018",
   "end_date":"04/27/2018", "req_caretakers": [1,2], "app_caretaker": null}},
 
