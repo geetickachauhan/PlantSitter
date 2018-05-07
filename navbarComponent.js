@@ -61,10 +61,10 @@ function createNavbar(){
       <a class="dropdown-item" href="profile.html?id=1">
         Bilbo has requested to <br>care for Beren
         <div class="row text-center">
-            <div class="col-sm-6">
+            <div class="col-6">
             <button type="button" class="btn btn-success" id="accept_bilbo"><span class="fas fa-check fa-lg"></span></button>
             </div>
-        <div class="col-sm-6">
+        <div class="col-6">
             <button type="button" class="btn btn-danger"><span class="fas fa-ban fa-lg"></span></button>
         </div>
         </div>

@@ -7,7 +7,7 @@ function createSearchFilter(mode){
 
     let inner = `
     <div class="container">
-        <div class="row justify-content-md-center">
+        <div class="row justify-content-center">
 
             <form>
               <div class="form-group margin-top">
