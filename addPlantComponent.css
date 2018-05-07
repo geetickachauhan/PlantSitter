@@ -63,9 +63,10 @@ input[type="text"] {
     width: 80%;
 /*    max height and max width will need to be changed later*/
     max-width: 1000px;
-    -max-height: 700px;
-    height: 75%;
-    padding: 2%;
+    max-height: 550px;
+/*    height: 75%;*/
+/*    padding: 2%;*/
+    padding: .5rem 1rem;
     background-color: var(--color-white);
     border: 1px solid rgba(255, 255, 255, 0.4);
     border-radius: 2px;
