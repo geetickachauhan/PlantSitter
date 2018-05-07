@@ -76,6 +76,11 @@ input[type="text"] {
 /*    grid-gap: 2px;*/
 }
 
+@media (max-width: 1044px) {
+    #box label, #box div{
+      font-size: calc(0.3em + 1vh);
+    }
+}
 
 
 #photo{

@@ -29,7 +29,6 @@ var registered_users_arr = [
 ]
 
 
-
 if (!JSON.parse(localStorage.getItem('registered_users'))){
   localStorage.setItem('registered_users', JSON.stringify(registered_users_arr));
 }

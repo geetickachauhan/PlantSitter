@@ -38,9 +38,16 @@
     -align-items: flex-start;
     -justify-content: center;
     color: hsl(85, 3%, 39%);
-    font-size: var(--font-size-search);
+    -font-size: var(--font-size-search);
     position: fixed;
+    font-size: font-size: calc(0.5em + 1vh);
 
+}
+
+@media (max-width: 690px){
+  #search_filter_container{
+    font-size: calc(0.3em + 1vh);
+  }
 }
 
 #content{

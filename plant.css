@@ -8,10 +8,11 @@
 @media (max-width: 1220px){
   .card{
       width: 95%;
-      -max-height: 1000px !important;
+      -max-height: 700px !important;
   }
 
 }
+
 
 .card:hover {
   cursor: pointer;
@@ -35,6 +36,21 @@
 .card-footer > p {
   -margin-bottom: 0.5rem;
 }
+
+
+.card-footer p, .card-footer label, .btn,  #plant_functions_container label, .btn{
+    font-size: calc(0.5em + 1vh);
+}
+
+@media (max-width: 690px){
+  .card-footer p, .card-footer label, #plant_functions_container label, .btn{
+      font-size: calc(0.3em + 1vh);
+  }
+
+
+
+}
+
 
 .aggregation-checkbox {
   display: inline-block;
