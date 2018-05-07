@@ -169,7 +169,8 @@ function createPlantTile(plant_instance, view_mode){
   card.classList.add("card");
   card.addEventListener("click", function(e){
 
-    sessionStorage.setItem('mode', 1);
+    let mode = plant_instance.owner == logged_in_user.id ? 1 : 0;
+    sessionStorage.setItem('mode', mode);
     sessionStorage.setItem('current_plant', JSON.stringify(plant_instance));
     location.href="plant-profile.html";
   })

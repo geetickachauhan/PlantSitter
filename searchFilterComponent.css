@@ -18,8 +18,10 @@
 /*    grid-template-columns: 1fr 2fr;*/
 }
 
+
+
 #search_filter_container{
-    height: 100vh;
+    height: 92vh;
     overflow-y: scroll;
 /*    above is important to enable vertical scrolling in search filter*/
     width: 23%;

@@ -42,7 +42,7 @@ function updatePlantView(current_plant){
         Util.one('#g-photo').innerHTML = "<img src='"+photo+"'>";
     }
     else{
-        Util.one('#g-photo').innerHTML = "<img src='images/plant_photoholder.png'>";
+        Util.one('#g-photo').innerHTML = "<img src='img/plant_photoholder.png'>";
     }
     Util.one('#g-plantname').innerHTML = name;
     Util.one('#g-planttype').innerHTML = type;
