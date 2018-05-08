@@ -207,6 +207,21 @@ function edit_enable(current_plant){
         Util.one('#g-edit-button').classList.add('g-display-none');
         Util.one('#g-save-button').classList.remove('g-display-none');
         Util.one('#g-delete-button').classList.remove('g-display-none');
+
+
+        //disables save button if inputs are not valid
+        let watering_inputs = Array.from(Util.one("#g-watering").children[0].children).filter(el => el.tagName == "INPUT");
+        let validations = [...watering_inputs];
+        validations.push(Util.one("#plantname-input"));
+        validations.push(Util.one("#planttype-input"));
+
+        validations.map(el => el.addEventListener("input", function(e){
+
+          if (!pnvalid || !ptvalid || !wateringvalid)
+            Util.one('#g-save-button').setAttribute("disabled", "true");
+          else
+          Util.one('#g-save-button').removeAttribute("disabled");
+        }));
     });
 
 
@@ -225,12 +240,15 @@ function edit_enable(current_plant){
 
     });
 
+
+
    // now just have to make the save button work
    // TODO: make the save button work
     Util.one('#g-save-button').addEventListener('click', function(){
         // find a way to edit the json based on logged in user
         if(pnvalid == false || ptvalid == false || wateringvalid == false || fertilizervalid == false || pesticidevalid == false){
             //console.log("one of the inputs was not valid");
+
             return;
         }
         // TODO just check over here if the watering, fertlizer and pesticide frequency are ok.
