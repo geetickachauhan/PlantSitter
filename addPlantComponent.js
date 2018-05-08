@@ -35,7 +35,7 @@ function createAddPlantOverlay(){
                     </div>
                     <div class="col-sm-8">
                         <input type="text" class="form-control" id="name" placeholder="Plant Nickname" oninput="Util.checkPattern(this, '^[A-z \-]+$', 'e-plantname', 'pnvalid')">
-                        <div class="invalid-feedback" id="e-plantname">Hmm...Name with a number?</div>
+                        <div class="invalid-feedback" id="e-plantname">Please don't use numbers</div>
                     </div>
             </div>
             <div class="row g-pad">
@@ -47,7 +47,7 @@ function createAddPlantOverlay(){
                     </div>
                     <div class="col-sm-8">
                         <input type="text" class="form-control" id="type" placeholder="Plant Type (eg. orchid, rose)" oninput="Util.checkPattern(this, '^[A-z \-]+$', 'e-planttype', 'ptvalid')">
-                        <div class="invalid-feedback" id="e-planttype">Hmm...type with a number?</div>
+                        <div class="invalid-feedback" id="e-planttype">Please don't use numbers</div>
                     </div>
             </div>
         </div>
@@ -202,6 +202,8 @@ function createAddPlantOverlay(){
   must_be_valid_inputs.map(el => el.addEventListener("input", function(e){
     if (pnvalid && ptvalid && wateringvalid)
       Util.one("#save").children[0].removeAttribute("disabled");
+    else
+      Util.one("#save").children[0].setAttribute("disabled", "true");
   }));
 
 }
