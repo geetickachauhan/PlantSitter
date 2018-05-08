@@ -149,13 +149,13 @@ function edit_enable(current_plant){
 
         plantname = Util.one('#g-plantname');
         plantname.classList.add("form-group");
-        plantname.innerHTML = `<input type="text" class="form-control" id="plantname-input" oninput="Util.checkPattern(this, '^[A-z]+$', 'e-plantname', 'pnvalid')">
+        plantname.innerHTML = `<input type="text" class="form-control" id="plantname-input" oninput="Util.checkPattern(this, '^[A-z \-]+$', 'e-plantname', 'pnvalid')">
                                 <div class="invalid-feedback g-small-text" id="e-plantname">Please enter only alphabets</div>`;
 
 //        Util.one('#g-plantname').innerHTML = '<input type="text" class="form-control" id="plantname-input">';
         planttype = Util.one('#g-planttype');
         planttype.classList.add("form-group");
-        planttype.innerHTML = `<input type="text" class="form-control" id="planttype-input" oninput="Util.checkPattern(this, '^[A-z]+$', 'e-planttype', 'ptvalid')">
+        planttype.innerHTML = `<input type="text" class="form-control" id="planttype-input" oninput="Util.checkPattern(this, '^[A-z \-]+$', 'e-planttype', 'ptvalid')">
                                 <div class="invalid-feedback" id="e-planttype">Alphabets only!</div>`;
 //        Util.one('#g-planttype').innerHTML = '<input type="text" class="form-control" id="planttype-input">';
 
