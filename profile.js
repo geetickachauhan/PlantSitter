@@ -91,6 +91,16 @@ function edit_enable(edit_elt){
         Util.one('#description-input').value = logged_in_user['description'];
         Util.one('#edit-button').classList.add('g-display-none');
         Util.one('#save-button').classList.remove('g-display-none');
+
+        //disables save button upon entering invalid input
+        [Util.one('#firstName-input'), Util.one('#lastName-input'), Util.one('#phone-input'), Util.one('#email-input') ].map(el => el.addEventListener("input", function(e){
+
+          if(!fnvalid || !lnvalid || !phonevalid || !emailvalid)
+            Util.one("#save-button").setAttribute("disabled", "true");
+          else
+            Util.one("#save-button").removeAttribute("disabled");
+        }))
+
     });
 
     Util.one('#save-button').addEventListener('click', function(){
