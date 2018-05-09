@@ -5,6 +5,7 @@ Util.events(document, {
         if (remembered_user){
           Util.one("#email").value = remembered_user.email;
           Util.one("#pwd1").value = remembered_user.password;
+          Util.one("#checkbox").setAttribute("checked", "checked");
         }
 
         Util.all("input").map(el => el.addEventListener("change", function(e){
